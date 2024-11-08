@@ -1,0 +1,14 @@
+@use './variables' as var;
+
+// Loop to create color utility classes
+@each $name, $color in var.$colors {
+	.text-#{$name} {
+		color: $color;
+	}
+	.bg-#{$name} {
+		background-color: $color;
+	}
+	.fill-#{$name} {
+		fill: $color;
+	}
+}

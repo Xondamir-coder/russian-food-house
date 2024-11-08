@@ -1,0 +1,10 @@
+@use '../abstracts/mixins' as mix;
+@use 'sass:map';
+
+.icon-logo {
+	width: 135px;
+	aspect-ratio: 135/40;
+	@include mix.respond('md') {
+		width: 154px;
+	}
+}
