@@ -1,5 +1,6 @@
 @use './variables' as var;
 @use './mixins' as mix;
+@use 'sass:map';
 
 // Loop to create color utility classes
 @each $name, $color in var.$colors {
@@ -25,4 +26,13 @@
 	@include mix.respond('sm') {
 		padding: 0 10px;
 	}
+}
+
+.section-title {
+	color: map.get(var.$colors, 'primary');
+	font-size: clamp(32px, 3vw, 52px);
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	line-height: 1;
+	text-align: center;
 }

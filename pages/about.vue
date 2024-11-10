@@ -2,10 +2,6 @@
 	<div>hello about</div>
 </template>
 
-<script setup>
-definePageMeta({
-	layout: 'about'
-});
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

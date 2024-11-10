@@ -15,6 +15,7 @@ html {
 body {
 	background-color: map.get(var.$colors, 'white');
 	font-family: var.$font-base;
+	font-weight: 500;
 }
 a {
 	text-decoration: none;

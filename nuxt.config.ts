@@ -20,7 +20,8 @@ export default defineNuxtConfig({
 					Inter: true
 				}
 			}
-		]
+		],
+		'@nuxt/image'
 	],
 	devtools: { enabled: true }
 });

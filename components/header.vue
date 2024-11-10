@@ -1,15 +1,15 @@
 <template>
 	<header class="header section-padding">
 		<input type="checkbox" class="header__checkbox" id="menu-toggle" />
-		<RouterLink to="/" class="header__logo">
+		<NuxtLink to="/" class="header__logo">
 			<svg class="icon-logo">
 				<use href="@/assets/sprite.svg#logo"></use>
 			</svg>
-		</RouterLink>
+		</NuxtLink>
 		<nav class="header__nav">
 			<ul class="header__list">
 				<li class="header__item text-dark-blue" v-for="link in links" :key="link.to">
-					<RouterLink :to="link.to">{{ link.text }}</RouterLink>
+					<NuxtLink :to="link.to">{{ link.text }}</NuxtLink>
 				</li>
 			</ul>
 		</nav>
@@ -23,7 +23,7 @@
 		<nav class="header__menu-nav">
 			<ul class="header__menu-list">
 				<li class="header__menu-item" v-for="link in links" :key="link.to">
-					<RouterLink :to="link.to">{{ link.text }}</RouterLink>
+					<NuxtLink :to="link.to">{{ link.text }}</NuxtLink>
 				</li>
 			</ul>
 		</nav>
@@ -67,6 +67,7 @@ const links = [
 	z-index: 100;
 	display: flex;
 	align-items: center;
+	background-color: map.get(var.$colors, 'white');
 
 	@include mix.respond('md') {
 		padding-top: 10px;
@@ -119,7 +120,7 @@ const links = [
 	&__burger {
 		top: 10px;
 		right: 10px;
-		position: absolute;
+		position: fixed;
 		cursor: pointer;
 		width: 48px;
 		height: 48px;
