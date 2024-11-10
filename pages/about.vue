@@ -1,10 +1,11 @@
 <template>
-	<Header />
-	<RouterView />
+	<div>hello about</div>
 </template>
 
 <script setup>
-import Header from '@/layout/Header.vue';
+definePageMeta({
+	layout: 'about'
+});
 </script>
 
 <style lang="scss" scoped></style>

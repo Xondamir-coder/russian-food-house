@@ -1,5 +1,9 @@
 <template>
-	<main class="home"></main>
+	<div class="container">
+		<Header />
+		<slot />
+		<Footer />
+	</div>
 </template>
 
 <script setup></script>
