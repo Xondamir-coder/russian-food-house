@@ -1,5 +1,5 @@
 <template>
-	<div class="world section-padding">
+	<section class="world section-padding">
 		<h2 class="world__title section-title">Наши павильоны в мире</h2>
 		<svg class="world__map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1273.6 662.7">
 			<defs></defs>
@@ -885,7 +885,7 @@
 					style=""></path>
 			</g>
 		</svg>
-	</div>
+	</section>
 </template>
 
 <script setup></script>

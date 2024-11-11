@@ -176,6 +176,25 @@ const links = [
 	&__item {
 		font-weight: 500;
 		letter-spacing: 0.02em;
+		transition: color 0.3s;
+		position: relative;
+		&::after {
+			content: '';
+			left: 0;
+			bottom: -2px;
+			display: block;
+			width: 100%;
+			height: 2px;
+			background-color: map.get(var.$colors, 'secondary');
+			position: absolute;
+			transform: scaleX(0);
+			transition: transform 0.3s;
+			transform-origin: right;
+		}
+		&:hover::after {
+			transform-origin: left;
+			transform: scaleX(1);
+		}
 	}
 }
 </style>

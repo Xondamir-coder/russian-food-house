@@ -1,5 +1,5 @@
 <template>
-	<div class="hero__wrapper section-padding">
+	<section class="hero__wrapper section-padding">
 		<div class="hero bg-secondary">
 			<img class="hero__sprinkles" src="~/assets/img/sprinkles.png" />
 			<div class="hero__content">
@@ -32,7 +32,7 @@
 				</li>
 			</ul> -->
 		</div>
-	</div>
+	</section>
 </template>
 
 <script setup>

@@ -2,6 +2,7 @@
 	<main class="home">
 		<Hero />
 		<World />
+		<Buy />
 	</main>
 </template>
 
