@@ -9,7 +9,9 @@
 		<nav class="header__nav">
 			<ul class="header__list">
 				<li class="header__item text-dark-blue" v-for="link in links" :key="link.to">
-					<NuxtLink :to="link.to">{{ link.text }}</NuxtLink>
+					<NuxtLink active-class="header__item--active" :to="link.to">{{
+						link.text
+					}}</NuxtLink>
 				</li>
 			</ul>
 		</nav>
@@ -174,26 +176,31 @@ const links = [
 		font-family: var.$font-secondary;
 	}
 	&__item {
-		font-weight: 500;
+		font-weight: 600;
 		letter-spacing: 0.02em;
 		transition: color 0.3s;
 		position: relative;
+		&:has(a.header__item--active)::after {
+			transform: scaleX(1.5);
+		}
+		&:has(a.header__item--active) {
+			color: map.get(var.$colors, 'primary');
+		}
 		&::after {
 			content: '';
 			left: 0;
-			bottom: -2px;
+			bottom: -100%;
 			display: block;
 			width: 100%;
-			height: 2px;
-			background-color: map.get(var.$colors, 'secondary');
+			height: 3px;
+			background-color: map.get(var.$colors, 'primary');
 			position: absolute;
 			transform: scaleX(0);
 			transition: transform 0.3s;
-			transform-origin: right;
+			z-index: 2;
 		}
 		&:hover::after {
-			transform-origin: left;
-			transform: scaleX(1);
+			transform: scaleX(1.5);
 		}
 	}
 }
