@@ -3,6 +3,8 @@
 		<Hero />
 		<World />
 		<Buy />
+		<Products />
+		<Producers />
 	</main>
 </template>
 
@@ -14,5 +16,10 @@
 	flex-direction: column;
 	gap: 60px;
 	overflow: hidden;
+	margin-bottom: 60px;
+	@include mix.respond('md') {
+		margin-bottom: 80px;
+		gap: 40px;
+	}
 }
 </style>

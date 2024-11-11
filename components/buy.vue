@@ -210,7 +210,7 @@
 	&__title {
 		z-index: 1;
 		font-size: clamp(42px, 9vw, 136px);
-		font-weight: 900;
+		font-weight: 800;
 		letter-spacing: -0.02em;
 		text-align: center;
 	}
