@@ -81,6 +81,7 @@ const cards = [
 		margin-top: 16px;
 	}
 	&__img {
+		pointer-events: none;
 		width: 100%;
 		height: auto;
 		z-index: 2;

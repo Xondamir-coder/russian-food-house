@@ -63,8 +63,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: max(3vw, 20px);
+	h2 {
+		z-index: 4;
+	}
 	&__sprinkles {
-		width: 60%;
+		width: 70%;
 		aspect-ratio: 1;
 		fill: rgb(188, 203, 217);
 		opacity: 0.2;
