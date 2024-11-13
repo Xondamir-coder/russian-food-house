@@ -4,6 +4,7 @@
 		<World />
 		<Buy />
 		<Products />
+		<Pick />
 		<Producers />
 	</main>
 </template>
