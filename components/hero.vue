@@ -1,7 +1,9 @@
 <template>
 	<section class="hero__wrapper section-padding">
 		<div class="hero bg-secondary">
-			<img class="hero__sprinkles" src="~/assets/img/sprinkles.png" />
+			<svg class="hero__sprinkles">
+				<use href="~/assets/sprite.svg#sprinkles" />
+			</svg>
 			<div class="hero__content">
 				<h1 class="hero__title">Лучшие российские товары на Вашем столе</h1>
 				<p class="hero__text">
@@ -69,6 +71,24 @@ const cards = [
 </script>
 
 <style lang="scss" scoped>
+@keyframes heroimg {
+	from {
+		opacity: 0;
+		transform: scale(1.3) translate(calc(5% + 80px), 5%);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1.6) translate(5%, 5%);
+	}
+}
+@keyframes appear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0.5;
+	}
+}
 .hero {
 	margin-top: 2rem;
 	border-radius: 1.6rem;
@@ -86,6 +106,7 @@ const cards = [
 		height: auto;
 		z-index: 2;
 		transform: scale(1.6) translate(5%, 5%);
+		animation: heroimg 0.7s;
 
 		@include mix.respond('sm') {
 			margin-top: -10%;
@@ -156,6 +177,12 @@ const cards = [
 		}
 	}
 	&__item {
+		@include mix.slide-appear-y(20px, slide-y-up-hero, 0.5s, backwards);
+		animation-delay: 0.4s;
+		&:last-of-type {
+			@include mix.slide-appear-y(-20px, slide-y-down-hero, 0.5s, backwards);
+			animation-delay: 0.6s;
+		}
 		background: radial-gradient(
 				45.6% 376.6% at 45.79% 55.53%,
 				rgba(243, 245, 246, 0.06) 0%,
@@ -186,6 +213,8 @@ const cards = [
 		}
 	}
 	&__sprinkles {
+		animation: appear 0.5s 0.3s both;
+		fill: rgba(240, 132, 121, 1);
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
@@ -211,11 +240,14 @@ const cards = [
 		}
 	}
 	&__title {
+		@include mix.slide-appear-x(-80px, slide-appear-x-hero, 0.7s);
 		font-size: clamp(26px, 3.8vw, 60px);
 		font-weight: 700;
 		line-height: 1;
 	}
 	&__text {
+		animation: slide-appear-x-hero 0.7s backwards;
+		animation-delay: 0.2s;
 		font-size: clamp(16px, 1.5vw, 21px);
 	}
 }

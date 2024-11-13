@@ -1,6 +1,6 @@
 <template>
 	<section class="producers section-padding">
-		<h2 class="section-title">Производители</h2>
+		<h2 class="producers__title section-title">Производители</h2>
 		<div class="producers__wrapper">
 			<svg class="producers__sprinkles">
 				<use href="~/assets/sprite.svg#sprinkles" />
@@ -56,7 +56,34 @@
 	</section>
 </template>
 
-<script setup></script>
+<script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+onMounted(() => {
+	gsap.from('.producers__title', {
+		y: -20,
+		opacity: 0,
+		scrollTrigger: {
+			trigger: '.producers',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.from('.producers__item', {
+		opacity: 0,
+		stagger: 0.05,
+		scale: 0,
+		scrollTrigger: {
+			trigger: '.producers__list',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+});
+</script>
 
 <style lang="scss" scoped>
 .producers {

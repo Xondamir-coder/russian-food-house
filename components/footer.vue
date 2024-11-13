@@ -97,6 +97,9 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 const links = [
 	{
 		to: '/catalog',
@@ -131,6 +134,51 @@ const links = [
 		text: 'Факты'
 	}
 ];
+
+gsap.registerPlugin(ScrollTrigger);
+
+onMounted(() => {
+	gsap.from('.footer__left>*', {
+		opacity: 0,
+		x: -100,
+		stagger: 0.1,
+		scrollTrigger: {
+			trigger: '.footer__left',
+			start: 'top 90%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.from('.footer__link', {
+		opacity: 0,
+		y: 20,
+		stagger: 0.1,
+		scrollTrigger: {
+			trigger: '.footer__links',
+			start: 'top 90%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.from('.footer__a', {
+		opacity: 0,
+		x: 20,
+		stagger: 0.1,
+		scrollTrigger: {
+			trigger: '.footer__details',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.from('.footer__social li', {
+		scale: 0,
+		opacity: 0,
+		stagger: 0.1,
+		scrollTrigger: {
+			trigger: '.footer__social',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+});
 </script>
 
 <style scoped lang="scss">

@@ -41,6 +41,11 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const regions = [
 	'Ямало-Ненецкий',
 	'Красноярский край',
@@ -81,6 +86,28 @@ const changeRegion = region => {
 	toggleShowOptions();
 };
 const setRegion = region => (selectedRegion.value = region);
+
+onMounted(() => {
+	gsap.from('.world__title', {
+		y: 20,
+		opacity: 0,
+		scrollTrigger: {
+			trigger: '.world',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.from('.map>*', {
+		scale: 0,
+		transformOrigin: 'center',
+		stagger: 0.007,
+		scrollTrigger: {
+			trigger: '.map',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+});
 </script>
 
 <style lang="scss" scoped>

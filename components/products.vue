@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
 import product1Img from '~/assets/img/product-1.webp';
 import product2Img from '~/assets/img/product-2.webp';
 import product3Img from '~/assets/img/product-3.webp';
@@ -79,6 +80,31 @@ const showMoreProducts = () => {
 
 onMounted(() => {
 	window.innerWidth > 768 ? (sliceLength.value = initialProduct.length) : (sliceLength.value = 5);
+	setTimeout(() => {
+		gsap.utils.toArray('.products__item').forEach(item => {
+			gsap.from(item.firstElementChild, {
+				y: -20,
+				stagger: 0.2,
+				opacity: 0,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 80%',
+					toggleActions: 'play none none reverse'
+				}
+			});
+			gsap.from(item.lastElementChild.children, {
+				delay: 0.2,
+				y: -20,
+				stagger: 0.2,
+				opacity: 0,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 80%',
+					toggleActions: 'play none none reverse'
+				}
+			});
+		});
+	}, 500);
 });
 </script>
 

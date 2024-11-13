@@ -120,6 +120,7 @@ const links = [
 		}
 	}
 	&__burger {
+		@include mix.slide-appear-x(20px, slide-x-right, 0.5s);
 		top: 10px;
 		right: 10px;
 		position: fixed;
@@ -136,6 +137,7 @@ const links = [
 	}
 	&__logo {
 		transition: opacity 0.3s;
+		@include mix.slide-appear-x(-20px, slide-x-left, 0.5s);
 	}
 	&__checkbox {
 		display: none;
@@ -180,6 +182,16 @@ const links = [
 		letter-spacing: 0.02em;
 		transition: color 0.3s;
 		position: relative;
+		@for $i from 1 through 6 {
+			&:nth-child(#{$i}) {
+				@if ($i % 2 == 0) {
+					@include mix.slide-appear-y(10px, slide-y-down, 0.5s, backwards);
+				} @else {
+					@include mix.slide-appear-y(-10px, slide-y-up, 0.5s, backwards);
+				}
+				animation-delay: #{$i * 0.1}s;
+			}
+		}
 		&:has(a.header__item--active)::after {
 			transform: scaleX(1.5);
 		}

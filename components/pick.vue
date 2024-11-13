@@ -28,7 +28,33 @@
 	</section>
 </template>
 
-<script setup></script>
+<script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+onMounted(() => {
+	gsap.from('.pick__item', {
+		opacity: 0,
+		stagger: 0.15,
+		scale: 0,
+		scrollTrigger: {
+			trigger: '.pick',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+	gsap.from('.pick__title', {
+		opacity: 0,
+		y: 40,
+		scrollTrigger: {
+			trigger: '.pick',
+			start: 'top 30%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+});
+</script>
 
 <style lang="scss" scoped>
 .pick {

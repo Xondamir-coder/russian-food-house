@@ -35,7 +35,9 @@
 		</div>
 
 		<!-- Center text -->
-		<h2 class="buy__title text-primary">Время покупать</h2>
+		<h2 class="buy__title text-primary">
+			<span v-for="letter in title" :key="letter">{{ letter }}</span>
+		</h2>
 
 		<div class="buy__bottom">
 			<!-- bottom part -->
@@ -79,7 +81,26 @@
 	</section>
 </template>
 
-<script setup></script>
+<script setup>
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const title = 'Время покупать'.split('');
+
+onMounted(() => {
+	gsap.from('.buy__title span', {
+		opacity: 0,
+		stagger: 0.06,
+		scrollTrigger: {
+			trigger: '.buy',
+			start: 'top 80%',
+			toggleActions: 'play none none reverse'
+		}
+	});
+});
+</script>
 
 <style lang="scss" scoped>
 @use 'sass:map';
