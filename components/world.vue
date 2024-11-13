@@ -93,8 +93,7 @@ onMounted(() => {
 		opacity: 0,
 		scrollTrigger: {
 			trigger: '.world',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 	gsap.from('.map>*', {
@@ -103,8 +102,7 @@ onMounted(() => {
 		stagger: 0.007,
 		scrollTrigger: {
 			trigger: '.map',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 });

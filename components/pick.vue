@@ -40,8 +40,7 @@ onMounted(() => {
 		scale: 0,
 		scrollTrigger: {
 			trigger: '.pick',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 	gsap.from('.pick__title', {
@@ -49,8 +48,7 @@ onMounted(() => {
 		y: 40,
 		scrollTrigger: {
 			trigger: '.pick',
-			start: 'top 30%',
-			toggleActions: 'play none none reverse'
+			start: 'top 30%'
 		}
 	});
 });

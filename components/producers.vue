@@ -68,8 +68,7 @@ onMounted(() => {
 		opacity: 0,
 		scrollTrigger: {
 			trigger: '.producers',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 	gsap.from('.producers__item', {
@@ -78,8 +77,7 @@ onMounted(() => {
 		scale: 0,
 		scrollTrigger: {
 			trigger: '.producers__list',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 });

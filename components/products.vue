@@ -20,9 +20,12 @@
 
 <script setup>
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import product1Img from '~/assets/img/product-1.webp';
 import product2Img from '~/assets/img/product-2.webp';
 import product3Img from '~/assets/img/product-3.webp';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const initialProduct = [
 	{
@@ -80,7 +83,10 @@ const showMoreProducts = () => {
 
 onMounted(() => {
 	window.innerWidth > 768 ? (sliceLength.value = initialProduct.length) : (sliceLength.value = 5);
+});
+watch(products, () => {
 	setTimeout(() => {
+		ScrollTrigger.refresh();
 		gsap.utils.toArray('.products__item').forEach(item => {
 			gsap.from(item.firstElementChild, {
 				y: -20,
@@ -88,8 +94,7 @@ onMounted(() => {
 				opacity: 0,
 				scrollTrigger: {
 					trigger: item,
-					start: 'top 80%',
-					toggleActions: 'play none none reverse'
+					start: 'top 80%'
 				}
 			});
 			gsap.from(item.lastElementChild.children, {
@@ -99,12 +104,11 @@ onMounted(() => {
 				opacity: 0,
 				scrollTrigger: {
 					trigger: item,
-					start: 'top 80%',
-					toggleActions: 'play none none reverse'
+					start: 'top 80%'
 				}
 			});
 		});
-	}, 500);
+	}, 50);
 });
 </script>
 

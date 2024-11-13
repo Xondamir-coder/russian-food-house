@@ -144,8 +144,7 @@ onMounted(() => {
 		stagger: 0.1,
 		scrollTrigger: {
 			trigger: '.footer__left',
-			start: 'top 90%',
-			toggleActions: 'play none none reverse'
+			start: 'top 90%'
 		}
 	});
 	gsap.from('.footer__link', {
@@ -154,8 +153,7 @@ onMounted(() => {
 		stagger: 0.1,
 		scrollTrigger: {
 			trigger: '.footer__links',
-			start: 'top 90%',
-			toggleActions: 'play none none reverse'
+			start: 'top 90%'
 		}
 	});
 	gsap.from('.footer__a', {
@@ -164,8 +162,7 @@ onMounted(() => {
 		stagger: 0.1,
 		scrollTrigger: {
 			trigger: '.footer__details',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 	gsap.from('.footer__social li', {
@@ -174,8 +171,7 @@ onMounted(() => {
 		stagger: 0.1,
 		scrollTrigger: {
 			trigger: '.footer__social',
-			start: 'top 80%',
-			toggleActions: 'play none none reverse'
+			start: 'top 80%'
 		}
 	});
 });
