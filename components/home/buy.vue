@@ -82,15 +82,11 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
+const { $gsap } = useNuxtApp();
 const title = 'Время покупать'.split('');
 
 onMounted(() => {
-	gsap.from('.buy__title span', {
+	$gsap.from('.buy__title span', {
 		opacity: 0,
 		stagger: 0.06,
 		scrollTrigger: {
@@ -103,20 +99,23 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @use 'sass:map';
-@mixin slide($prevX, $nextX, $prevY: 0, $nextY: 0, $duration: 20s, $reverse: false) {
-	@keyframes slide {
-		0% {
-			transform: translate($prevX, $prevY);
-		}
-		100% {
-			transform: translate($nextX, $nextY);
-		}
+@keyframes slide-top {
+	0% {
+		transform: translate(-50%, 0);
 	}
-	animation: slide $duration linear infinite alternate;
-	@if ($reverse) {
-		animation-direction: alternate-reverse;
+	100% {
+		transform: translate(-25%, -25%);
 	}
 }
+@keyframes slide-bottom {
+	0% {
+		transform: translate(-41.5%, 10%);
+	}
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
 .buy {
 	position: relative;
 	min-height: 500px;
@@ -153,10 +152,10 @@ onMounted(() => {
 	}
 	&__top {
 		justify-content: space-between;
-		@include slide(-50%, 0%, -25%, -25%);
+		animation: slide-top 20s infinite linear alternate;
 	}
 	&__bottom {
-		@include slide(-41.5%, 10%, 0, 0, 25s, true);
+		animation: slide-bottom 25s infinite linear alternate-reverse;
 		align-self: flex-end;
 		gap: 10vw;
 		transform: translateX(-41.5%);

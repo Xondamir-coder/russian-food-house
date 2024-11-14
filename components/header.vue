@@ -63,6 +63,28 @@ const links = [
 
 <style lang="scss" scoped>
 @use 'sass:map';
+@keyframes slide-in-from-left {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-in-from-right {
+	from {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
 .header {
 	position: sticky;
 	top: 0;
@@ -120,10 +142,10 @@ const links = [
 		}
 	}
 	&__burger {
-		@include mix.slide-appear-x(20px, slide-x-right, 0.5s);
+		animation: slide-in-from-right 0.5s;
+		position: fixed;
 		top: 10px;
 		right: 10px;
-		position: fixed;
 		cursor: pointer;
 		width: 48px;
 		height: 48px;
@@ -137,7 +159,7 @@ const links = [
 	}
 	&__logo {
 		transition: opacity 0.3s;
-		@include mix.slide-appear-x(-20px, slide-x-left, 0.5s);
+		animation: slide-in-from-left 0.5s;
 	}
 	&__checkbox {
 		display: none;
@@ -185,9 +207,9 @@ const links = [
 		@for $i from 1 through 6 {
 			&:nth-child(#{$i}) {
 				@if ($i % 2 == 0) {
-					@include mix.slide-appear-y(10px, slide-y-down, 0.5s, backwards);
+					animation: slide-in-from-top-10 0.5s backwards;
 				} @else {
-					@include mix.slide-appear-y(-10px, slide-y-up, 0.5s, backwards);
+					animation: slide-in-from-bottom-10 0.5s backwards;
 				}
 				animation-delay: #{$i * 0.1}s;
 			}

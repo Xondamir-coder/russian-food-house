@@ -19,14 +19,11 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import product1Img from '~/assets/img/product-1.webp';
 import product2Img from '~/assets/img/product-2.webp';
 import product3Img from '~/assets/img/product-3.webp';
 
-gsap.registerPlugin(ScrollTrigger);
-
+const { $gsap, $ScrollTrigger } = useNuxtApp();
 const initialProduct = [
 	{
 		img: product1Img,
@@ -86,9 +83,9 @@ onMounted(() => {
 });
 watch(products, () => {
 	setTimeout(() => {
-		ScrollTrigger.refresh();
-		gsap.utils.toArray('.products__item').forEach(item => {
-			gsap.from(item.firstElementChild, {
+		$ScrollTrigger.refresh();
+		$gsap.utils.toArray('.products__item').forEach(item => {
+			$gsap.from(item.firstElementChild, {
 				y: -20,
 				stagger: 0.2,
 				opacity: 0,
@@ -97,7 +94,7 @@ watch(products, () => {
 					start: 'top 80%'
 				}
 			});
-			gsap.from(item.lastElementChild.children, {
+			$gsap.from(item.lastElementChild.children, {
 				delay: 0.2,
 				y: -20,
 				stagger: 0.2,

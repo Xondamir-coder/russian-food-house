@@ -1,11 +1,11 @@
 <template>
 	<main class="home">
-		<Hero />
-		<World />
-		<Buy />
-		<Products />
-		<Pick />
-		<Producers />
+		<HomeHero />
+		<HomeWorld />
+		<HomeBuy />
+		<HomeProducts />
+		<HomePick />
+		<HomeProducers />
 	</main>
 </template>
 

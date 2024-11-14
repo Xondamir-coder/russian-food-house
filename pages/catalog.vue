@@ -1,5 +1,5 @@
 <template>
-	<div>Catalog</div>
+	<main class="catalog">hello</main>
 </template>
 
 <script setup></script>

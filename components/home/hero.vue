@@ -81,6 +81,17 @@ const cards = [
 		transform: scale(1.6) translate(5%, 5%);
 	}
 }
+@keyframes slide-in-from-left {
+	from {
+		opacity: 0;
+		transform: translateX(-80px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
 @keyframes appear {
 	from {
 		opacity: 0;
@@ -177,12 +188,16 @@ const cards = [
 		}
 	}
 	&__item {
-		@include mix.slide-appear-y(20px, slide-y-up-hero, 0.5s, backwards);
+		animation-name: slide-in-from-bottom-20;
 		animation-delay: 0.4s;
+		animation-fill-mode: backwards;
+		animation-duration: 0.5s;
+
 		&:last-of-type {
-			@include mix.slide-appear-y(-20px, slide-y-down-hero, 0.5s, backwards);
-			animation-delay: 0.6s;
+			animation-name: slide-in-from-top-20;
+			animation-duration: 0.6s;
 		}
+
 		background: radial-gradient(
 				45.6% 376.6% at 45.79% 55.53%,
 				rgba(243, 245, 246, 0.06) 0%,
@@ -240,14 +255,13 @@ const cards = [
 		}
 	}
 	&__title {
-		@include mix.slide-appear-x(-80px, slide-appear-x-hero, 0.7s);
+		animation: slide-in-from-left 0.7s backwards;
 		font-size: clamp(26px, 3.8vw, 60px);
 		font-weight: 700;
 		line-height: 1;
 	}
 	&__text {
-		animation: slide-appear-x-hero 0.7s backwards;
-		animation-delay: 0.2s;
+		animation: slide-in-from-left 0.7s 0.2s backwards;
 		font-size: clamp(16px, 1.5vw, 21px);
 	}
 }

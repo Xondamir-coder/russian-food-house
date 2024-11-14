@@ -12,34 +12,3 @@
 		@warn "Breakpoint '#{$breakpoint}' not found in \$breakpoints map.";
 	}
 }
-
-// Slide appear animation
-@mixin slide-appear-x($x, $name, $duration, $fill-mode: forwards) {
-	@keyframes #{$name} {
-		from {
-			opacity: 0;
-			transform: translateX($x);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	animation: #{$name} $duration $fill-mode;
-}
-
-@mixin slide-appear-y($y, $name, $duration, $fill-mode: forwards) {
-	@keyframes #{$name} {
-		from {
-			opacity: 0;
-			transform: translateY($y);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	animation: #{$name} $duration $fill-mode;
-}

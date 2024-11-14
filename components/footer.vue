@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer section-padding">
+	<footer class="footer section-padding" :class="{ 'footer--home': isHome }">
 		<div class="footer__left">
 			<NuxtLink to="/">
 				<svg class="footer__logo icon-logo">
@@ -97,8 +97,10 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+const { $gsap } = useNuxtApp();
+
+const route = useRoute();
+const isHome = computed(() => route.path == '/');
 
 const links = [
 	{
@@ -135,10 +137,8 @@ const links = [
 	}
 ];
 
-gsap.registerPlugin(ScrollTrigger);
-
 onMounted(() => {
-	gsap.from('.footer__left>*', {
+	$gsap.from('.footer__left>*', {
 		opacity: 0,
 		x: -100,
 		stagger: 0.1,
@@ -147,7 +147,7 @@ onMounted(() => {
 			start: 'top 90%'
 		}
 	});
-	gsap.from('.footer__link', {
+	$gsap.from('.footer__link', {
 		opacity: 0,
 		y: 20,
 		stagger: 0.1,
@@ -156,7 +156,7 @@ onMounted(() => {
 			start: 'top 90%'
 		}
 	});
-	gsap.from('.footer__a', {
+	$gsap.from('.footer__a', {
 		opacity: 0,
 		x: 20,
 		stagger: 0.1,
@@ -165,7 +165,7 @@ onMounted(() => {
 			start: 'top 80%'
 		}
 	});
-	gsap.from('.footer__social li', {
+	$gsap.from('.footer__social li', {
 		scale: 0,
 		opacity: 0,
 		stagger: 0.1,
@@ -180,11 +180,14 @@ onMounted(() => {
 <style scoped lang="scss">
 @use 'sass:map';
 .footer {
-	background-color: #fff;
+	background-color: rgba(213, 223, 233, 1);
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	padding-bottom: 3rem;
 	padding-top: 3rem;
+	&--home {
+		background-color: #fff;
+	}
 	@include mix.respond('xl') {
 		grid-template-columns: max-content 1fr;
 		gap: 2rem;

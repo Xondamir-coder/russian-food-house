@@ -4,7 +4,7 @@
 			Наши павильоны <br />
 			в мире
 		</h2>
-		<Map :region="selectedRegion" :set-region="setRegion" />
+		<HomeMap :region="selectedRegion" :set-region="setRegion" />
 		<div class="world__wrapper">
 			<button class="world__select" @click="toggleShowOptions">
 				<span>{{ selectedRegion }}</span>
@@ -41,10 +41,7 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+const { $gsap } = useNuxtApp();
 
 const regions = [
 	'Ямало-Ненецкий',
@@ -88,7 +85,7 @@ const changeRegion = region => {
 const setRegion = region => (selectedRegion.value = region);
 
 onMounted(() => {
-	gsap.from('.world__title', {
+	$gsap.from('.world__title', {
 		y: 20,
 		opacity: 0,
 		scrollTrigger: {
@@ -96,7 +93,7 @@ onMounted(() => {
 			start: 'top 80%'
 		}
 	});
-	gsap.from('.map>*', {
+	$gsap.from('.map>*', {
 		scale: 0,
 		transformOrigin: 'center',
 		stagger: 0.007,

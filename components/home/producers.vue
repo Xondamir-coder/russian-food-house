@@ -57,13 +57,10 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+const { $gsap } = useNuxtApp();
 
 onMounted(() => {
-	gsap.from('.producers__title', {
+	$gsap.from('.producers__title', {
 		y: -20,
 		opacity: 0,
 		scrollTrigger: {
@@ -71,7 +68,7 @@ onMounted(() => {
 			start: 'top 80%'
 		}
 	});
-	gsap.from('.producers__item', {
+	$gsap.from('.producers__item', {
 		opacity: 0,
 		stagger: 0.05,
 		scale: 0,
