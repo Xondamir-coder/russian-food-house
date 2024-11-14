@@ -2,28 +2,58 @@
 	<section class="pick">
 		<h2 class="pick__title text-primary">Почему Вам надо выбрать нас</h2>
 		<!-- <div class="pick__item">
-				<img class="pick__img" src="~/assets/img/grape.webp" alt="grape" />
+				<NuxtImg class="pick__img" src="/img/grape.webp" sizes="sm:500px md:700px xl:1000px" width="1000" height="778" alt="grape" />
 			</div>
 			<div class="pick__item">
-				<img class="pick__img" src="~/assets/img/strawberry.webp" alt="strawberry" />
+				<NuxtImg class="pick__img" src="/img/strawberry.webp" sizes="sm:300px md:500px xl:600px" width="591" height="591" alt="strawberry" />
 			</div>
 			<div class="pick__item">
-				<img class="pick__img" src="~/assets/img/cherry.webp" alt="cherry" />
+				<NuxtImg class="pick__img" src="/img/cherry.webp" sizes="sm:350px md:600px xl:800px" width="768" height="768" alt="cherry" />
 			</div> -->
 		<div class="pick__item">
-			<img class="pick__img" src="~/assets/img/grape.webp" alt="grape" />
+			<NuxtImg
+				class="pick__img"
+				src="/img/grape.webp"
+				sizes="sm:500px md:700px xl:1000px"
+				width="1000"
+				height="778"
+				alt="grape" />
 		</div>
 		<div class="pick__item">
-			<img class="pick__img" src="~/assets/img/strawberry.webp" alt="strawberry" />
+			<NuxtImg
+				class="pick__img"
+				src="/img/strawberry.webp"
+				sizes="sm:300px md:500px xl:600px"
+				width="591"
+				height="591"
+				alt="strawberry" />
 		</div>
 		<div class="pick__item">
-			<img class="pick__img" src="~/assets/img/cherry.webp" alt="cherry" />
+			<NuxtImg
+				class="pick__img"
+				src="/img/cherry.webp"
+				sizes="sm:350px md:600px xl:800px"
+				width="768"
+				height="768"
+				alt="cherry" />
 		</div>
 		<div class="pick__item">
-			<img class="pick__img" src="~/assets/img/apple.webp" alt="apple" />
+			<NuxtImg
+				class="pick__img"
+				src="/img/apple.webp"
+				sizes="sm:600px md:900px xl:1500px"
+				width="1476"
+				height="1476"
+				alt="apple" />
 		</div>
 		<div class="pick__item">
-			<img class="pick__img" src="~/assets/img/carrot.webp" alt="carrot" />
+			<NuxtImg
+				class="pick__img"
+				src="/img/carrot.webp"
+				sizes="sm:300px md:500px xl:700px"
+				width="689"
+				height="524"
+				alt="carrot" />
 		</div>
 	</section>
 </template>

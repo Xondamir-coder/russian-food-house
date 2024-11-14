@@ -3,7 +3,12 @@
 		<h2 class="section-title">Продукт месяц</h2>
 		<ul class="products__list">
 			<li class="products__item" v-for="product in products" :key="product.title">
-				<img class="products__item-img" :src="product.img" />
+				<NuxtImg
+					:width="product.img.width"
+					:height="product.img.height"
+					class="products__item-img"
+					:src="product.img.src"
+					:alt="product.title" />
 				<div class="products__item-content">
 					<h3 class="products__item-title text-black">{{ product.title }}</h3>
 					<p class="products__item-desc text-grey">
@@ -19,54 +24,90 @@
 </template>
 
 <script setup>
-import product1Img from '~/assets/img/product-1.webp';
-import product2Img from '~/assets/img/product-2.webp';
-import product3Img from '~/assets/img/product-3.webp';
+import product1Img from '/img/product-1.webp';
+import product2Img from '/img/product-2.webp';
+import product3Img from '/img/product-3.webp';
 
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 const initialProduct = [
 	{
-		img: product1Img,
+		img: {
+			src: product1Img,
+			width: 85,
+			height: 119
+		},
 		title: 'Purus taciti id natoque',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product2Img,
+		img: {
+			src: product2Img,
+			width: 204,
+			height: 151
+		},
 		title: 'Convallis varius sed ',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product3Img,
+		img: {
+			src: product3Img,
+			width: 120,
+			height: 139
+		},
 		title: 'Convallis varius sed ',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product1Img,
+		img: {
+			src: product1Img,
+			width: 85,
+			height: 119
+		},
 		title: 'Purus taciti id natoque',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product2Img,
+		img: {
+			src: product2Img,
+			width: 204,
+			height: 151
+		},
 		title: 'Convallis varius sed ',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product3Img,
+		img: {
+			src: product3Img,
+			width: 120,
+			height: 139
+		},
 		title: 'Convallis varius sed ',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product1Img,
+		img: {
+			src: product1Img,
+			width: 85,
+			height: 119
+		},
 		title: 'Purus taciti id natoque',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product2Img,
+		img: {
+			src: product2Img,
+			width: 204,
+			height: 151
+		},
 		title: 'Convallis varius sed ',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	},
 	{
-		img: product3Img,
+		img: {
+			src: product3Img,
+			width: 120,
+			height: 139
+		},
 		title: 'Convallis varius sed ',
 		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
 	}

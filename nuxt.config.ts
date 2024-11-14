@@ -24,5 +24,20 @@ export default defineNuxtConfig({
 		],
 		'@nuxt/image'
 	],
+	app: {
+		head: {
+			htmlAttrs: {
+				lang: 'ru'
+			},
+			meta: [
+				{
+					name: 'description',
+					content:
+						'Russian Food House — уютное место, где можно насладиться традиционной русской кухней. Блюда, приготовленные с душой и по классическим рецептам, подарят вам истинный вкус России'
+				}
+			],
+			title: 'Russian Food House'
+		}
+	},
 	devtools: { enabled: true }
 });

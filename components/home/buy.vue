@@ -3,34 +3,100 @@
 		<!-- top part -->
 		<div class="buy__top">
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/apple.webp" alt="apple" />
-				<img class="buy__img--backlight" src="~/assets/img/apple.webp" alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img"
+					src="/img/apple.webp"
+					alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img--backlight"
+					src="/img/apple.webp"
+					alt="apple" />
 			</div>
 			<div class="buy__item">
-				<img class="unscaled buy__img" src="~/assets/img/aubergine.webp" alt="aubergine" />
-				<img
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="438"
+					height="600"
+					class="unscaled buy__img"
+					src="/img/aubergine.webp"
+					alt="aubergine" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="438"
+					height="600"
 					class="unscaled buy__img--backlight"
-					src="~/assets/img/aubergine.webp"
+					src="/img/aubergine.webp"
 					alt="aubergine" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/cherry.webp" alt="cherry" />
-				<img class="buy__img--backlight" src="~/assets/img/cherry.webp" alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img"
+					src="/img/cherry.webp"
+					alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img--backlight"
+					src="/img/cherry.webp"
+					alt="cherry" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/apple.webp" alt="apple" />
-				<img class="buy__img--backlight" src="~/assets/img/apple.webp" alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img"
+					src="/img/apple.webp"
+					alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img--backlight"
+					src="/img/apple.webp"
+					alt="apple" />
 			</div>
 			<div class="buy__item">
-				<img class="unscaled buy__img" src="~/assets/img/aubergine.webp" alt="aubergine" />
-				<img
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="438"
+					height="600"
+					class="unscaled buy__img"
+					src="/img/aubergine.webp"
+					alt="aubergine" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="438"
+					height="600"
 					class="unscaled buy__img--backlight"
-					src="~/assets/img/aubergine.webp"
+					src="/img/aubergine.webp"
 					alt="aubergine" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/cherry.webp" alt="cherry" />
-				<img class="buy__img--backlight" src="~/assets/img/cherry.webp" alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img"
+					src="/img/cherry.webp"
+					alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img--backlight"
+					src="/img/cherry.webp"
+					alt="cherry" />
 			</div>
 		</div>
 
@@ -42,40 +108,148 @@
 		<div class="buy__bottom">
 			<!-- bottom part -->
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/cherry.webp" alt="cherry" />
-				<img class="buy__img--backlight" src="~/assets/img/cherry.webp" alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img"
+					src="/img/cherry.webp"
+					alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img--backlight"
+					src="/img/cherry.webp"
+					alt="cherry" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/lemon.webp" alt="lemon" />
-				<img class="buy__img--backlight" src="~/assets/img/lemon.webp" alt="lemon" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img"
+					src="/img/lemon.webp"
+					alt="lemon" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img--backlight"
+					src="/img/lemon.webp"
+					alt="lemon" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/carrot.webp" alt="carrot" />
-				<img class="buy__img--backlight" src="~/assets/img/carrot.webp" alt="carrot" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img"
+					src="/img/carrot.webp"
+					alt="carrot" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img--backlight"
+					src="/img/carrot.webp"
+					alt="carrot" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/apple.webp" alt="apple" />
-				<img class="buy__img--backlight" src="~/assets/img/apple.webp" alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img"
+					src="/img/apple.webp"
+					alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img--backlight"
+					src="/img/apple.webp"
+					alt="apple" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/cherry.webp" alt="cherry" />
-				<img class="buy__img--backlight" src="~/assets/img/cherry.webp" alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img"
+					src="/img/cherry.webp"
+					alt="cherry" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="768"
+					height="768"
+					class="buy__img--backlight"
+					src="/img/cherry.webp"
+					alt="cherry" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/lemon.webp" alt="lemon" />
-				<img class="buy__img--backlight" src="~/assets/img/lemon.webp" alt="lemon" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img"
+					src="/img/lemon.webp"
+					alt="lemon" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img--backlight"
+					src="/img/lemon.webp"
+					alt="lemon" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/carrot.webp" alt="carrot" />
-				<img class="buy__img--backlight" src="~/assets/img/carrot.webp" alt="carrot" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img"
+					src="/img/carrot.webp"
+					alt="carrot" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img--backlight"
+					src="/img/carrot.webp"
+					alt="carrot" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/apple.webp" alt="apple" />
-				<img class="buy__img--backlight" src="~/assets/img/apple.webp" alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img"
+					src="/img/apple.webp"
+					alt="apple" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="1476"
+					height="1476"
+					class="buy__img--backlight"
+					src="/img/apple.webp"
+					alt="apple" />
 			</div>
 			<div class="buy__item">
-				<img class="buy__img" src="~/assets/img/lemon.webp" alt="lemon" />
-				<img class="buy__img--backlight" src="~/assets/img/lemon.webp" alt="lemon" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img"
+					src="/img/lemon.webp"
+					alt="lemon" />
+				<NuxtImg
+					sizes="sm:300px md:400px xl:800px"
+					width="700"
+					height="700"
+					class="buy__img--backlight"
+					src="/img/lemon.webp"
+					alt="lemon" />
 			</div>
 		</div>
 	</section>

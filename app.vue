@@ -6,9 +6,6 @@
 
 <script setup>
 import Lenis from 'lenis';
-useHead({
-	title: 'Russian Food House'
-});
 
 onMounted(() => {
 	// Initialize Lenis

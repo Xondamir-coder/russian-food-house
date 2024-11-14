@@ -21,7 +21,14 @@
 					</li>
 				</ul>
 			</div>
-			<img class="hero__img" src="~/assets/img/hero.webp" alt="hero " />
+			<NuxtImg
+				class="hero__img"
+				src="/img/hero.webp"
+				alt="fruits and veggies info"
+				width="800"
+				height="730"
+				sizes="sm:600px md:800px lg:1200px xl:1600px" />
+			<!-- <img class="hero__img" src="~/assets/img/hero.webp" alt="hero " /> -->
 			<!-- <ul class="hero__cards">
 				<li class="hero__card" v-for="card in cards">
 					<img class="hero__card-img" :src="card.img" />
@@ -38,9 +45,9 @@
 </template>
 
 <script setup>
-import tomatoImg from '~/assets/img/tomato.webp';
-import pomegranateImg from '~/assets/img/pomegranate.webp';
-import grapeImg from '~/assets/img/grape.webp';
+import tomatoImg from '/img/tomato.webp';
+import pomegranateImg from '/img/pomegranate.webp';
+import grapeImg from '/img/grape.webp';
 const items = [
 	{
 		amount: 3110,
