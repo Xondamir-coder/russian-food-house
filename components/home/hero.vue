@@ -27,7 +27,7 @@
 				alt="fruits and veggies info"
 				width="1648"
 				height="1767"
-				sizes="sm:500px md:800px lg:1200px xl:1600px" />
+				sizes="sm:500px md:800px lg:1000px xl:1200px xxl:1400px 2xl:1600px" />
 			<!-- <img class="hero__img" src="~/assets/img/hero.webp" alt="hero " /> -->
 			<!-- <ul class="hero__cards">
 				<li class="hero__card" v-for="card in cards">
