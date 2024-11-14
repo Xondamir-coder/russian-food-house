@@ -4,30 +4,30 @@
 		<div class="buy__top">
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
 					class="buy__img"
 					src="/img/apple.webp"
 					alt="apple" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
 					class="buy__img--backlight"
 					src="/img/apple.webp"
 					alt="apple" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
+					sizes="sm:100px md:250px xl:438px"
 					width="438"
 					height="600"
 					class="unscaled buy__img"
 					src="/img/aubergine.webp"
 					alt="aubergine" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
+					sizes="sm:100px md:250px xl:438px"
 					width="438"
 					height="600"
 					class="unscaled buy__img--backlight"
@@ -36,46 +36,46 @@
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
 					class="buy__img"
 					src="/img/cherry.webp"
 					alt="cherry" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
 					class="buy__img--backlight"
 					src="/img/cherry.webp"
 					alt="cherry" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
 					class="buy__img"
 					src="/img/apple.webp"
 					alt="apple" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
 					class="buy__img--backlight"
 					src="/img/apple.webp"
 					alt="apple" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
+					sizes="sm:100px md:250px xl:438px"
 					width="438"
 					height="600"
 					class="unscaled buy__img"
 					src="/img/aubergine.webp"
 					alt="aubergine" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
+					sizes="sm:100px md:250px xl:438px"
 					width="438"
 					height="600"
 					class="unscaled buy__img--backlight"
@@ -84,16 +84,16 @@
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
 					class="buy__img"
 					src="/img/cherry.webp"
 					alt="cherry" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
 					class="buy__img--backlight"
 					src="/img/cherry.webp"
 					alt="cherry" />
@@ -109,144 +109,144 @@
 			<!-- bottom part -->
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
 					class="buy__img"
 					src="/img/cherry.webp"
 					alt="cherry" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
-					class="buy__img--backlight"
-					src="/img/cherry.webp"
-					alt="cherry" />
-			</div>
-			<div class="buy__item">
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
-					class="buy__img"
-					src="/img/lemon.webp"
-					alt="lemon" />
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
-					class="buy__img--backlight"
-					src="/img/lemon.webp"
-					alt="lemon" />
-			</div>
-			<div class="buy__item">
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
-					class="buy__img"
-					src="/img/carrot.webp"
-					alt="carrot" />
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
-					class="buy__img--backlight"
-					src="/img/carrot.webp"
-					alt="carrot" />
-			</div>
-			<div class="buy__item">
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
-					class="buy__img"
-					src="/img/apple.webp"
-					alt="apple" />
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
-					class="buy__img--backlight"
-					src="/img/apple.webp"
-					alt="apple" />
-			</div>
-			<div class="buy__item">
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
-					class="buy__img"
-					src="/img/cherry.webp"
-					alt="cherry" />
-				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="768"
-					height="768"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
 					class="buy__img--backlight"
 					src="/img/cherry.webp"
 					alt="cherry" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
 					class="buy__img"
 					src="/img/lemon.webp"
 					alt="lemon" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
 					class="buy__img--backlight"
 					src="/img/lemon.webp"
 					alt="lemon" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
 					class="buy__img"
 					src="/img/carrot.webp"
 					alt="carrot" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
 					class="buy__img--backlight"
 					src="/img/carrot.webp"
 					alt="carrot" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
 					class="buy__img"
 					src="/img/apple.webp"
 					alt="apple" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="1476"
-					height="1476"
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
 					class="buy__img--backlight"
 					src="/img/apple.webp"
 					alt="apple" />
 			</div>
 			<div class="buy__item">
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
+					class="buy__img"
+					src="/img/cherry.webp"
+					alt="cherry" />
+				<NuxtImg
+					sizes="sm:200px md:300px xl:500px"
+					width="500"
+					height="500"
+					class="buy__img--backlight"
+					src="/img/cherry.webp"
+					alt="cherry" />
+			</div>
+			<div class="buy__item">
+				<NuxtImg
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
 					class="buy__img"
 					src="/img/lemon.webp"
 					alt="lemon" />
 				<NuxtImg
-					sizes="sm:300px md:400px xl:800px"
-					width="700"
-					height="700"
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
+					class="buy__img--backlight"
+					src="/img/lemon.webp"
+					alt="lemon" />
+			</div>
+			<div class="buy__item">
+				<NuxtImg
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
+					class="buy__img"
+					src="/img/carrot.webp"
+					alt="carrot" />
+				<NuxtImg
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
+					class="buy__img--backlight"
+					src="/img/carrot.webp"
+					alt="carrot" />
+			</div>
+			<div class="buy__item">
+				<NuxtImg
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
+					class="buy__img"
+					src="/img/apple.webp"
+					alt="apple" />
+				<NuxtImg
+					sizes="sm:100px md:200px xl:300px"
+					width="300"
+					height="300"
+					class="buy__img--backlight"
+					src="/img/apple.webp"
+					alt="apple" />
+			</div>
+			<div class="buy__item">
+				<NuxtImg
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
+					class="buy__img"
+					src="/img/lemon.webp"
+					alt="lemon" />
+				<NuxtImg
+					sizes="sm:200px md:300px xl:400px"
+					width="400"
+					height="400"
 					class="buy__img--backlight"
 					src="/img/lemon.webp"
 					alt="lemon" />
