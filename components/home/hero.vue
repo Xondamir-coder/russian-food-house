@@ -71,7 +71,7 @@ const cards = [
 </script>
 
 <style lang="scss" scoped>
-@keyframes heroimg {
+@keyframes hero-img-big {
 	from {
 		opacity: 0;
 		transform: scale(1.3) translate(calc(5% + 80px), 5%);
@@ -79,6 +79,16 @@ const cards = [
 	to {
 		opacity: 1;
 		transform: scale(1.6) translate(5%, 5%);
+	}
+}
+@keyframes hero-img-small {
+	from {
+		opacity: 0;
+		transform: scale(1) translate(calc(5% + 80px), 10%);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1.4) translate(5%, 10%);
 	}
 }
 @keyframes slide-in-from-left {
@@ -117,11 +127,12 @@ const cards = [
 		height: auto;
 		z-index: 2;
 		transform: scale(1.6) translate(5%, 5%);
-		animation: heroimg 0.7s;
+		animation: hero-img-big 0.7s;
 
 		@include mix.respond('sm') {
 			margin-top: -10%;
 			transform: scale(1.4) translate(5%, 10%);
+			animation: hero-img-small 0.7s;
 		}
 	}
 	&__card {

@@ -98,6 +98,9 @@ onMounted(() => {
 		// top: 50%;
 		// transform: translate(-50%, -50%);
 		place-self: center;
+		@include mix.respond('md') {
+			display: none;
+		}
 	}
 	&__list {
 		display: grid;

@@ -201,7 +201,7 @@ onMounted(() => {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 20px;
+		gap: 10px;
 		color: rgba(71, 92, 101, 1);
 		font-size: 16px;
 		@include mix.respond('md', min) {
@@ -212,6 +212,9 @@ onMounted(() => {
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
+		@include mix.respond('sm') {
+			grid-column: span 2;
+		}
 	}
 	&__right {
 		font-size: 18px;
@@ -295,7 +298,7 @@ onMounted(() => {
 	&__logo {
 		width: 262px;
 		@include mix.respond('md') {
-			width: 198.63px;
+			width: 190.63px;
 		}
 	}
 }
