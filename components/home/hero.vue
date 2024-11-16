@@ -21,17 +21,22 @@
 					</li>
 				</ul>
 			</div>
-			<NuxtImg
-				class="hero__img"
-				src="/img/hero.webp"
-				alt="fruits and veggies info"
-				width="1648"
-				height="1767"
-				sizes="sm:500px md:800px lg:1000px xl:1200px xxl:1400px 2xl:1600px" />
-			<!-- <img class="hero__img" src="~/assets/img/hero.webp" alt="hero " /> -->
-			<!-- <ul class="hero__cards">
+			<ul class="hero__cards">
 				<li class="hero__card" v-for="card in cards">
-					<img class="hero__card-img" :src="card.img" />
+					<div class="hero__card-container">
+						<NuxtImg
+							:width="card.img.width"
+							:height="card.img.height"
+							sizes="xs:200px sm:400px lg:600px xl:800px"
+							class="hero__card-img hero__card-img--backlight"
+							:src="card.img.src" />
+						<NuxtImg
+							:width="card.img.width"
+							:height="card.img.height"
+							sizes="xs:200px sm:400px lg:600px xl:800px"
+							class="hero__card-img"
+							:src="card.img.src" />
+					</div>
 					<div class="hero__card-content">
 						<h3 class="hero__card-title">{{ card.name }}</h3>
 						<p class="hero__card-desc">
@@ -39,7 +44,7 @@
 						</p>
 					</div>
 				</li>
-			</ul> -->
+			</ul>
 		</div>
 	</section>
 </template>
@@ -60,24 +65,60 @@ const items = [
 ];
 const cards = [
 	{
-		img: pomegranateImg,
-		name: 'Гранат',
+		img: { src: tomatoImg, width: 450, height: 466 },
+		name: 'Помидоры',
 		desc: 'Название сорта'
 	},
 	{
-		img: grapeImg,
+		img: { src: grapeImg, width: 1000, height: 778 },
 		name: 'Виноград',
 		desc: 'Название сорта'
 	},
 	{
-		img: tomatoImg,
-		name: 'Помидоры',
+		img: { src: pomegranateImg, width: 768, height: 768 },
+		name: 'Гранат',
 		desc: 'Название сорта'
 	}
 ];
 </script>
 
 <style lang="scss" scoped>
+@keyframes card-appear-1 {
+	from {
+		opacity: 0;
+		scale: 0.4;
+		translate: -30% 0%;
+	}
+	to {
+		opacity: 1;
+		scale: 1;
+		translate: 0 0;
+	}
+}
+@keyframes card-appear-2 {
+	from {
+		opacity: 0;
+		scale: 0.4;
+		translate: 50% 0%;
+	}
+	to {
+		opacity: 1;
+		scale: 1;
+		translate: 0 0;
+	}
+}
+@keyframes card-appear-3 {
+	from {
+		opacity: 0;
+		scale: 0.4;
+		translate: -20% 30%;
+	}
+	to {
+		opacity: 1;
+		scale: 1;
+		translate: 0 0;
+	}
+}
 @keyframes hero-img-big {
 	from {
 		opacity: 0;
@@ -124,9 +165,11 @@ const cards = [
 	display: grid;
 	display: grid;
 	grid-template-columns: 1.5fr 1fr;
-	@include mix.respond('sm') {
+	@include mix.respond('md') {
 		grid-template-columns: auto;
 		margin-top: 16px;
+		gap: 50px;
+		margin-bottom: 40px;
 	}
 	&__img {
 		pointer-events: none;
@@ -142,59 +185,109 @@ const cards = [
 			animation: hero-img-small 0.7s;
 		}
 	}
-	&__card {
-		position: absolute;
-		perspective: 1000px;
+	&__cards {
+		display: grid;
+		justify-content: center;
 
-		&:first-child {
-			.hero__card-content {
-				transform: rotateX(10deg) rotateY(10deg) rotateZ(10deg) translate3D(0, 0, 0);
+		&:hover {
+			.hero__card {
+				&:nth-child(1) {
+					transform: skew(-15deg) translate(80%, 50%);
+				}
+				&:nth-child(2) {
+					transform: skew(-15deg) translate(0%, 28%);
+				}
+				&:nth-child(3) {
+					transform: skew(-15deg) translate(-25%, -20%);
+				}
+			}
+		}
+		& > * {
+			grid-area: 1/1/-1/-1;
+			width: 70%;
+			height: 80%;
+
+			@include mix.respond('md') {
+				width: 85%;
+				height: 95%;
+			}
+		}
+	}
+	&__card {
+		font-family: var.$font-secondary;
+		display: flex;
+		gap: 6px;
+		flex-direction: column;
+		box-shadow: 52px 53px 100px 0px rgba(48, 17, 17, 0.2);
+		border-radius: 20px;
+		background: #fff;
+		padding: max(3vw, 15px);
+		transform: skew(-15deg);
+		justify-content: flex-end;
+		transition: transform 0.3s;
+		animation: card-appear 1s backwards;
+
+		&:nth-child(1) {
+			animation: card-appear-1 1s backwards 0.2s;
+			transform: skew(-15deg) translate(60%, 40%);
+			.hero__card-img {
+				transform: skew(15deg) scale(1.35) translate(-15%, -15%);
 			}
 		}
 		&:nth-child(2) {
-			opacity: 0;
+			animation: card-appear-2 1s backwards 0.1s;
+			transform: skew(-15deg) translate(20%, 20%);
+			.hero__card-img {
+				transform: skew(15deg) scale(1.5) translate(0, -10%);
+			}
 		}
 		&:nth-child(3) {
-			opacity: 0;
+			animation: card-appear-3 1s backwards;
+
+			transform: skew(-15deg) translate(-20%, -10%);
+			.hero__card-img {
+				transform: skew(15deg) scale(1.7) translate(0, -7%);
+			}
 		}
 		&-content {
-			padding: 1.1rem;
-			background: #fff;
-			width: 259px;
-			height: 400px;
-			border-radius: 1.2rem;
-			font-family: var.$font-secondary;
-			box-shadow: 52px 53px 100px 0px rgba(48, 17, 17, 0.2);
 			display: flex;
-			justify-content: flex-end;
 			flex-direction: column;
-			gap: 10px;
+			gap: 7px;
 		}
 		&-title {
 			color: rgba(34, 40, 43, 1);
 			font-size: 1.4rem;
 			letter-spacing: 0.03em;
 			font-weight: 600;
+			@include mix.respond('sm') {
+				font-size: 15.5px;
+			}
 		}
 		&-desc {
 			letter-spacing: 0.04em;
 			color: rgba(144, 157, 162, 1);
 			font-size: 0.8rem;
+			@include mix.respond('sm') {
+				font-size: 9px;
+			}
 		}
-
-		img {
-			z-index: 2;
-			position: absolute;
-			width: 120%;
-			height: 120%;
+		&-container {
+			user-select: none;
+			display: grid;
+			pointer-events: none;
+			& > * {
+				grid-area: 1/1/2/2;
+			}
+		}
+		&-img {
+			width: 100%;
+			height: 100%;
 			object-fit: contain;
+			transform: skew(15deg) scale(1) translate(0, -7%);
+			&--backlight {
+				filter: blur(20px);
+			}
 		}
-	}
-	&__cards {
-		position: relative;
-		display: flex;
-		justify-content: flex-end;
-		display: none;
 	}
 	&__items {
 		margin-top: 4rem;
