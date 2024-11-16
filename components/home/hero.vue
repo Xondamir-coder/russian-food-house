@@ -221,7 +221,7 @@ const cards = [
 		box-shadow: 52px 53px 100px 0px rgba(48, 17, 17, 0.2);
 		border-radius: 20px;
 		background: #fff;
-		padding: max(3vw, 15px);
+		padding: max(2vw, 15px);
 		transform: skew(-15deg);
 		justify-content: flex-end;
 		transition: transform 0.3s;
@@ -232,13 +232,19 @@ const cards = [
 			transform: skew(-15deg) translate(60%, 40%);
 			.hero__card-img {
 				transform: skew(15deg) scale(1.35) translate(-15%, -15%);
+				&--backlight {
+					transform: skew(15deg) scale(1.5) translate(-15%, -15%);
+				}
 			}
 		}
 		&:nth-child(2) {
 			animation: card-appear-2 1s backwards 0.1s;
 			transform: skew(-15deg) translate(20%, 20%);
 			.hero__card-img {
-				transform: skew(15deg) scale(1.5) translate(0, -10%);
+				transform: skew(15deg) scale(1.6) translate(0, -15%);
+				&--backlight {
+					transform: skew(15deg) scale(1.8) translate(0, -15%);
+				}
 			}
 		}
 		&:nth-child(3) {
@@ -247,6 +253,8 @@ const cards = [
 			transform: skew(-15deg) translate(-20%, -10%);
 			.hero__card-img {
 				transform: skew(15deg) scale(1.7) translate(0, -7%);
+				&--backlight {
+				}
 			}
 		}
 		&-content {
@@ -258,7 +266,7 @@ const cards = [
 			color: rgba(34, 40, 43, 1);
 			font-size: 1.4rem;
 			letter-spacing: 0.03em;
-			font-weight: 600;
+			font-weight: 700;
 			@include mix.respond('sm') {
 				font-size: 15.5px;
 			}
@@ -267,6 +275,7 @@ const cards = [
 			letter-spacing: 0.04em;
 			color: rgba(144, 157, 162, 1);
 			font-size: 0.8rem;
+			font-weight: 500;
 			@include mix.respond('sm') {
 				font-size: 9px;
 			}
@@ -283,7 +292,6 @@ const cards = [
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
-			transform: skew(15deg) scale(1) translate(0, -7%);
 			&--backlight {
 				filter: blur(20px);
 			}
