@@ -24,16 +24,14 @@
 			<ul class="hero__cards">
 				<li class="hero__card" v-for="card in cards">
 					<div class="hero__card-container">
-						<NuxtImg
+						<img
 							:width="card.img.width"
 							:height="card.img.height"
-							sizes="xs:200px sm:400px lg:600px xl:800px"
 							class="hero__card-img hero__card-img--backlight"
 							:src="card.img.src" />
-						<NuxtImg
+						<img
 							:width="card.img.width"
 							:height="card.img.height"
-							sizes="xs:200px sm:400px lg:600px xl:800px"
 							class="hero__card-img"
 							:src="card.img.src" />
 					</div>
