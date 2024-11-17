@@ -1,5 +1,7 @@
 <template>
-	<main class="catalog">hello</main>
+	<main class="catalog">
+		<CatalogHero />
+	</main>
 </template>
 
 <script setup></script>
