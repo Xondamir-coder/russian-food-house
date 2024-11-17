@@ -24,7 +24,7 @@
 			<ul class="hero__cards">
 				<li class="hero__card" v-for="card in cards">
 					<div class="hero__card-container">
-						<!-- <NuxtImg
+						<NuxtImg
 							:width="card.img.width"
 							:height="card.img.height"
 							sizes="xs:200px sm:400px lg:600px xl:800px"
@@ -37,7 +37,7 @@
 							sizes="xs:200px sm:400px lg:600px xl:800px"
 							:alt="card.name"
 							class="hero__card-img"
-							:src="card.img.src" /> -->
+							:src="card.img.src" />
 					</div>
 					<div class="hero__card-content">
 						<h3 class="hero__card-title">{{ card.name }}</h3>
