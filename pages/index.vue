@@ -1,7 +1,7 @@
 <template>
 	<main class="home">
 		<HomeHero />
-		<HomeWorld />
+		<World />
 		<HomeBuy />
 		<HomeProducts />
 		<HomePick />

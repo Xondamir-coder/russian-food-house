@@ -2,28 +2,7 @@
 	<section class="hero">
 		<div class="hero__content">
 			<h1 class="hero__title">Лучшие российские товары на Вашем столе</h1>
-			<form class="hero__form" @submit.prevent="submitQuery">
-				<div class="hero__search">
-					<input
-						type="text"
-						name="text"
-						id="text"
-						class="hero__input"
-						placeholder="Найти продукты"
-						required
-						v-model="query" />
-					<button
-						type="button"
-						class="hero__close"
-						@click="clearQuery"
-						:class="{ active: query }">
-						<svg class="fill-primary icon-close">
-							<use href="~/assets/sprite.svg#x" />
-						</svg>
-					</button>
-				</div>
-				<button class="hero__button bg-primary" type="submit">Поиск</button>
-			</form>
+			<Searchform class="hero__search" />
 		</div>
 		<svg class="hero__sprinkles">
 			<use href="~/assets/sprite.svg#sprinkles" />
@@ -56,13 +35,6 @@ const items = [apple, aubergine, cherry, lemon, aubergine, carrot, apple, cherry
 
 const { $gsap } = useNuxtApp();
 
-const query = ref('');
-
-const clearQuery = () => (query.value = '');
-const submitQuery = () => {
-	console.log(query.value);
-};
-
 onMounted(() => {
 	$gsap.utils.toArray('.hero__item').forEach(el =>
 		$gsap.from(el, {
@@ -91,26 +63,6 @@ onMounted(() => {
 		transform: translateY(0);
 	}
 }
-@keyframes slide-from-left {
-	from {
-		opacity: 0;
-		transform: translateX(-40px);
-	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
-}
-@keyframes slide-from-right {
-	from {
-		opacity: 0;
-		transform: translateX(40px);
-	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
-	}
-}
 .hero {
 	display: flex;
 	flex-direction: column;
@@ -120,62 +72,8 @@ onMounted(() => {
 	@include mix.respond('md') {
 		align-items: stretch;
 	}
-	&__input {
-		width: 100%;
-		padding: 18px 25px;
-		font-size: 16px;
-		font-weight: 500;
-		border-radius: 11px;
-		background: #fff;
-		border: none;
-		outline: none;
-
-		@include mix.respond('md') {
-			padding: 10px 16px;
-		}
-	}
-	&__close {
-		position: absolute;
-		right: 6px;
-		top: 50%;
-		transform: translateY(-50%) scale(0);
-		transition: transform 0.3s;
-		padding: 10px;
-		&.active {
-			transform: translateY(-50%) scale(1);
-		}
-	}
 	&__search {
-		flex: 1;
-		display: flex;
-		position: relative;
-		animation: slide-from-left 0.5s backwards 0.25s;
-	}
-	&__form {
-		display: flex;
-		gap: 20px;
 		padding: 0 6vw;
-		@include mix.respond('md') {
-			padding: 0px 16px;
-			gap: 10px;
-		}
-	}
-	&__button {
-		color: #fff;
-		border-radius: 11px;
-		padding: 18px 46px;
-		font-family: var.$font-secondary;
-		font-size: 16px;
-		transition: background-color 0.3s, color 0.3s;
-		animation: slide-from-right 0.5s backwards 0.25s;
-
-		@include mix.respond('md') {
-			padding: 11.5px 20.5px;
-		}
-		&:hover {
-			background-color: #fff;
-			color: map.get(var.$colors, 'primary');
-		}
 	}
 	&__title {
 		font-size: clamp(30px, 5vw, 72px);

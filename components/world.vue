@@ -1,10 +1,10 @@
 <template>
 	<section class="world section-padding">
-		<h2 class="world__title section-title">
+		<h2 class="world__title section-title" :style="{ display: noTitle ? 'none' : 'block' }">
 			Наши павильоны <br />
 			в мире
 		</h2>
-		<HomeMap :region="selectedRegion" :set-region="setRegion" />
+		<Map :region="selectedRegion" :set-region="setRegion" />
 		<div class="world__wrapper">
 			<button class="world__select" @click="toggleShowOptions">
 				<span>{{ selectedRegion }}</span>
@@ -73,6 +73,10 @@ const data = {
 	}
 };
 
+defineProps({
+	noTitle: Boolean
+});
+
 const showOptions = ref(false);
 const selectedRegion = ref('Красноярский край');
 const selectedRegionData = computed(() => data[selectedRegion.value]);
@@ -96,7 +100,6 @@ onMounted(() => {
 	$gsap.from('.map>*', {
 		scale: 0,
 		transformOrigin: 'center',
-		stagger: 0.007,
 		scrollTrigger: {
 			trigger: '.map',
 			start: 'top 80%'

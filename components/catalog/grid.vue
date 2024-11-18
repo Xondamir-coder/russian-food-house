@@ -1,6 +1,6 @@
 <template>
 	<section class="grid section-padding">
-		<div class="grid__item">
+		<NuxtLink to="/products?alcohol-drinks" class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -15,8 +15,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item">
+		</NuxtLink>
+		<NuxtLink to="/products?nonalcohol-drinks" class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -31,8 +31,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item row-span-2">
+		</NuxtLink>
+		<NuxtLink to="/products?agro" class="grid__item row-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -47,8 +47,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item column-span-2">
+		</NuxtLink>
+		<NuxtLink to="/products?supplements" class="grid__item column-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -63,8 +63,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item row-span-2">
+		</NuxtLink>
+		<NuxtLink to="/products?vegetable" class="grid__item row-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -79,8 +79,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item">
+		</NuxtLink>
+		<NuxtLink to="/products?sweets" class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -95,8 +95,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item">
+		</NuxtLink>
+		<NuxtLink to="/products?confectionery" class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -111,8 +111,8 @@
 					</svg>
 				</button>
 			</div>
-		</div>
-		<div class="grid__item column-span-2">
+		</NuxtLink>
+		<NuxtLink to="/products?agro" class="grid__item column-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -127,7 +127,7 @@
 					</svg>
 				</button>
 			</div>
-		</div>
+		</NuxtLink>
 	</section>
 </template>
 
