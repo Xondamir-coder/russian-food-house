@@ -3,6 +3,5 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
 	if (to.path === from.path) return;
 
-	$ScrollTrigger.killAll();
-	$gsap.globalTimeline.kill();
+	$ScrollTrigger.refresh();
 });

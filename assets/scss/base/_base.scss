@@ -14,6 +14,7 @@ html {
 }
 body {
 	background-color: map.get(var.$colors, 'white');
+	color: map.get(var.$colors, 'black');
 	font-family: var.$font-base;
 	font-weight: 500;
 }

@@ -25,7 +25,7 @@
 		<nav class="header__menu-nav">
 			<ul class="header__menu-list">
 				<li class="header__menu-item" v-for="link in links" :key="link.to">
-					<NuxtLink :to="link.to">{{ link.text }}</NuxtLink>
+					<NuxtLink :to="link.to" @click="closeMenu">{{ link.text }}</NuxtLink>
 				</li>
 			</ul>
 		</nav>
@@ -59,6 +59,11 @@ const links = [
 		text: 'Рецепты'
 	}
 ];
+
+const closeMenu = () => {
+	const checkbox = document.getElementById('menu-toggle');
+	checkbox.checked = false;
+};
 </script>
 
 <style lang="scss" scoped>
