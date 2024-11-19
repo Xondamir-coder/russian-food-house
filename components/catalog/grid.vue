@@ -1,6 +1,9 @@
 <template>
 	<section class="grid section-padding">
-		<NuxtLink to="/products?alcohol-drinks" class="grid__item">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory('Алкогольные напитки')"
+			class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -16,7 +19,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?nonalcohol-drinks" class="grid__item">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory('Безалкогольные напитки, соки')"
+			class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -32,7 +38,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?agro" class="grid__item row-span-2">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory(`${longAssWord} продукция`)"
+			class="grid__item row-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -48,7 +57,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?supplements" class="grid__item column-span-2">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory('Биологически активные добавки к пище')"
+			class="grid__item column-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -64,7 +76,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?vegetable" class="grid__item row-span-2">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory('Овощная консервация')"
+			class="grid__item row-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -80,7 +95,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?sweets" class="grid__item">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory('Варенье / Джем / Мёд')"
+			class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -96,7 +114,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?confectionery" class="grid__item">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory('Кондитерские изделия')"
+			class="grid__item">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -112,7 +133,10 @@
 				</button>
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/products?agro" class="grid__item column-span-2">
+		<NuxtLink
+			to="/products"
+			@click="store.selectCategory(`${longAssWord} продукция`)"
+			class="grid__item column-span-2">
 			<NuxtImg
 				class="grid__item-img"
 				src="/img/shopping.png"
@@ -134,6 +158,7 @@
 <script setup>
 const longAssWord = ref('Сельскохозяйственная');
 const { $gsap } = useNuxtApp();
+const store = useAppStore();
 
 onMounted(() => {
 	$gsap.from('.grid__item', {

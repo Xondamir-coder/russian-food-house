@@ -22,8 +22,12 @@ export default defineNuxtConfig({
 				}
 			}
 		],
-		'@nuxt/image'
+		'@nuxt/image',
+		'@pinia/nuxt'
 	],
+	build: {
+		transpile: ['pinia-plugin-persistedstate']
+	},
 	app: {
 		head: {
 			htmlAttrs: {

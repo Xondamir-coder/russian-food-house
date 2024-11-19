@@ -3,15 +3,17 @@
 		<Searchform class="products__search" />
 		<Breadcrumb :crumbs="breadcrumbs" class="products__breadcrumb" />
 		<World no-title class="products__world" />
+		<ProductsGrid />
 	</main>
 </template>
 
 <script setup>
-const breadcrumbs = [
-	{ name: 'Products', link: '/products' },
-	{ name: 'Category name', link: '/products' },
-	{ name: 'All Products', link: '/products' }
-];
+const store = useAppStore();
+const breadcrumbs = computed(() => [
+	{ name: 'Продукты', link: '/products' },
+	{ name: store.curCategory, link: '/products' },
+	{ name: 'Все продукты', link: '/products' }
+]);
 </script>
 
 <style lang="scss" scoped>

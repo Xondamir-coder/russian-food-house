@@ -50,6 +50,7 @@ defineProps({
 	list-style: none;
 	display: flex;
 	gap: max(1vw, 10px);
+	flex-wrap: wrap;
 	& li {
 		display: flex;
 		align-items: center;

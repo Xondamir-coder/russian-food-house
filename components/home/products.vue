@@ -17,9 +17,7 @@
 				</div>
 			</li>
 		</ul>
-		<button class="products__button bg-primary" @click="showMoreProducts">
-			Больше товаров
-		</button>
+		<ButtonPrimary class="none-min-md" label="Больше товаров" @click="showMoreProducts" />
 	</section>
 </template>
 
@@ -156,18 +154,6 @@ watch(products, () => {
 	flex-direction: column;
 	gap: 2rem;
 	font-family: var.$font-secondary;
-	&__button {
-		color: #fff;
-		font-weight: 600;
-		font-size: 18px;
-		border-radius: 11px;
-		letter-spacing: -0.02em;
-		padding: 18px 45px;
-		align-self: center;
-		@include mix.respond('md', min) {
-			display: none;
-		}
-	}
 	&__item {
 		display: flex;
 		flex-direction: column;
