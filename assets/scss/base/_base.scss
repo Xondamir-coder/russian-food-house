@@ -31,9 +31,12 @@ button {
 	color: inherit;
 	font: inherit;
 }
-input {
+input,
+textarea {
 	font: inherit;
 	color: inherit;
+	border: none;
+	outline: none;
 }
 
 /* Lenis */

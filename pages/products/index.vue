@@ -11,9 +11,20 @@
 const store = useAppStore();
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: store.curCategory, link: '/products' },
+	{ name: store.selectedCategory, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
+
+useHead({
+	title: 'Продукты | Russian Food House',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Найдите лучшие российские продукты в Russian Food House. Широкий ассортимент: сладости, закуски, напитки и многое другое. Качество, которому можно доверять!'
+		}
+	]
+});
 </script>
 
 <style lang="scss" scoped>

@@ -60,7 +60,8 @@
 					:to="`/products/${item.id}`"
 					class="grid__item"
 					v-for="item in visibleProducts"
-					:key="item.id">
+					:key="item.id"
+					@click="store.selectProduct(item.id)">
 					<span class="grid__item-type" :class="getClassType(item.type)">
 						{{ item.type }}
 					</span>

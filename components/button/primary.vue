@@ -12,6 +12,7 @@ defineProps({
 @use 'sass:map';
 .button {
 	color: #fff;
+	font-family: var.$font-secondary;
 	font-weight: 600;
 	font-size: 18px;
 	border-radius: 11px;

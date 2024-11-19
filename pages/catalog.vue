@@ -5,7 +5,18 @@
 	</main>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+	title: 'Каталог | Russian Food House',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Откройте каталог Russian Food House: широкий выбор традиционных российских продуктов. От сладостей до премиальных закусок — всё для вашего вкуса. Покупайте сейчас!"'
+		}
+	]
+});
+</script>
 
 <style lang="scss" scoped>
 .catalog {
