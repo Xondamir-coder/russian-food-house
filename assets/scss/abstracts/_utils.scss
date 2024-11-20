@@ -13,6 +13,9 @@
 	.fill-#{$name} {
 		fill: $color;
 	}
+	.stroke-#{$name} {
+		stroke: $color;
+	}
 }
 
 .section-padding {
