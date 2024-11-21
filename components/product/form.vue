@@ -67,33 +67,4 @@ const formatTel = () => {
 const giveInitialTel = () => (tel.value = '+7');
 </script>
 
-<style lang="scss" scoped>
-.form {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-
-	&__bottom {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: clamp(16px, 2vw, 30px);
-		@include mix.respond('md') {
-			grid-template-columns: auto;
-		}
-	}
-	&__text {
-		font-size: 14px;
-		font-weight: 700;
-	}
-	&__input {
-		padding: 18px 25px;
-		border-radius: 11px;
-		&--textarea {
-			min-height: 116px;
-		}
-		&::placeholder {
-			opacity: 0.7;
-		}
-	}
-}
-</style>
+<style lang="scss" scoped></style>

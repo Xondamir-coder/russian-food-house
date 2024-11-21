@@ -1,5 +1,5 @@
 <template>
-	<section class="cards">
+	<section class="cards" id="services-cards">
 		<div class="cards__item" v-for="card in data" :key="card.title">
 			<NuxtImg
 				width="760"
@@ -65,7 +65,6 @@ onMounted(() => {
 	flex-direction: column;
 	gap: 24px;
 	padding: 30px 0;
-	overflow: hidden;
 	@include mix.respond('md') {
 		padding: 0;
 	}

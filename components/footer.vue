@@ -165,15 +165,6 @@ onMounted(() => {
 			start: 'top 80%'
 		}
 	});
-	$gsap.from('.footer__social li', {
-		scale: 0,
-		opacity: 0,
-		stagger: 0.1,
-		scrollTrigger: {
-			trigger: '.footer__social',
-			start: 'top 80%'
-		}
-	});
 });
 </script>
 

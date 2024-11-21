@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use '../abstracts/mixins' as mix;
+@use '../abstracts/variables' as var;
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&__bottom {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: clamp(16px, 2vw, 30px);
+		@include mix.respond('md') {
+			grid-template-columns: auto;
+		}
+	}
+	&__text {
+		font-size: 14px;
+		font-weight: 700;
+	}
+	&__input {
+		padding: 18px 25px;
+		border-radius: 11px;
+		transition: outline-color 0.3s;
+		outline: 1px solid transparent;
+		&:user-invalid {
+			outline-color: map.get(var.$colors, 'secondary');
+		}
+		&--textarea {
+			min-height: 116px;
+		}
+		&::placeholder {
+			opacity: 0.7;
+		}
+	}
+}

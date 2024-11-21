@@ -5,6 +5,8 @@
 	&-logo {
 		width: 135px;
 		aspect-ratio: 135/40;
+		--main-color: rgba(179, 17, 51);
+		--secondary-color: rgb(3, 77, 145);
 		@include mix.respond('md') {
 			width: 154px;
 		}

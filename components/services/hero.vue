@@ -20,9 +20,12 @@
 <script setup>
 import Lenis from 'lenis';
 
+let lenis;
+if (import.meta.client) {
+	lenis = new Lenis();
+}
 const scrollDown = () => {
-	const lenis = new Lenis();
-	lenis.scrollTo();
+	lenis.scrollTo('#services-cards');
 };
 </script>
 

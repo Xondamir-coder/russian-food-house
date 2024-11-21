@@ -4,7 +4,7 @@
 			Получить <br />
 			консультацию
 		</h2>
-		<Form />
+		<ProductForm />
 	</section>
 </template>
 

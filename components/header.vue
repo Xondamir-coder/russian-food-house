@@ -1,5 +1,5 @@
 <template>
-	<header class="header section-padding">
+	<header class="header section-padding" :class="{ 'header--about': isAbout }">
 		<input type="checkbox" class="header__checkbox" id="menu-toggle" />
 		<NuxtLink to="/" class="header__logo">
 			<svg class="icon-logo">
@@ -64,6 +64,7 @@ const closeMenu = () => {
 	const checkbox = document.getElementById('menu-toggle');
 	checkbox.checked = false;
 };
+const isAbout = computed(() => useRoute().path == '/about');
 </script>
 
 <style lang="scss" scoped>
@@ -109,6 +110,31 @@ const closeMenu = () => {
 	&:has(.header__checkbox:checked) ~ .header__menu .header__menu-item {
 		transform: translateX(0);
 		opacity: 1;
+	}
+	&--about {
+		width: 100%;
+		position: fixed;
+		backdrop-filter: blur(10px);
+		background-color: transparent;
+		.header__item {
+			color: rgba(255, 255, 255, 0.7);
+			&::after {
+				background-color: #fff;
+			}
+			&--active {
+				color: #fff;
+			}
+		}
+		& ~ .header__burger {
+			background-color: #fff;
+			.icon-menu {
+				fill: map.get(var.$colors, 'secondary');
+			}
+		}
+		.header__logo .icon-logo {
+			--main-color: #fff;
+			--secondary-color: #fff;
+		}
 	}
 	&__menu {
 		transform: translateX(-100%);

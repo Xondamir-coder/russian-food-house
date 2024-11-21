@@ -15,5 +15,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+	overflow: hidden;
 }
 </style>
