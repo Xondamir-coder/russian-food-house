@@ -45,26 +45,24 @@ const formatTel = () => {
 		return '';
 	}
 
-	// Add +7 if there are any digits, but let user delete it
-	let formatted = tel.value.startsWith('7') ? '+7 ' : '';
+	let formatted = '+998';
 
-	// Format according to the pattern +7 (###) ###-##-##
-	if (tel.value.length > 1) {
-		formatted += '(' + tel.value.substring(1, 4);
+	if (tel.value.length > 3) {
+		formatted += ' (' + tel.value.substring(3, 5); // Add the first two digits inside parentheses
 	}
-	if (tel.value.length >= 5) {
-		formatted += ') ' + tel.value.substring(4, 7);
+	if (tel.value.length >= 6) {
+		formatted += ') ' + tel.value.substring(5, 8); // Add the next three digits after parentheses
 	}
-	if (tel.value.length >= 8) {
-		formatted += '-' + tel.value.substring(7, 9);
+	if (tel.value.length >= 9) {
+		formatted += '-' + tel.value.substring(8, 10); // Add the next two digits with a hyphen
 	}
-	if (tel.value.length >= 10) {
-		formatted += '-' + tel.value.substring(9, 11);
+	if (tel.value.length >= 11) {
+		formatted += '-' + tel.value.substring(10, 12); // Add the last two digits with another hyphen
 	}
 
 	tel.value = formatted;
 };
-const giveInitialTel = () => (tel.value = '+7');
+const giveInitialTel = () => (tel.value = '+998');
 </script>
 
 <style lang="scss" scoped></style>
