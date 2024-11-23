@@ -82,10 +82,9 @@ onMounted(() => {
 		}
 	}
 	&__item {
-		display: grid;
-		place-items: center;
 		border-right: 1.5px solid rgba(230, 233, 234, 1);
 		border-bottom: 1.5px solid rgba(230, 233, 234, 1);
+		@include mix.flex-center;
 		&:nth-of-type(4n) {
 			border-right: none;
 		}

@@ -242,8 +242,7 @@ onMounted(() => {
 		&-button {
 			aspect-ratio: 1;
 			border-radius: 50%;
-			display: grid;
-			place-items: center;
+			@include mix.flex-center;
 			@include mix.respond('lg') {
 				display: none;
 			}

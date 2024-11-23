@@ -12,3 +12,18 @@
 		@warn "Breakpoint '#{$breakpoint}' not found in \$breakpoints map.";
 	}
 }
+
+@mixin grid-center {
+	display: grid;
+	place-items: center;
+	@supports not (place-items: center) {
+		justify-items: center;
+		align-items: center;
+	}
+}
+
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

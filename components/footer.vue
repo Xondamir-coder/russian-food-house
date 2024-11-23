@@ -97,11 +97,8 @@
 </template>
 
 <script setup>
-const { $gsap } = useNuxtApp();
-
 const route = useRoute();
 const isHome = computed(() => route.path == '/');
-
 const links = [
 	{
 		to: '/catalog',
@@ -136,36 +133,6 @@ const links = [
 		text: 'Факты'
 	}
 ];
-
-onMounted(() => {
-	$gsap.from('.footer__left>*', {
-		opacity: 0,
-		x: -100,
-		stagger: 0.1,
-		scrollTrigger: {
-			trigger: '.footer__left',
-			start: 'top 90%'
-		}
-	});
-	$gsap.from('.footer__link', {
-		opacity: 0,
-		y: 20,
-		stagger: 0.1,
-		scrollTrigger: {
-			trigger: '.footer__links',
-			start: 'top 90%'
-		}
-	});
-	$gsap.from('.footer__a', {
-		opacity: 0,
-		x: 20,
-		stagger: 0.1,
-		scrollTrigger: {
-			trigger: '.footer__details',
-			start: 'top 80%'
-		}
-	});
-});
 </script>
 
 <style scoped lang="scss">

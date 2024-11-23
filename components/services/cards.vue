@@ -1,13 +1,7 @@
 <template>
 	<section class="cards" id="services-cards">
 		<div class="cards__item" v-for="card in data" :key="card.title">
-			<NuxtImg
-				width="760"
-				height="406"
-				format="webp"
-				class="cards__img"
-				:src="card.img"
-				:alt="card.title" />
+			<img width="760" height="406" class="cards__img" :src="card.img" :alt="card.title" />
 			<div class="cards__content">
 				<div class="cards__details">
 					<h3 class="cards__title">{{ card.title }}</h3>
@@ -103,7 +97,6 @@ onMounted(() => {
 	}
 	&__img {
 		width: 100%;
-		height: 100%;
 		border-radius: 20px;
 		object-fit: cover;
 		@include mix.respond('lg', min) {
