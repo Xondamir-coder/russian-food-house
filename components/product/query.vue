@@ -8,7 +8,30 @@
 	</section>
 </template>
 
-<script setup></script>
+<script setup>
+onMounted(() => {
+	const { $gsap } = useNuxtApp();
+
+	$gsap.from('.product .container>*:first-child', {
+		opacity: 0,
+		x: -100,
+		stagger: 0.1,
+		scrollTrigger: {
+			trigger: '.product .container>*',
+			start: 'top 80%'
+		}
+	});
+	$gsap.from('.product .container>*:last-child', {
+		opacity: 0,
+		x: 100,
+		stagger: 0.1,
+		scrollTrigger: {
+			trigger: '.product .container>*',
+			start: 'top 80%'
+		}
+	});
+});
+</script>
 
 <style lang="scss" scoped>
 @use 'sass:map';
