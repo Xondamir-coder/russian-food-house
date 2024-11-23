@@ -1,7 +1,9 @@
 <template>
-	<div>aint found</div>
+	<Errorwrapper code="404" message="Not Found" text="эта страница не существует" />
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped></style>
+<script setup>
+definePageMeta({
+	layout: false
+});
+</script>
