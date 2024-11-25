@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer section-padding" :class="{ 'footer--home': isHome }">
+	<footer class="footer section-padding">
 		<div class="footer__left">
 			<NuxtLink to="/">
 				<svg class="footer__logo icon-logo">
@@ -97,8 +97,6 @@
 </template>
 
 <script setup>
-const route = useRoute();
-const isHome = computed(() => route.path == '/');
 const links = [
 	{
 		to: '/catalog',
@@ -138,14 +136,11 @@ const links = [
 <style scoped lang="scss">
 @use 'sass:map';
 .footer {
-	background-color: rgba(213, 223, 233, 1);
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	padding-bottom: 3rem;
 	padding-top: 3rem;
-	&--home {
-		background-color: #fff;
-	}
+	background-color: #fff;
 	@include mix.respond('xl') {
 		grid-template-columns: max-content 1fr;
 		gap: 2rem;

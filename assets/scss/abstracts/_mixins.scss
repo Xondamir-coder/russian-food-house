@@ -15,7 +15,9 @@
 
 @mixin grid-center {
 	display: grid;
-	place-items: center;
+	@supports (place-items: center) {
+		place-items: center;
+	}
 	@supports not (place-items: center) {
 		justify-items: center;
 		align-items: center;

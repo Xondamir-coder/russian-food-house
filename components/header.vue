@@ -1,6 +1,7 @@
 <template>
-	<header class="header section-padding" :class="{ 'header--about': isAbout }">
-		<input type="checkbox" class="header__checkbox" id="menu-toggle" />
+	<header
+		class="header section-padding"
+		:class="{ 'header--about': isAbout, 'header--menu': isMenuOpen }">
 		<NuxtLink to="/" class="header__logo">
 			<svg class="icon-logo">
 				<use href="@/assets/sprite.svg#logo"></use>
@@ -15,21 +16,16 @@
 				</li>
 			</ul>
 		</nav>
+		<button class="header__burger bg-secondary" @click="toggleMenu">
+			<svg class="icon-menu">
+				<use href="@/assets/sprite.svg#menu"></use>
+			</svg>
+			<svg class="header__close">
+				<use href="@/assets/sprite.svg#menu-x"></use>
+			</svg>
+		</button>
 	</header>
-	<label for="menu-toggle" class="header__burger bg-secondary">
-		<svg class="icon-menu">
-			<use href="@/assets/sprite.svg#menu"></use>
-		</svg>
-	</label>
-	<div class="header__menu bg-secondary">
-		<nav class="header__menu-nav">
-			<ul class="header__menu-list">
-				<li class="header__menu-item" v-for="link in links" :key="link.to">
-					<NuxtLink :to="link.to" @click="closeMenu">{{ link.text }}</NuxtLink>
-				</li>
-			</ul>
-		</nav>
-	</div>
+	<Menu :links="links" :is-menu-open="isMenuOpen" @toggle-menu="toggleMenu" />
 </template>
 
 <script setup>
@@ -59,12 +55,12 @@ const links = [
 		text: 'Рецепты'
 	}
 ];
-
-const closeMenu = () => {
-	const checkbox = document.getElementById('menu-toggle');
-	checkbox.checked = false;
+const route = useRoute();
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+	isMenuOpen.value = !isMenuOpen.value;
 };
-const isAbout = computed(() => useRoute().path == '/about');
+const isAbout = computed(() => route.path == '/about');
 </script>
 
 <style lang="scss" scoped>
@@ -98,18 +94,29 @@ const isAbout = computed(() => useRoute().path == '/about');
 	display: flex;
 	align-items: center;
 	background-color: map.get(var.$colors, 'white');
+	transition: background-color 0.3s;
 
 	@include mix.respond('md') {
 		padding-top: 10px;
 		padding-bottom: 10px;
+		justify-content: space-between;
 	}
-	&:has(.header__checkbox:checked) ~ .header__menu {
-		transform: translateX(0);
-		transition-delay: 0s;
-	}
-	&:has(.header__checkbox:checked) ~ .header__menu .header__menu-item {
-		transform: translateX(0);
-		opacity: 1;
+	&--menu {
+		background-color: map.get(var.$colors, 'secondary');
+		.icon-logo {
+			--main-color: #fff;
+			--secondary-color: #fff;
+		}
+		.icon-menu {
+			transform: scale(0);
+		}
+
+		.header__close {
+			transform: scale(1);
+		}
+		.header__burger {
+			background-color: rgba(255, 255, 255, 0.2) !important;
+		}
 	}
 	&--about {
 		width: 100%;
@@ -125,7 +132,7 @@ const isAbout = computed(() => useRoute().path == '/about');
 				color: #fff;
 			}
 		}
-		& ~ .header__burger {
+		.header__burger {
 			background-color: #fff;
 			.icon-menu {
 				fill: map.get(var.$colors, 'secondary');
@@ -136,54 +143,25 @@ const isAbout = computed(() => useRoute().path == '/about');
 			--secondary-color: #fff;
 		}
 	}
-	&__menu {
-		transform: translateX(-100%);
-		position: fixed;
-		inset: 0;
-		display: grid;
-		z-index: 101;
-		place-content: center;
-		transition: transform 0.5s;
-		transition-delay: 1s;
-		&-list {
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
-		}
-		&-item {
-			color: #fff;
-			text-align: center;
-			font-size: 30px;
-			font-family: var.$font-secondary;
-			font-weight: 500;
-			letter-spacing: 0.02em;
-			transition-property: opacity, transform;
-			transition-duration: 0.5s;
-			@for $i from 1 through 6 {
-				&:nth-child(#{$i}) {
-					transition-delay: #{$i * 0.1}s;
-					opacity: 0;
-					@if ($i % 2 == 0) {
-						transform: translateX(-50px);
-					} @else {
-						transform: translateX(50px);
-					}
-				}
-			}
-		}
+	&__close {
+		width: 28px;
+		height: 28px;
+		transform: scale(0);
+		fill: #fff;
 	}
 	&__burger {
 		animation: slide-in-from-right 0.5s;
-		position: fixed;
-		top: 10px;
-		right: 10px;
 		cursor: pointer;
 		width: 48px;
 		height: 48px;
-		display: grid;
-		place-content: center;
 		border-radius: 50%;
 		z-index: 102;
+		transition: background-color 0.3s;
+		@include mix.grid-center;
+		& > * {
+			position: absolute;
+			transition: transform 0.3s;
+		}
 		@include mix.respond('md', min) {
 			display: none;
 		}
