@@ -8,23 +8,27 @@
 
 <script setup>
 const route = useRoute();
-const store = useAppStore();
+const appStore = useAppStore();
 
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: store.selectedCategory, link: '/products' },
-	{ name: store.selectedProduct?.title, link: '/products' },
+	{ name: appStore.selectedCategory, link: '/products' },
+	{ name: appStore.selectedProduct?.title, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
 
 useHead({
-	title: computed(() => `${store.selectedProduct?.title}  | Russian Food House`),
+	title: computed(() => `${appStore.selectedProduct?.title}  | Russian Food House`),
 	meta: [
 		{
-			content: computed(() => store.selectedProduct?.desc),
+			content: computed(() => appStore.selectedProduct?.desc),
 			name: 'description'
 		}
 	]
+});
+
+onMounted(() => {
+	if (!appStore.selectedProduct) appStore.selectProduct(route.params.id);
 });
 </script>
 

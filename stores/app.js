@@ -337,13 +337,6 @@ export const useAppStore = defineStore('app', () => {
 		selectedProduct.value = products.value.find(p => p.id === productId);
 	};
 
-	onMounted(() => {
-		const route = useRoute();
-		if (!selectedProduct.value) {
-			selectProduct(route.params.id);
-		}
-	});
-
 	return {
 		categories,
 		products,

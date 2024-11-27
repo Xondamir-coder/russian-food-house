@@ -8,7 +8,6 @@
 import Lenis from 'lenis';
 
 onMounted(() => {
-	// Initialize Lenis
 	const lenis = new Lenis();
 
 	// Use requestAnimationFrame to continuously update the scroll
@@ -16,7 +15,6 @@ onMounted(() => {
 		lenis.raf(time);
 		requestAnimationFrame(raf);
 	}
-
 	requestAnimationFrame(raf);
 });
 </script>
