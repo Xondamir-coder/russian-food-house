@@ -1,34 +1,34 @@
 <template>
 	<section class="buy">
-		<div class="buy__item buy__apple--1">
+		<div data-speed="1" class="buy__item buy__apple--1">
 			<img class="buy__img" src="/img/apple.webp" alt="apple" />
 			<img class="buy__img--backlight" src="/img/apple.webp" alt="apple" />
 		</div>
-		<div class="buy__item buy__aubergine">
+		<div data-speed="2" class="buy__item buy__aubergine">
 			<img class="buy__img unscaled" src="/img/aubergine.webp" alt="aubergine" />
 			<img class="buy__img--backlight unscaled" src="/img/aubergine.webp" alt="aubergine" />
 		</div>
-		<div class="buy__item buy__cherry--1">
+		<div data-speed="1.75" class="buy__item buy__cherry--1">
 			<img class="buy__img" src="/img/cherry.webp" alt="cherry" />
 			<img class="buy__img--backlight" src="/img/cherry.webp" alt="cherry" />
 		</div>
-		<div class="buy__item buy__cherry--2">
+		<div data-speed="1.25" class="buy__item buy__cherry--2">
 			<img class="buy__img" src="/img/cherry.webp" alt="cherry" />
 			<img class="buy__img--backlight" src="/img/cherry.webp" alt="cherry" />
 		</div>
-		<div class="buy__item buy__lemon--1">
+		<div data-speed="2.15" class="buy__item buy__lemon--1">
 			<img class="buy__img" src="/img/lemon.webp" alt="lemon" />
 			<img class="buy__img--backlight" src="/img/lemon.webp" alt="lemon" />
 		</div>
-		<div class="buy__item buy__carrot">
+		<div data-speed="1.05" class="buy__item buy__carrot">
 			<img class="buy__img" src="/img/carrot.webp" alt="carrot" />
 			<img class="buy__img--backlight" src="/img/carrot.webp" alt="carrot" />
 		</div>
-		<div class="buy__item buy__apple--2">
+		<div data-speed="1.15" class="buy__item buy__apple--2">
 			<img class="buy__img" src="/img/apple.webp" alt="apple" />
 			<img class="buy__img--backlight" src="/img/apple.webp" alt="apple" />
 		</div>
-		<div class="buy__item buy__lemon--2">
+		<div data-speed="1.65" class="buy__item buy__lemon--2">
 			<img class="buy__img" src="/img/lemon.webp" alt="lemon" />
 			<img class="buy__img--backlight" src="/img/lemon.webp" alt="lemon" />
 		</div>
@@ -52,15 +52,16 @@ onMounted(() => {
 			start: 'top 80%'
 		}
 	});
-	$gsap.to('.buy__item', {
-		stagger: 0.02,
-		y: '-=300',
-		scrollTrigger: {
-			trigger: '.buy',
-			start: 'top bottom',
-			end: 'bottom top',
-			scrub: 1
-		}
+	$gsap.utils.toArray('.buy__item').forEach((item, i) => {
+		$gsap.to(item, {
+			y: -200 * item.dataset.speed,
+			scrollTrigger: {
+				trigger: '.buy',
+				start: 'top 70%',
+				end: 'bottom top',
+				scrub: 1
+			}
+		});
 	});
 });
 </script>
@@ -116,6 +117,9 @@ onMounted(() => {
 		justify-self: center;
 		align-self: flex-end;
 		bottom: -40%;
+		@include mix.respond('sm') {
+			bottom: -50%;
+		}
 	}
 	&__lemon {
 		&--1 {
@@ -126,6 +130,9 @@ onMounted(() => {
 		&--2 {
 			top: 100%;
 			right: 0;
+			@include mix.respond('sm') {
+				top: 125%;
+			}
 		}
 	}
 	&__cherry {
@@ -133,6 +140,9 @@ onMounted(() => {
 			align-self: flex-end;
 			left: 3%;
 			bottom: -50%;
+			@include mix.respond('sm') {
+				bottom: -80%;
+			}
 		}
 		&--2 {
 			justify-self: flex-end;
@@ -147,6 +157,10 @@ onMounted(() => {
 		&--2 {
 			top: 70%;
 			right: 25%;
+			@include mix.respond('sm') {
+				top: 75%;
+				right: 20%;
+			}
 		}
 	}
 	&__img,

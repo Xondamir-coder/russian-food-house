@@ -25,7 +25,6 @@ const customScrollTrigger = {
 	trigger: '.pick',
 	start: 'top 30%',
 	end: 'bottom top',
-	markers: true,
 	scrub: 1
 };
 
