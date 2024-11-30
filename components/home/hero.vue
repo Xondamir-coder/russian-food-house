@@ -93,7 +93,7 @@ const cards = [
 	}
 	to {
 		opacity: 1;
-		scale: 1;
+		scale: 0.85;
 		translate: 0 0;
 	}
 }
@@ -105,7 +105,7 @@ const cards = [
 	}
 	to {
 		opacity: 1;
-		scale: 1;
+		scale: 0.85;
 		translate: 0 0;
 	}
 }
@@ -117,7 +117,7 @@ const cards = [
 	}
 	to {
 		opacity: 1;
-		scale: 1;
+		scale: 0.85;
 		translate: 0 0;
 	}
 }
@@ -227,10 +227,10 @@ const cards = [
 		transform: skew(-15deg);
 		justify-content: flex-end;
 		transition: transform 0.3s;
-		animation: card-appear 1s backwards;
+		animation: card-appear 1s both;
 
 		&:nth-child(1) {
-			animation: card-appear-1 1s backwards 0.2s;
+			animation: card-appear-1 both 1s 0.2s;
 			transform: skew(-15deg) translate(60%, 40%);
 			.hero__card-img {
 				transform: skew(15deg) scale(1.35) translate(-15%, -15%);
@@ -240,7 +240,7 @@ const cards = [
 			}
 		}
 		&:nth-child(2) {
-			animation: card-appear-2 1s backwards 0.1s;
+			animation: card-appear-2 both 1s 0.1s;
 			transform: skew(-15deg) translate(20%, 20%);
 			.hero__card-img {
 				transform: skew(15deg) scale(1.6) translate(0, -15%);
@@ -250,13 +250,11 @@ const cards = [
 			}
 		}
 		&:nth-child(3) {
-			animation: card-appear-3 1s backwards;
+			animation: card-appear-3 both 1s;
 
 			transform: skew(-15deg) translate(-20%, -10%);
 			.hero__card-img {
 				transform: skew(15deg) scale(1.7) translate(0, -7%);
-				&--backlight {
-				}
 			}
 		}
 		&-content {
