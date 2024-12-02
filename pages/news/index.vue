@@ -5,7 +5,18 @@
 	</main>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+	title: 'Новости | Russian Food House',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Russian Food House - новости о российской кухне. Полезные советы, рецепты, совместные события и многое другое.'
+		}
+	]
+});
+</script>
 
 <style lang="scss" scoped>
 .news {
