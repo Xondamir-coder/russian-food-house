@@ -6,7 +6,18 @@
 	</main>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+	title: 'Сервисы | Russian Food House',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Russian Food House - это комплексный сервис для экспорта продовольственных товаров из России. Мы предлагаем своим клиентам полный спектр услуг, начиная от регистрации и сертификации продукции, заканчивая доставкой до склада покупателя.'
+		}
+	]
+});
+</script>
 
 <style lang="scss" scoped>
 .services {

@@ -6,7 +6,18 @@
 	</main>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+	title: 'Контакты | Russian Food House',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Контакты Russian Food House - форма обратной связи, адреса и телефоны офисов, email для связи'
+		}
+	]
+});
+</script>
 
 <style lang="scss" scoped>
 @keyframes slide-in-from-bottom {

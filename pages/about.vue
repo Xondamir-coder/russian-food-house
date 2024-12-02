@@ -7,7 +7,18 @@
 	</main>
 </template>
 
-<script setup></script>
+<script setup>
+useHead({
+	title: 'О нас | Russian Food House',
+	meta: [
+		{
+			name: 'description',
+			content:
+				'Russian Food House - это интернет-магазин, который	предлагает широкий ассортимент русских продуктов по доступным ценам. Мы работаем напрямую с российскими производителями, чтобы обеспечить качество и свежесть наших продуктов.'
+		}
+	]
+});
+</script>
 
 <style lang="scss" scoped>
 .about {
