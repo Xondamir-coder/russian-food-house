@@ -23,7 +23,7 @@ defineProps({
 	&:hover {
 		background-color: #fff;
 		color: map.get(var.$colors, 'primary');
-		box-shadow: 0px 52px 100px 0px rgba(142, 161, 179, 0.8);
+		box-shadow: 0 5px 70px 0px rgba(142, 161, 179, 0.8);
 	}
 }
 </style>
