@@ -1,1 +1,3 @@
-<template>I am {{ $route.params.id }}</template>
+<template>
+	<NewsWrapper type="news" />
+</template>

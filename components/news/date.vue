@@ -1,6 +1,6 @@
 <template>
 	<div class="date">
-		<svg>
+		<svg class="icon-calendar" v-if="iconExist">
 			<use href="~/assets/sprite.svg#calendar" />
 		</svg>
 		<span>{{ date }}</span>
@@ -16,7 +16,11 @@ const date = computed(() => {
 	)} ${date.getFullYear()}`;
 });
 const props = defineProps({
-	date: String
+	date: String,
+	iconExist: {
+		type: Boolean,
+		default: true
+	}
 });
 </script>
 
@@ -29,10 +33,5 @@ const props = defineProps({
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 22.4px;
-
-	svg {
-		width: 20px;
-		height: 20px;
-	}
 }
 </style>

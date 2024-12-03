@@ -7,7 +7,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 1
+		id: '1',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-2.jpg',
@@ -15,7 +16,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-12-02T16:28:28.592Z',
-		id: 2
+		id: '2',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-3.jpg',
@@ -23,7 +25,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 3
+		id: '3',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-1.jpg',
@@ -31,7 +34,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 4
+		id: '4',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-2.jpg',
@@ -39,7 +43,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-12-02T16:28:28.592Z',
-		id: 5
+		id: '5',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-3.jpg',
@@ -47,7 +52,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 6
+		id: '6',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-1.jpg',
@@ -55,7 +61,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 7
+		id: '7',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-2.jpg',
@@ -63,7 +70,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-12-02T16:28:28.592Z',
-		id: 8
+		id: '8',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-3.jpg',
@@ -71,7 +79,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 9
+		id: '9',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-1.jpg',
@@ -79,7 +88,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 10
+		id: '10',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-2.jpg',
@@ -87,7 +97,8 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-12-02T16:28:28.592Z',
-		id: 11
+		id: '11',
+		body: '<p>Hello</p>'
 	},
 	{
 		image: '/img/news-3.jpg',
@@ -95,12 +106,14 @@ const testNews = [
 		meta_title:
 			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
 		updatedAt: '2024-11-29T13:56:01.000000Z',
-		id: 12
+		id: '12',
+		body: '<p>Hello</p>'
 	}
 ];
 const testProducts = [
 	{
 		id: 'NPLIV7',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -115,6 +128,7 @@ const testProducts = [
 	},
 	{
 		id: 'PN2ZQF',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -129,6 +143,7 @@ const testProducts = [
 	},
 	{
 		id: 'LQXW7Z',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -143,6 +158,7 @@ const testProducts = [
 	},
 	{
 		id: 'TWD3ZX',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -157,6 +173,7 @@ const testProducts = [
 	},
 	{
 		id: 'KP7YQJ',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -171,6 +188,7 @@ const testProducts = [
 	},
 	{
 		id: 'GQ8WYN',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -185,6 +203,7 @@ const testProducts = [
 	},
 	{
 		id: 'YHZ3QP',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -199,6 +218,7 @@ const testProducts = [
 	},
 	{
 		id: 'MRTJ4F',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -213,6 +233,7 @@ const testProducts = [
 	},
 	{
 		id: 'PWL7XZ',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -227,6 +248,7 @@ const testProducts = [
 	},
 	{
 		id: 'ZX7KQP',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -241,6 +263,7 @@ const testProducts = [
 	},
 	{
 		id: 'HZX3JQ',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -255,6 +278,7 @@ const testProducts = [
 	},
 	{
 		id: 'YWP3LZ',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -269,6 +293,7 @@ const testProducts = [
 	},
 	{
 		id: 'NRZJ6X',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -283,6 +308,7 @@ const testProducts = [
 	},
 	{
 		id: 'KWP3JZ',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -297,6 +323,7 @@ const testProducts = [
 	},
 	{
 		id: 'ZXPL9Q',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -311,6 +338,7 @@ const testProducts = [
 	},
 	{
 		id: 'YWJZ4Q',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -325,6 +353,7 @@ const testProducts = [
 	},
 	{
 		id: 'MRPL3X',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -339,6 +368,7 @@ const testProducts = [
 	},
 	{
 		id: 'GWT7LJ',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -353,6 +383,7 @@ const testProducts = [
 	},
 	{
 		id: 'PZW9KX',
+		body: '<p>Hello</p>',
 		img: '/img/product-2.webp',
 		title: '«Славянка-торг»',
 		desc: '"Обыкновенное чудо", 55 г с кремом',
@@ -367,6 +398,7 @@ const testProducts = [
 	},
 	{
 		id: 'HZPL8J',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -381,6 +413,7 @@ const testProducts = [
 	},
 	{
 		id: 'LWZX3Q',
+		body: '<p>Hello</p>',
 		img: '/img/product-3.webp',
 		title: 'ООО "Соломон-трейд"',
 		desc: 'Жареный арахис натуральный "GOLDEN GIFT"',
@@ -423,15 +456,126 @@ const testCategories = [
 	'before last',
 	'last'
 ];
+const testEvents = [
+	{
+		image: '/img/news-1.jpg',
+		type: 'Мероприятие',
+		meta_title: 'Events title bla blah',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '1',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-2.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-12-02T16:28:28.592Z',
+		id: '2',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-3.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '3',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-1.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '4',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-2.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-12-02T16:28:28.592Z',
+		id: '5',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-3.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '6',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-1.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '7',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-2.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-12-02T16:28:28.592Z',
+		id: '8',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-3.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '9',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-1.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '10',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-2.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-12-02T16:28:28.592Z',
+		id: '11',
+		body: '<p>Hello</p>'
+	},
+	{
+		image: '/img/news-3.jpg',
+		type: 'Мероприятия',
+		meta_title:
+			'Nibh blandit non penatibus potenti odio quisque sed nulla at sapien pellentesque',
+		updatedAt: '2024-11-29T13:56:01.000000Z',
+		id: '12',
+		body: '<p>Hello</p>'
+	}
+];
 
 export const useAppStore = defineStore('app', () => {
 	// Selectables
 	const selectedCategory = ref('Category name');
 	const selectedProduct = ref();
+	const selectedNews = ref();
+	const selectedEvent = ref();
 
 	// Fetched data
 	const news = ref(testNews);
-	const events = ref();
+	const events = ref(testEvents);
 	const categories = ref(testCategories);
 	const products = ref(testProducts);
 
@@ -440,8 +584,17 @@ export const useAppStore = defineStore('app', () => {
 		selectedCategory.value = category;
 	};
 	const selectProduct = productId => {
-		selectedProduct.value = products.value.find(p => p.id === productId);
+		selectedProduct.value = findItem(products.value, productId);
 	};
+	const selectNews = newsId => {
+		selectedNews.value = findItem(news.value, newsId);
+	};
+	const selectEvent = eventId => {
+		selectedEvent.value = findItem(events.value, eventId);
+	};
+
+	// Helpers
+	const findItem = (items, id) => items.find(i => i.id === id);
 
 	return {
 		news,
@@ -450,6 +603,10 @@ export const useAppStore = defineStore('app', () => {
 		products,
 		selectedCategory,
 		selectedProduct,
+		selectedEvent,
+		selectedNews,
+		selectNews,
+		selectEvent,
 		selectCategory,
 		selectProduct
 	};

@@ -5,23 +5,30 @@
 			<NuxtLink
 				:to="item.type === 'Мероприятия' ? `/events/${item.id}` : `/news/${item.id}`"
 				class="list__item"
-				v-for="item in appStore.news"
+				v-for="item in items"
 				:key="item.id"
-				:style="getRandomStyle()">
-				<div class="list__item-top">
-					<NewsLabel class="list__item-label" :text="item.type" />
-					<NuxtImg class="list__item-img" :src="item.image" />
+				:style="useRandomColorStyle()"
+				@click="
+					item.type === 'Мероприятия'
+						? appStore.selectEvent(item.id)
+						: appStore.selectNews(item.id)
+				">
+				<div class="list__item-wrapper">
+					<div class="list__item-top">
+						<NewsLabel class="list__item-label" :text="item.type" />
+						<NuxtImg class="list__item-img" :src="item.image" />
+					</div>
+					<h4 class="list__item-title">
+						{{ item.meta_title }}
+					</h4>
 				</div>
-				<h4 class="list__item-title">
-					{{ item.meta_title }}
-				</h4>
 				<div class="list__item-content">
 					<NewsDate :date="item.updatedAt" />
 					<NewsTime :date="item.updatedAt" />
 				</div>
 			</NuxtLink>
 		</div>
-		<ButtonPrimary class="container__button" label="Показать еще" />
+		<ButtonPrimary class="container__button" label="Показать еще" @click="loadMore" />
 	</section>
 </template>
 
@@ -31,8 +38,26 @@ const { $gsap } = useNuxtApp();
 
 const containerRef = ref();
 const listRef = ref();
+const limitItems = ref(12);
+
+const getRandomItems = () => {
+	const arr = [...appStore.news, ...appStore.events];
+	for (let i = arr.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[arr[i], arr[j]] = [arr[j], arr[i]];
+	}
+	return arr;
+};
+
+const randomizedItems = getRandomItems();
+const items = computed(() => randomizedItems.slice(0, limitItems.value));
+
+const loadMore = () => {
+	limitItems.value += 3;
+};
 
 onMounted(() => {
+	// Animations
 	$gsap.from(containerRef.value.firstElementChild, {
 		opacity: 0,
 		y: 15,
@@ -52,75 +77,19 @@ onMounted(() => {
 		});
 	});
 });
-
-const colorCombosMap = [
-	{
-		bg: '#F5A524FF',
-		color: '#000000FF'
-	},
-	{
-		bg: '#7828C833',
-		color: '#7828C8FF'
-	},
-	{
-		bg: '#006FEE33',
-		color: '#006FEEFF'
-	},
-	{
-		bg: '#17C96433',
-		color: '#17C964FF'
-	},
-	{
-		bg: '#D4D4D866',
-		color: '#000000FF'
-	},
-	{
-		bg: '#17C964FF',
-		color: '#000000FF'
-	},
-	{
-		bg: '#006FEEFF',
-		color: '#FFFFFFFF'
-	},
-	{
-		bg: '#7828C8FF',
-		color: '#FFFFFFFF'
-	},
-	{
-		bg: '#F31260FF',
-		color: '#FFFFFFFF'
-	}
-];
-
-const getRandomStyle = () => {
-	const randColor = getRandomColor();
-	return `--bg: ${randColor.backgroundColor}; --color: ${randColor.color};`;
-};
-const getRandomColor = (() => {
-	const recentColors = []; // Store the last 4 selected indices
-	const maxRecent = 4;
-
-	return () => {
-		let randomIndex;
-		do {
-			randomIndex = Math.floor(Math.random() * colorCombosMap.length);
-		} while (recentColors.includes(randomIndex));
-
-		// Add the new index and remove the oldest if necessary
-		recentColors.push(randomIndex);
-		if (recentColors.length > maxRecent) {
-			recentColors.shift();
-		}
-
-		return {
-			backgroundColor: colorCombosMap[randomIndex].bg,
-			color: colorCombosMap[randomIndex].color
-		};
-	};
-})();
 </script>
 
 <style lang="scss" scoped>
+@keyframes slide-from-top {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 .container {
 	display: flex;
 	flex-direction: column;
@@ -146,11 +115,24 @@ const getRandomColor = (() => {
 	&__item {
 		display: flex;
 		flex-direction: column;
-		gap: 16px;
+		justify-content: space-between;
 		background: #fff;
 		padding: clamp(10px, 2vw, 24px);
 		border-radius: 20px;
 		transition: box-shadow 0.4s;
+		animation: slide-from-top 0.4s;
+		gap: 26px;
+		@include mix.respond('md') {
+			gap: 29px;
+		}
+		&-wrapper {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			@include mix.respond('md') {
+				gap: 29px;
+			}
+		}
 		&:hover {
 			box-shadow: 0px 52px 100px 0px rgba(142, 161, 179, 0.6);
 		}
@@ -188,12 +170,8 @@ const getRandomColor = (() => {
 			z-index: 2;
 		}
 		&-content {
-			margin-top: 26px;
 			display: flex;
 			justify-content: space-between;
-			@include mix.respond('md') {
-				margin-top: 0;
-			}
 		}
 	}
 }

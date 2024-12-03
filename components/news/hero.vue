@@ -1,6 +1,6 @@
 <template>
 	<section class="hero">
-		<NuxtLink class="hero__big" to="/news/4" :style="getRandomStyle()">
+		<NuxtLink class="hero__big" to="/news/4" :style="useRandomColorStyle()">
 			<NuxtImg
 				class="hero__img"
 				format="webp"
@@ -17,7 +17,7 @@
 				<ButtonPrimary class="hero__button" label="Читать дальше" />
 			</div>
 		</NuxtLink>
-		<NuxtLink to="/news/1" class="hero__small" :style="getRandomStyle()">
+		<NuxtLink to="/news/1" class="hero__small" :style="useRandomColorStyle()">
 			<NuxtImg class="hero__img" fit="cover" format="webp" src="/img/news-hero-1.jpg" />
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
@@ -27,7 +27,7 @@
 				</h3>
 			</div>
 		</NuxtLink>
-		<NuxtLink :style="getRandomStyle()" to="/news/1" class="hero__small">
+		<NuxtLink :style="useRandomColorStyle()" to="/news/1" class="hero__small">
 			<NuxtImg class="hero__img" fit="cover" format="webp" src="/img/news-hero-2.jpg" />
 			<div class="hero__content">
 				<NewsLabel text="Интересно" />
@@ -37,7 +37,7 @@
 				</h3>
 			</div>
 		</NuxtLink>
-		<NuxtLink :style="getRandomStyle()" to="/news/1" class="hero__small">
+		<NuxtLink :style="useRandomColorStyle()" to="/news/1" class="hero__small">
 			<NuxtImg class="hero__img" fit="cover" format="webp" src="/img/news-hero-3.jpg" />
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
@@ -50,73 +50,7 @@
 	</section>
 </template>
 
-<script setup>
-const colorCombosMap = [
-	{
-		bg: '#F5A524FF',
-		color: '#000000FF'
-	},
-	{
-		bg: '#7828C833',
-		color: '#7828C8FF'
-	},
-	{
-		bg: '#006FEE33',
-		color: '#006FEEFF'
-	},
-	{
-		bg: '#17C96433',
-		color: '#17C964FF'
-	},
-	{
-		bg: '#D4D4D866',
-		color: '#000000FF'
-	},
-	{
-		bg: '#17C964FF',
-		color: '#000000FF'
-	},
-	{
-		bg: '#006FEEFF',
-		color: '#FFFFFFFF'
-	},
-	{
-		bg: '#7828C8FF',
-		color: '#FFFFFFFF'
-	},
-	{
-		bg: '#F31260FF',
-		color: '#FFFFFFFF'
-	}
-];
-
-const getRandomStyle = () => {
-	const randColor = getRandomColor();
-	return `--bg: ${randColor.backgroundColor}; --color: ${randColor.color};`;
-};
-const getRandomColor = (() => {
-	const recentColors = []; // Store the last 4 selected indices
-	const maxRecent = 4;
-
-	return () => {
-		let randomIndex;
-		do {
-			randomIndex = Math.floor(Math.random() * colorCombosMap.length);
-		} while (recentColors.includes(randomIndex));
-
-		// Add the new index and remove the oldest if necessary
-		recentColors.push(randomIndex);
-		if (recentColors.length > maxRecent) {
-			recentColors.shift();
-		}
-
-		return {
-			backgroundColor: colorCombosMap[randomIndex].bg,
-			color: colorCombosMap[randomIndex].color
-		};
-	};
-})();
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 @use 'sass:map';
