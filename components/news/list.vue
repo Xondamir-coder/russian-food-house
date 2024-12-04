@@ -66,16 +66,19 @@ onMounted(() => {
 			start: 'top 80%'
 		}
 	});
-	$gsap.utils.toArray(listRef.value.children).forEach((item, i) => {
-		$gsap.from(item, {
-			opacity: 0,
-			y: 15,
-			scrollTrigger: {
-				trigger: item,
-				start: 'top 85%'
-			}
+	setTimeout(() => {
+		$gsap.utils.toArray(listRef.value.children).forEach((item, i) => {
+			$gsap.from(item, {
+				opacity: 0,
+				y: 15,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 85%',
+					markers: true
+				}
+			});
 		});
-	});
+	}, 300);
 });
 </script>
 

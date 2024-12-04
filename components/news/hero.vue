@@ -183,6 +183,10 @@
 			aspect-ratio: 1;
 		}
 	}
+	&__button {
+		font-family: var.$font-base;
+		letter-spacing: 0;
+	}
 	&__big {
 		display: flex;
 		transition: color 0.3s;
