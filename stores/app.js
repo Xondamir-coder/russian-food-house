@@ -580,20 +580,27 @@ export const useAppStore = defineStore('app', () => {
 	const products = ref(testProducts);
 
 	// Actions
+
 	const selectCategory = category => {
 		selectedCategory.value = category;
 	};
+
 	const selectProduct = productId => {
-		selectedProduct.value = findItem(products.value, productId);
+		selectItem(selectedProduct, products, productId);
 	};
+
 	const selectNews = newsId => {
-		selectedNews.value = findItem(news.value, newsId);
+		selectItem(selectedNews, news, newsId);
 	};
+
 	const selectEvent = eventId => {
-		selectedEvent.value = findItem(events.value, eventId);
+		selectItem(selectedEvent, events, eventId);
 	};
 
 	// Helpers
+	const selectItem = (selectedRef, itemsRef, itemId) => {
+		selectedRef.value = findItem(itemsRef.value, itemId);
+	};
 	const findItem = (items, id) => items.find(i => i.id === id);
 
 	return {

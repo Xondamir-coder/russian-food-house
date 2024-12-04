@@ -74,7 +74,6 @@ onMounted(() => {
 				scrollTrigger: {
 					trigger: item,
 					start: 'top 85%',
-					markers: true
 				}
 			});
 		});

@@ -1,24 +1,27 @@
 <template>
 	<section class="world section-padding">
-		<h2 class="world__title section-title" :style="{ display: noTitle ? 'none' : 'block' }">
+		<h2 class="world__title section-title" v-if="noTitle">
 			Наши павильоны <br />
 			в мире
 		</h2>
-		<Map :region="selectedRegion" :set-region="setRegion" />
+		<Map />
+		<Mappopup />
 		<div class="world__wrapper">
 			<button class="world__select" @click="toggleShowOptions">
-				<span>{{ selectedRegion }}</span>
+				<span>{{ mapStore.regionTranslations[mapStore.currentRegion?.name] }}</span>
 				<svg class="icon-arrow">
 					<use href="@/assets/sprite.svg#down-arrow" />
 				</svg>
 			</button>
 			<ul class="world__options" :class="{ active: showOptions }">
-				<li class="world__option" v-for="region in regions" :key="region">
+				<li class="world__option" v-for="region in mapStore.regions" :key="region.name">
 					<button
 						class="world__button"
-						:class="{ active: region == selectedRegion }"
-						@click="changeRegion(region)">
-						{{ region }}
+						:class="{
+							active: region.name === mapStore.currentRegion?.name
+						}"
+						@click="selectRegion(region.name)">
+						{{ mapStore.regionTranslations[region.name] }}
 					</button>
 				</li>
 			</ul>
@@ -27,13 +30,13 @@
 			<div class="world__data text-black">
 				<span>Всего товаров:</span>
 				<strong>
-					<span>{{ selectedRegionData.goods }}</span>
+					<span>{{ mapStore.currentRegion?.goods }}</span>
 				</strong>
 			</div>
 			<div class="world__data text-black">
 				<span>Производителей:</span>
 				<strong>
-					<span>{{ selectedRegionData.producers }}</span>
+					<span>{{ mapStore.currentRegion?.producers }}</span>
 				</strong>
 			</div>
 		</div>
@@ -42,51 +45,19 @@
 
 <script setup>
 const { $gsap } = useNuxtApp();
-
-const regions = [
-	'Ямало-Ненецкий',
-	'Красноярский край',
-	'Республика Саха (Якутия)',
-	'Магаданская область',
-	'Чукотский автономный округ'
-];
-const data = {
-	'Красноярский край': {
-		goods: '56 999',
-		producers: '4 034'
-	},
-	'Ямало-Ненецкий': {
-		goods: '56 999',
-		producers: '4 034'
-	},
-	'Республика Саха (Якутия)': {
-		goods: '56 999',
-		producers: '4 034'
-	},
-	'Магаданская область': {
-		goods: '56 999',
-		producers: '4 034'
-	},
-	'Чукотский автономный округ': {
-		goods: '56 999',
-		producers: '4 034'
-	}
-};
+const mapStore = useMapStore();
 
 defineProps({
 	noTitle: Boolean
 });
 
 const showOptions = ref(false);
-const selectedRegion = ref('Красноярский край');
-const selectedRegionData = computed(() => data[selectedRegion.value]);
 
-const toggleShowOptions = () => (showOptions.value = !showOptions.value);
-const changeRegion = region => {
-	setRegion(region);
+const selectRegion = regionName => {
+	mapStore.setCurrentRegion(regionName);
 	toggleShowOptions();
 };
-const setRegion = region => (selectedRegion.value = region);
+const toggleShowOptions = () => (showOptions.value = !showOptions.value);
 
 onMounted(() => {
 	$gsap.from('.world__title', {
@@ -152,13 +123,15 @@ onMounted(() => {
 	&__options {
 		width: 100%;
 		position: absolute;
-		top: 100%;
+		top: calc(100% + 10px);
 		left: 0;
 		z-index: 15;
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
 		transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+		max-height: 300px;
+		overflow-y: auto;
 		&:not(.active) {
 			opacity: 0;
 			visibility: hidden;
