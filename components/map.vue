@@ -8,8 +8,8 @@
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg">
 		<g
-			:class="{ active: 'Respubltika Saha Yakutiya' === mapStore.currentRegion?.name }"
-			id="Respubltika Saha Yakutiya"
+			:class="{ active: 'Respublika Saha Yakutiya' === mapStore.currentRegion?.name }"
+			id="Respublika Saha Yakutiya"
 			data-svg-origin="902.8550109863281 295.88004302978516"
 			transform="matrix(1,0,0,1,0,0)"
 			style="transform-origin: 0px 0px; translate: none; rotate: none; scale: none">
@@ -1331,13 +1331,6 @@ const selectRegion = e => {
 	mapStore.setCurrentRegion(regionName);
 	mapStore.setHovering(true);
 };
-
-onMounted(() => {
-	// const items = document.querySelectorAll('[:class]');
-	// items.forEach(item => {
-	// 	item.dataset.class = `{active: "${item.id}" === mapStore.currentRegion?.name}`;
-	// });
-});
 </script>
 
 <style lang="scss" scoped>

@@ -566,33 +566,109 @@ const testEvents = [
 	}
 ];
 
+// Placeholders
+const categoryPlaceholder = {
+	id: 0,
+	uuid: '',
+	name: '',
+	image: '',
+	created_at: '',
+	updated_at: ''
+};
+const productPlaceholder = {
+	id: 0,
+	uuid: '',
+	meta_title: '',
+	meta_description: '',
+	meta_keywords: '',
+	title: '',
+	title_slug: '',
+	content: '',
+	body: '',
+	weight: 0,
+	packing: '',
+	type: '',
+	images: '',
+	manufacturer_id: 0,
+	country_import_id: 0,
+	country_made_in_id: 0,
+	category_id: 0,
+	created_at: '',
+	updated_at: '',
+	manufacturer: {},
+	country_import: {},
+	country_made_in: {},
+	category: {}
+};
+const newsPlaceholder = {
+	id: 0, // or 0 if numeric IDs are used
+	uuid: '',
+	meta_title: '',
+	meta_description: '',
+	meta_keywords: '',
+	title: '',
+	title_slug: '',
+	image: '',
+	body: '',
+	type: '',
+	created_at: '',
+	updated_at: '',
+	tags: [
+		{
+			id: 0,
+			name: '',
+			created_at: '',
+			updated_at: '',
+			pivot: {
+				news_id: 0,
+				tag_id: 0
+			}
+		}
+	]
+};
+const eventPlaceholder = {
+	id: 0,
+	uuid: '',
+	meta_title: '',
+	meta_description: '',
+	meta_keywords: '',
+	title: '',
+	title_slug: '',
+	image: '',
+	body: '',
+	type: '',
+	category: '',
+	location: '',
+	event_date: '',
+	created_at: '',
+	updated_at: ''
+};
+
 export const useAppStore = defineStore('app', () => {
 	// Selectables
-	const selectedCategory = ref('Category name');
-	const selectedProduct = ref();
-	const selectedNews = ref();
-	const selectedEvent = ref();
+	const selectedCategory = ref(categoryPlaceholder);
+	const selectedProduct = ref(productPlaceholder);
+	const selectedNews = ref(newsPlaceholder);
+	const selectedEvent = ref(eventPlaceholder);
 
 	// Fetched data
 	const news = ref(testNews);
 	const events = ref(testEvents);
 	const categories = ref(testCategories);
 	const products = ref(testProducts);
+	const services = ref();
+	const faqs = ref();
 
-	// Actions
-
+	// Selectors
 	const selectCategory = category => {
 		selectedCategory.value = category;
 	};
-
 	const selectProduct = productId => {
 		selectItem(selectedProduct, products, productId);
 	};
-
 	const selectNews = newsId => {
 		selectItem(selectedNews, news, newsId);
 	};
-
 	const selectEvent = eventId => {
 		selectItem(selectedEvent, events, eventId);
 	};
@@ -608,6 +684,8 @@ export const useAppStore = defineStore('app', () => {
 		events,
 		categories,
 		products,
+		services,
+		faqs,
 		selectedCategory,
 		selectedProduct,
 		selectedEvent,

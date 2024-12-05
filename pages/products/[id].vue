@@ -12,8 +12,8 @@ const appStore = useAppStore();
 
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: appStore.selectedCategory, link: '/products' },
-	{ name: appStore.selectedProduct?.title, link: '/products' },
+	{ name: appStore.selectedCategory.name, link: '/products' },
+	{ name: appStore.selectedProduct.title, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
 

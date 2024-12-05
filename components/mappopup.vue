@@ -5,7 +5,7 @@
 		:style="{ left: pointer.x, top: pointer.y }">
 		<div class="popup__down"></div>
 		<h4 class="popup__title">
-			{{ mapStore.regionTranslations[mapStore.currentRegion?.name] }}
+			{{ mapStore.currentRegion?.name_ru }}
 		</h4>
 		<div class="popup__row">
 			<span>Всего товаров:</span>

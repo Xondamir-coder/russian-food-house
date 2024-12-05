@@ -8,7 +8,7 @@
 		<Mappopup />
 		<div class="world__wrapper">
 			<button class="world__select" @click="toggleShowOptions">
-				<span>{{ mapStore.regionTranslations[mapStore.currentRegion?.name] }}</span>
+				<span>{{ mapStore.currentRegion?.name_ru }}</span>
 				<svg class="icon-arrow">
 					<use href="@/assets/sprite.svg#down-arrow" />
 				</svg>
@@ -21,7 +21,7 @@
 							active: region.name === mapStore.currentRegion?.name
 						}"
 						@click="selectRegion(region.name)">
-						{{ mapStore.regionTranslations[region.name] }}
+						{{ region.name_ru }}
 					</button>
 				</li>
 			</ul>
@@ -44,8 +44,13 @@
 </template>
 
 <script setup>
-const { $gsap } = useNuxtApp();
 const mapStore = useMapStore();
+const { $gsap } = useNuxtApp();
+const { REGIONS_URL } = useURL();
+const { data } = await useFetch(REGIONS_URL);
+
+mapStore.regions = data.value;
+mapStore.currentRegion = mapStore.regions[0];
 
 defineProps({
 	noTitle: Boolean
