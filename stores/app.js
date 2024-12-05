@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 
+// Testing data
 const testNews = [
 	{
 		image: '/img/news-1.jpg',
@@ -427,35 +428,35 @@ const testProducts = [
 		producer: 'ООО "Соломон-трейд"'
 	}
 ];
-const testCategories = [
-	'Алкогольные напитки',
-	'Варенье / Джем / Мёд',
-	'Вегетарианские продукты',
-	'Вода бутилированная',
-	'Детское питание',
-	'Замороженные продукты',
-	'Здоровое питание',
-	'Икра осетровая',
-	'Каши, хлопья и мюсли',
-	'Кондитерские изделия',
-	'Консервы',
-	'Конфеты',
-	'Корм для животных',
-	'Крупы',
-	'Макаронные изделия',
-	'Крупы',
-	'category',
-	'category',
-	'category',
-	'category',
-	'category',
-	'category',
-	'category',
-	'category',
-	'category',
-	'before last',
-	'last'
-];
+// const testCategories = [
+// 	'Алкогольные напитки',
+// 	'Варенье / Джем / Мёд',
+// 	'Вегетарианские продукты',
+// 	'Вода бутилированная',
+// 	'Детское питание',
+// 	'Замороженные продукты',
+// 	'Здоровое питание',
+// 	'Икра осетровая',
+// 	'Каши, хлопья и мюсли',
+// 	'Кондитерские изделия',
+// 	'Консервы',
+// 	'Конфеты',
+// 	'Корм для животных',
+// 	'Крупы',
+// 	'Макаронные изделия',
+// 	'Крупы',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'category',
+// 	'before last',
+// 	'last'
+// ];
 const testEvents = [
 	{
 		image: '/img/news-1.jpg',
@@ -566,7 +567,7 @@ const testEvents = [
 	}
 ];
 
-// Placeholders
+// Placeholders for easy debugging & intellisense
 const categoryPlaceholder = {
 	id: 0,
 	uuid: '',
@@ -645,6 +646,9 @@ const eventPlaceholder = {
 };
 
 export const useAppStore = defineStore('app', () => {
+	// Static data
+	const { CATEGORIES_URL, PRODUCTS_URL, SERVICES_URL, EVENTS_URL, NEWS_URL } = useURL();
+
 	// Selectables
 	const selectedCategory = ref(categoryPlaceholder);
 	const selectedProduct = ref(productPlaceholder);
@@ -652,12 +656,18 @@ export const useAppStore = defineStore('app', () => {
 	const selectedEvent = ref(eventPlaceholder);
 
 	// Fetched data
-	const news = ref(testNews);
-	const events = ref(testEvents);
-	const categories = ref(testCategories);
-	const products = ref(testProducts);
-	const services = ref();
-	const faqs = ref();
+	const news = ref([newsPlaceholder]);
+	const events = ref([eventPlaceholder]);
+	const categories = ref([categoryPlaceholder]);
+	const products = ref([]);
+	const services = ref([]);
+
+	// Fetchers
+	const fetchCategories = async () => await fetchData(categories, CATEGORIES_URL);
+	const fetchProducts = async () => await fetchData(products, PRODUCTS_URL);
+	const fetchServices = async () => await fetchData(services, SERVICES_URL);
+	const fetchNews = async () => await fetchData(news, NEWS_URL);
+	const fetchEvents = async () => await fetchData(events, EVENTS_URL);
 
 	// Selectors
 	const selectCategory = category => {
@@ -678,6 +688,10 @@ export const useAppStore = defineStore('app', () => {
 		selectedRef.value = findItem(itemsRef.value, itemId);
 	};
 	const findItem = (items, id) => items.find(i => i.id === id);
+	const fetchData = async (arrayRef, url) => {
+		const { data } = await useFetch(url);
+		arrayRef.value = data.value;
+	};
 
 	return {
 		news,
@@ -685,7 +699,6 @@ export const useAppStore = defineStore('app', () => {
 		categories,
 		products,
 		services,
-		faqs,
 		selectedCategory,
 		selectedProduct,
 		selectedEvent,
@@ -693,6 +706,11 @@ export const useAppStore = defineStore('app', () => {
 		selectNews,
 		selectEvent,
 		selectCategory,
-		selectProduct
+		selectProduct,
+		fetchCategories,
+		fetchProducts,
+		fetchServices,
+		fetchNews,
+		fetchEvents
 	};
 });

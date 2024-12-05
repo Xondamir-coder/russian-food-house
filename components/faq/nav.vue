@@ -2,28 +2,19 @@
 	<ul class="nav">
 		<li
 			class="nav__item"
-			v-for="item in items"
-			:key="item"
-			:class="{ active: item === activeAccordion }">
-			<button class="nav__button" @click="emitChangeAccordion(item)">
-				{{ item }}
+			v-for="cat in categories"
+			:key="cat"
+			:class="{ active: cat === faqsStore.activeCategory }">
+			<button class="nav__button" @click="faqsStore.changeCategory(cat)">
+				{{ cat }}
 			</button>
 		</li>
 	</ul>
 </template>
 
 <script setup>
-const items = ['main', 'secondary', 'tertiary', 'quaternary', 'quinary'];
-
-const emitChangeAccordion = name => {
-	emits('change-accordion', name);
-};
-
-const emits = defineEmits(['change-accordion']);
-
-const props = defineProps({
-	activeAccordion: String
-});
+const faqsStore = useFaqsStore();
+const categories = computed(() => new Set(faqsStore.faqs.map(faq => faq.category)));
 </script>
 
 <style lang="scss" scoped>

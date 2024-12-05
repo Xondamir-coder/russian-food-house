@@ -22,11 +22,7 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 const appStore = useAppStore();
-const { CATEGORIES_URL } = useURL();
-
-const { data } = await useFetch(CATEGORIES_URL);
-appStore.categories = data.value;
-
+appStore.fetchCategories();
 onMounted(() => {
 	$gsap.from('.grid__item', {
 		stagger: 0.2,

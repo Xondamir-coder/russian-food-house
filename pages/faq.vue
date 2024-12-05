@@ -2,18 +2,16 @@
 	<main class="faq section-padding">
 		<FaqTop />
 		<section class="faq__content">
-			<FaqNav :active-accordion="activeAccordion" @change-accordion="changeAccordion" />
-			<FaqAccordion :active-accordion="activeAccordion" />
+			<FaqNav />
+			<FaqAccordion />
 		</section>
 	</main>
 </template>
 
 <script setup>
-const activeAccordion = ref('main');
-
-const changeAccordion = name => {
-	activeAccordion.value = name;
-};
+const faqsStore = useFaqsStore();
+await faqsStore.fetchFaqs();
+faqsStore.activeCategory = faqsStore.faqs[0].category;
 </script>
 
 <style lang="scss" scoped>
