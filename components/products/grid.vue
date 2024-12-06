@@ -35,17 +35,18 @@
 					</div>
 					<ul class="grid__options">
 						<li
+							:title="cat?.name"
 							class="grid__option"
-							v-for="option in store.categories"
-							:key="option"
-							:class="{ active: option == store.selectedCategory }">
+							v-for="cat in appStore.categories"
+							:key="cat?.id"
+							:class="{ active: cat?.name === appStore.selectedCategory?.name }">
 							<input
 								type="checkbox"
 								name="option"
-								:id="option"
-								:checked="option == store.selectedCategory" />
-							<label :for="option">
-								{{ option }}
+								:id="`cat-${cat?.id}`"
+								:checked="cat?.name === appStore.selectedCategory?.name" />
+							<label :for="`cat-${cat?.id}`">
+								{{ cat?.name }}
 							</label>
 						</li>
 					</ul>
@@ -57,21 +58,24 @@
 			</div>
 			<div class="grid__list">
 				<NuxtLink
-					:to="`/products/${item.id}`"
+					:to="`/products/${product?.uuid}`"
 					class="grid__item"
-					v-for="item in visibleProducts"
-					:key="item.id"
-					@click="store.selectProduct(item.id)">
-					<span class="grid__item-type" :class="getClassType(item.type)">
-						{{ item.type }}
+					v-for="product in appStore.products"
+					:key="product?.uuid"
+					@click="appStore.selectProduct(product)">
+					<span class="grid__item-type" :class="getClassType(product?.type)">
+						{{ product?.type }}
 					</span>
-					<img class="grid__item-img" :src="item.img" :alt="item.title" />
+					<img
+						class="grid__item-img"
+						:src="`https://rfh.spacelabs.uz/${JSON.parse(product?.images)[0]}`"
+						:alt="product?.title" />
 					<div class="grid__item-content">
 						<h3 class="grid__item-title">
-							{{ item.title }}
+							{{ product?.title }}
 						</h3>
 						<p class="grid__item-desc text-grey">
-							{{ item.desc }}
+							{{ product?.content }}
 						</p>
 					</div>
 				</NuxtLink>
@@ -82,7 +86,7 @@
 </template>
 
 <script setup>
-const store = useAppStore();
+const appStore = useAppStore();
 
 const types = {
 	Новинки: 'new',
@@ -92,11 +96,8 @@ const types = {
 const getClassType = rusType => `grid__item-type--${types[rusType]}`;
 const showSidebar = ref(false);
 
-const additionalProductsCount = 3;
-const visibleProductsCount = ref(store.products.length - 6);
-const visibleProducts = computed(() => store.products.slice(0, visibleProductsCount.value));
 const loadMoreProducts = () => {
-	visibleProductsCount.value += additionalProductsCount;
+	alert('implement load more');
 };
 const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 </script>
@@ -205,7 +206,6 @@ const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 			}
 		}
 		&-wrapper {
-			flex-basis: 30%;
 			@include mix.respond('md') {
 				position: fixed;
 				top: 0;
@@ -230,14 +230,17 @@ const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 		}
 	}
 	&__list {
-		flex: 1;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 		gap: max(1.5vw, 16px);
 	}
 	&__content {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr 2.5fr;
 		gap: max(1.5vw, 16px);
+		@include mix.respond('md') {
+			grid-template-columns: 1fr;
+		}
 	}
 	&__select {
 		display: flex;
@@ -320,7 +323,7 @@ const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 			background-repeat: no-repeat;
 			background-position: center;
 			appearance: none;
-			width: 24px;
+			aspect-ratio: 1;
 			height: 24px;
 			border: 2px solid rgba(212, 212, 216, 1);
 			border-radius: 8.4px;

@@ -12,23 +12,26 @@ const appStore = useAppStore();
 
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: appStore.selectedCategory.name, link: '/products' },
-	{ name: appStore.selectedProduct.title, link: '/products' },
+	{ name: appStore.selectedCategory?.name, link: '/products' },
+	{ name: appStore.selectedProduct?.title, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
+
+if (!appStore.selectedProduct || appStore.selectedProduct.uuid !== route.params.id)
+	appStore.fetchOneProduct(route.params.id);
 
 useHead({
 	title: computed(() => `${appStore.selectedProduct?.title}  | Russian Food House`),
 	meta: [
 		{
-			content: computed(() => appStore.selectedProduct?.desc),
+			content: computed(() => appStore.selectedProduct?.meta_description),
 			name: 'description'
+		},
+		{
+			content: computed(() => appStore.selectedProduct?.meta_keywords),
+			name: 'keywords'
 		}
 	]
-});
-
-onMounted(() => {
-	if (!appStore.selectedProduct) appStore.selectProduct(route.params.id);
 });
 </script>
 

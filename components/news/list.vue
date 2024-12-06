@@ -3,28 +3,24 @@
 		<h2 class="container__title text-primary">Новости</h2>
 		<div class="list" ref="listRef">
 			<NuxtLink
-				:to="item.type === 'Мероприятия' ? `/events/${item.id}` : `/news/${item.id}`"
+				:to="`/news/${news?.uuid}`"
 				class="list__item"
-				v-for="item in items"
-				:key="item.id"
+				v-for="news in appStore.news"
+				:key="news?.uuid"
 				:style="useRandomColorStyle()"
-				@click="
-					item.type === 'Мероприятия'
-						? appStore.selectEvent(item.id)
-						: appStore.selectNews(item.id)
-				">
+				@click="appStore.selectNews(news)">
 				<div class="list__item-wrapper">
 					<div class="list__item-top">
-						<NewsLabel class="list__item-label" :text="item.type" />
-						<NuxtImg class="list__item-img" :src="item.image" />
+						<NewsLabel class="list__item-label" :text="news?.type" />
+						<NuxtImg class="list__item-img" :src="news?.image" />
 					</div>
 					<h4 class="list__item-title">
-						{{ item.meta_title }}
+						{{ news?.meta_title }}
 					</h4>
 				</div>
 				<div class="list__item-content">
-					<NewsDate :date="item.updatedAt" />
-					<NewsTime :date="item.updatedAt" />
+					<NewsDate :date="news?.updated_at" />
+					<NewsTime :date="news?.updated_at" />
 				</div>
 			</NuxtLink>
 		</div>
@@ -38,22 +34,9 @@ const { $gsap } = useNuxtApp();
 
 const containerRef = ref();
 const listRef = ref();
-const limitItems = ref(12);
-
-const getRandomItems = () => {
-	const arr = [...appStore.news, ...appStore.events];
-	for (let i = arr.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[arr[i], arr[j]] = [arr[j], arr[i]];
-	}
-	return arr;
-};
-
-const randomizedItems = getRandomItems();
-const items = computed(() => randomizedItems.slice(0, limitItems.value));
 
 const loadMore = () => {
-	limitItems.value += 3;
+	alert('implement load more');
 };
 
 onMounted(() => {
@@ -73,7 +56,7 @@ onMounted(() => {
 				y: 15,
 				scrollTrigger: {
 					trigger: item,
-					start: 'top 85%',
+					start: 'top 85%'
 				}
 			});
 		});

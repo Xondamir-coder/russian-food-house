@@ -2,17 +2,15 @@
 	<section class="products section-padding">
 		<h2 class="section-title">Продукт месяц</h2>
 		<ul class="products__list">
-			<li class="products__item" v-for="product in products" :key="product.title">
+			<li class="products__item" v-for="product in products" :key="product.uuid">
 				<NuxtImg
-					:width="product.img.width"
-					:height="product.img.height"
 					class="products__item-img"
-					:src="product.img.src"
+					:src="`https://rfh.spacelabs.uz/${JSON.parse(product.images)[0]}`"
 					:alt="product.title" />
 				<div class="products__item-content">
 					<h3 class="products__item-title text-black">{{ product.title }}</h3>
 					<p class="products__item-desc text-grey">
-						{{ product.desc }}
+						{{ product.content }}
 					</p>
 				</div>
 			</li>
@@ -22,104 +20,15 @@
 </template>
 
 <script setup>
-import product1Img from '/img/product-1.webp';
-import product2Img from '/img/product-2.webp';
-import product3Img from '/img/product-3.webp';
-
 const { $gsap, $ScrollTrigger } = useNuxtApp();
-const initialProduct = [
-	{
-		img: {
-			src: product1Img,
-			width: 85,
-			height: 119
-		},
-		title: 'Purus taciti id natoque',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product2Img,
-			width: 204,
-			height: 151
-		},
-		title: 'Convallis varius sed ',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product3Img,
-			width: 120,
-			height: 139
-		},
-		title: 'Convallis varius sed ',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product1Img,
-			width: 85,
-			height: 119
-		},
-		title: 'Purus taciti id natoque',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product2Img,
-			width: 204,
-			height: 151
-		},
-		title: 'Convallis varius sed ',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product3Img,
-			width: 120,
-			height: 139
-		},
-		title: 'Convallis varius sed ',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product1Img,
-			width: 85,
-			height: 119
-		},
-		title: 'Purus taciti id natoque',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product2Img,
-			width: 204,
-			height: 151
-		},
-		title: 'Convallis varius sed ',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	},
-	{
-		img: {
-			src: product3Img,
-			width: 120,
-			height: 139
-		},
-		title: 'Convallis varius sed ',
-		desc: 'Curae interdum volutpat blandit; felis tellus ligula. Tellus hendrerit'
-	}
-];
-const sliceLength = ref(0);
-const products = computed(() => initialProduct.slice(0, sliceLength.value));
-const numberOfProductsToShow = 3;
+const { PRODUCTS_URL } = useURL();
+const { data } = await useFetch(`${PRODUCTS_URL}/?lead="month"&take=9`);
+const products = ref(data.value.data);
+
 const showMoreProducts = () => {
-	sliceLength.value += numberOfProductsToShow;
+	alert('implement show more products');
 };
 
-onMounted(() => {
-	window.innerWidth > 768 ? (sliceLength.value = initialProduct.length) : (sliceLength.value = 5);
-});
 watch(products, () => {
 	setTimeout(() => {
 		$ScrollTrigger.refresh();

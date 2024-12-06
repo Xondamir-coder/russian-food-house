@@ -5,7 +5,7 @@
 				width="485"
 				height="449"
 				class="details__img"
-				:src="product?.img"
+				:src="JSON.parse(product?.images)[0]"
 				:alt="product?.title" />
 		</div>
 		<div class="details__content">
@@ -13,36 +13,36 @@
 				{{ product?.title }}
 			</h1>
 			<p class="details__content-desc text-grey">
-				{{ product?.desc }}
+				{{ product?.body }}
 			</p>
 			<ul class="details__list">
 				<li class="details__item">
 					<span class="details__item-key">Павильоны представления товара:</span>
-					<span class="details__item-val">{{ product?.place }}</span>
+					<span class="details__item-val">{{ product?.packing }}</span>
 				</li>
 				<li class="details__item">
 					<span class="details__item-key">Место/регион производства:</span>
-					<span class="details__item-val">{{ product?.region }}</span>
+					<span class="details__item-val">{{ product?.country_made_in.name }}</span>
 				</li>
 				<li class="details__item">
 					<span class="details__item-key">Товарная группа:</span>
-					<span class="details__item-val">{{ product?.group }}</span>
+					<span class="details__item-val">{{ product?.category.name }}</span>
 				</li>
 				<li class="details__item">
 					<span class="details__item-key">Страны импорта:</span>
-					<span class="details__item-val">{{ product?.importCountries }}</span>
+					<span class="details__item-val">{{ product?.country_import.name }}</span>
 				</li>
 				<li class="details__item">
 					<span class="details__item-key">Фасовка:</span>
-					<span class="details__item-val">{{ product?.packaging }}</span>
+					<span class="details__item-val">штук</span>
 				</li>
 				<li class="details__item">
 					<span class="details__item-key">Объем, вес:</span>
-					<span class="details__item-val">{{ product?.weight }}</span>
+					<span class="details__item-val">{{ product?.weight }} грамм</span>
 				</li>
 				<li class="details__item">
 					<span class="details__item-key">Производитель:</span>
-					<span class="details__item-val">{{ product?.producer }}</span>
+					<span class="details__item-val">{{ product?.manufacturer.name }}</span>
 				</li>
 			</ul>
 		</div>
@@ -50,8 +50,8 @@
 </template>
 
 <script setup>
-const store = useAppStore();
-const product = computed(() => store.selectedProduct);
+const appStore = useAppStore();
+const product = computed(() => appStore.selectedProduct);
 </script>
 
 <style lang="scss" scoped>

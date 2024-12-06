@@ -3,19 +3,19 @@
 		<div class="wrapper__top">
 			<ul class="wrapper__info">
 				<li class="wrapper__info-item">
-					<NewsLabel :text="data?.type" :style="useRandomColorStyle()" />
+					<NewsLabel :text="appStore.selectedNews?.type" :style="useRandomColorStyle()" />
 				</li>
 				<li class="wrapper__info-item">
-					<NewsDate :date="data?.updatedAt" />
+					<NewsDate :date="appStore.selectedNews?.updated_at" />
 				</li>
 				<li class="wrapper__info-item">
-					<NewsTime :date="data?.updatedAt" />
+					<NewsTime :date="appStore.selectedNews?.updated_at" />
 				</li>
 			</ul>
-			<h1 class="wrapper__title" :class="{ 'wrapper__title--event': isEvent }">
-				{{ data?.meta_title }}
+			<h1 class="wrapper__title" :class="{ 'wrapper__title--event': isEventsCat }">
+				{{ appStore.selectedNews?.title }}
 			</h1>
-			<div class="wrapper__bottom" v-if="isEvent">
+			<div class="wrapper__bottom" v-if="isEventsCat">
 				<ButtonPrimary label="Подать заявку" class="wrapper__button--primary" />
 				<button class="wrapper__button">
 					<svg class="icon-calendar">
@@ -26,9 +26,9 @@
 			</div>
 		</div>
 		<div class="content">
-			<NuxtImg class="content__img" :src="data?.image" />
-			<div class="content__main" v-html="data?.body"></div>
-			<div class="content__bottom" v-if="isEvent">
+			<NuxtImg class="content__img" :src="appStore.selectedNews?.image" />
+			<div class="content__main" v-html="appStore.selectedNews?.body"></div>
+			<div class="content__bottom" v-if="isEventsCat">
 				<div class="content__bottom-item">
 					<div class="content__bottom-item_top">
 						<svg>
@@ -92,10 +92,7 @@
 
 <script setup>
 const appStore = useAppStore();
-const route = useRoute();
-
-const isEvent = computed(() => route.name.includes('events'));
-const data = computed(() => (isEvent.value ? appStore.selectedEvent : appStore.selectedNews));
+const isEventsCat = computed(() => appStore.selectedNews?.category === 'events');
 </script>
 
 <style lang="scss" scoped>

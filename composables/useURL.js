@@ -5,7 +5,6 @@ export default () => {
 	const PRODUCTS_URL = `${BASE_URL}/products`;
 	const SERVICES_URL = `${BASE_URL}/services`;
 	const FAQS_URL = `${BASE_URL}/faqs`;
-	const EVENTS_URL = `${BASE_URL}/events`;
 	const NEWS_URL = `${BASE_URL}/news`;
 	const REGIONS_URL = `${BASE_URL}/regions-map`;
 
@@ -14,7 +13,6 @@ export default () => {
 		PRODUCTS_URL,
 		SERVICES_URL,
 		FAQS_URL,
-		EVENTS_URL,
 		NEWS_URL,
 		REGIONS_URL
 	};

@@ -2,13 +2,13 @@
 	<section class="grid section-padding">
 		<NuxtLink
 			v-for="cat in appStore.categories"
-			:key="cat.id"
+			:key="cat?.id"
 			to="/products"
 			@click="appStore.selectCategory(cat)"
 			class="grid__item">
-			<img class="grid__item-img" :src="`https://rfh.spacelabs.uz/${cat.image}`" />
+			<img class="grid__item-img" :src="`https://rfh.spacelabs.uz/${cat?.image}`" />
 			<div class="grid__item-content">
-				<h2 class="grid__item-title">{{ cat.name }}</h2>
+				<h2 class="grid__item-title">{{ cat?.name }}</h2>
 				<button class="grid__item-button bg-primary">
 					<svg class="icon-play">
 						<use href="~/assets/sprite.svg#play" />
@@ -22,7 +22,6 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 const appStore = useAppStore();
-appStore.fetchCategories();
 onMounted(() => {
 	$gsap.from('.grid__item', {
 		stagger: 0.2,

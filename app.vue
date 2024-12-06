@@ -6,6 +6,10 @@
 
 <script setup>
 import Lenis from 'lenis';
+const appStore = useAppStore();
+
+await appStore.fetchProducts();
+await appStore.fetchCategories();
 
 onMounted(() => {
 	const lenis = new Lenis();

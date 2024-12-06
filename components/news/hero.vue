@@ -1,56 +1,33 @@
 <template>
 	<section class="hero">
-		<NuxtLink class="hero__big" to="/news/4" :style="useRandomColorStyle()">
+		<NuxtLink
+			:style="useRandomColorStyle()"
+			v-for="(news, i) in last4News"
+			:key="news.uuid"
+			:class="i === 0 ? 'hero__big' : 'hero__small'"
+			:to="`/news/${news.uuid}`">
 			<NuxtImg
 				class="hero__img"
 				format="webp"
 				fit="cover"
-				src="/img/news-hero.png"
+				:src="`https://rfh.spacelabs.uz/${news.image}`"
 				alt="news hero banner" />
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
-				<h2 class="hero__title">Diam ultrices odio ornare sollicitudin habitant</h2>
+				<h2 class="hero__title">{{ news.meta_title }}</h2>
 				<p class="hero__text">
-					Suspendisse mus vulputate maximus montes ad sed nulla. Malesuada lacinia luctus
-					imperdiet dolor feugiat
+					{{ news.meta_description }}
 				</p>
-				<ButtonPrimary class="hero__button" label="Читать дальше" />
-			</div>
-		</NuxtLink>
-		<NuxtLink to="/news/1" class="hero__small" :style="useRandomColorStyle()">
-			<NuxtImg class="hero__img" fit="cover" format="webp" src="/img/news-hero-1.jpg" />
-			<div class="hero__content">
-				<NewsLabel text="Популярные" />
-				<h3 class="hero__subtitle">
-					Viverra fermentum ultricies tempor sagittis tristique felis. Suspendisse mus
-					vulputate maximus montes
-				</h3>
-			</div>
-		</NuxtLink>
-		<NuxtLink :style="useRandomColorStyle()" to="/news/1" class="hero__small">
-			<NuxtImg class="hero__img" fit="cover" format="webp" src="/img/news-hero-2.jpg" />
-			<div class="hero__content">
-				<NewsLabel text="Интересно" />
-				<h3 class="hero__subtitle">
-					Viverra fermentum ultricies tempor sagittis tristique felis. Suspendisse mus
-					vulputate maximus montes
-				</h3>
-			</div>
-		</NuxtLink>
-		<NuxtLink :style="useRandomColorStyle()" to="/news/1" class="hero__small">
-			<NuxtImg class="hero__img" fit="cover" format="webp" src="/img/news-hero-3.jpg" />
-			<div class="hero__content">
-				<NewsLabel text="Популярные" />
-				<h3 class="hero__subtitle">
-					Viverra fermentum ultricies tempor sagittis tristique felis. Suspendisse mus
-					vulputate maximus montes
-				</h3>
+				<ButtonPrimary v-if="i === 0" class="hero__button" label="Читать дальше" />
 			</div>
 		</NuxtLink>
 	</section>
 </template>
 
-<script setup></script>
+<script setup>
+const appStore = useAppStore();
+const last4News = computed(() => appStore.news?.slice(-4));
+</script>
 
 <style lang="scss" scoped>
 @use 'sass:map';

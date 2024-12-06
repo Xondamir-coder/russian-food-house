@@ -8,10 +8,10 @@
 </template>
 
 <script setup>
-const store = useAppStore();
+const appStore = useAppStore();
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: store.selectedCategory, link: '/products' },
+	{ name: appStore.selectedCategory?.name, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
 
