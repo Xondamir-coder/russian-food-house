@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-const { $gsap, $ScrollTrigger } = useNuxtApp();
+const { $gsap } = useNuxtApp();
 const { PRODUCTS_URL } = useURL();
 
 const appStore = useAppStore();
@@ -47,7 +47,8 @@ const monthProducts = ref([]);
 const fetchMonthProducts = async () => {
 	const { PRODUCTS_URL } = useURL();
 	const query = {
-		lead: 'month'
+		lead: 'month',
+		take: 9
 	};
 	const { data } = await useFetch(PRODUCTS_URL, { query });
 	monthProducts.value = data.value.data;
@@ -59,7 +60,7 @@ const loadMore = async () => {
 		lead: 'month'
 	};
 	const { data } = await useFetch(PRODUCTS_URL, { query });
-	monthProducts.value = data.value.data;
+	monthProducts.value.push(...data.value.data);
 };
 const animateProducts = () => {
 	setTimeout(() => {

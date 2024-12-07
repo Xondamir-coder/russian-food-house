@@ -39,12 +39,13 @@
 							class="grid__option"
 							v-for="cat in appStore.categories"
 							:key="cat?.id"
-							:class="{ active: cat?.name === selectedCategoryName }">
+							:class="{ active: cat?.id === selectedCategoryId }">
 							<input
-								type="checkbox"
-								name="option"
+								type="radio"
+								name="cat-option"
 								:id="`cat-${cat?.id}`"
-								:checked="cat?.name === selectedCategoryName" />
+								:checked="cat?.id === selectedCategoryId"
+								@change="changeCategory({ id: cat?.id, name: cat.name })" />
 							<label :for="`cat-${cat?.id}`">
 								{{ cat?.name }}
 							</label>
@@ -92,24 +93,36 @@
 <script setup>
 const appStore = useAppStore();
 const route = useRoute();
+const router = useRouter();
 
-const selectedCategoryName = computed(() => route.query.category);
 const types = {
 	Новинки: 'new',
 	Популярные: 'popular',
 	'Хит продаж': 'hit'
 };
-const getClassType = rusType => `grid__item-type--${types[rusType]}`;
+const intialTakes = 18;
+const additionalTakes = 6;
+
 const showSidebar = ref(false);
 const currentPage = ref(1);
-const itemsToLoad = 6;
 
+const selectedCategoryId = computed(() => +route.query.category_id);
+
+const getClassType = rusType => `grid__item-type--${types[rusType]}`;
+const changeCategory = async ({ id, name }) => {
+	router.replace({ query: { category_id: id, category_name: name } });
+	await appStore.fetchProductsByQuery({
+		category_id: id,
+		take: intialTakes
+	});
+};
 const loadMore = async () => {
-	const params = {
+	const query = {
 		page: ++currentPage.value,
-		take: itemsToLoad
+		take: additionalTakes,
+		category_id: selectedCategoryId.value
 	};
-	await appStore.fetchNextProducts(params);
+	await appStore.fetchNextProducts(query);
 };
 const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 </script>

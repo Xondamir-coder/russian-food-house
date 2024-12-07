@@ -36,15 +36,14 @@ const { $gsap } = useNuxtApp();
 
 const titleRef = ref();
 
-const currentPage = ref(1);
 const itemsToLoad = 6;
 
 const loadMore = async () => {
-	const params = {
-		page: ++currentPage.value,
+	const query = {
+		page: ++appStore.pages.news,
 		take: itemsToLoad
 	};
-	await appStore.fetchNextNews(params);
+	await appStore.fetchNextNews(query);
 };
 const animateItems = async () => {
 	setTimeout(() => {

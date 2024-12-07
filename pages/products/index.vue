@@ -11,15 +11,16 @@
 const appStore = useAppStore();
 const route = useRoute();
 
-const selectedCategoryName = computed(() => route.query.category);
+const selectedCategoryId = computed(() => +route.query.category_id);
+const selectedCategoryName = computed(() => route.query.category_name);
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
 	{ name: selectedCategoryName.value, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
 
-await appStore.fetchProducts();
 await appStore.fetchCategories();
+await appStore.fetchProductsByQuery({ category_id: selectedCategoryId.value, take: 18 });
 
 useHead({
 	title: 'Продукты | Russian Food House',

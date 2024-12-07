@@ -3,7 +3,7 @@
 		<NuxtLink
 			v-for="(cat, i) in appStore.categories"
 			:key="cat?.uuid"
-			:to="`/products?category=${cat?.name}`"
+			:to="`/products?category_id=${cat?.id}&category_name=${cat?.name}`"
 			class="grid__item"
 			:class="getGridClass(i)">
 			<img class="grid__item-img" :src="`https://rfh.spacelabs.uz/${cat?.image}`" />
@@ -22,6 +22,7 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 const appStore = useAppStore();
+
 const animateItems = () => {
 	setTimeout(() => {
 		$gsap.from('.grid__item', {
