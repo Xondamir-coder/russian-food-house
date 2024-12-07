@@ -6,6 +6,8 @@
 </template>
 
 <script setup>
+const appStore = useAppStore();
+await appStore.fetchCategories();
 useHead({
 	title: 'Каталог | Russian Food House',
 	meta: [

@@ -9,11 +9,17 @@
 
 <script setup>
 const appStore = useAppStore();
+const route = useRoute();
+
+const selectedCategoryName = computed(() => route.query.category);
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: appStore.selectedCategory?.name, link: '/products' },
+	{ name: selectedCategoryName.value, link: '/products' },
 	{ name: 'Все продукты', link: '/products' }
 ]);
+
+await appStore.fetchProducts();
+await appStore.fetchCategories();
 
 useHead({
 	title: 'Продукты | Russian Food House',

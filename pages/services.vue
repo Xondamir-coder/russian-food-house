@@ -7,6 +7,8 @@
 </template>
 
 <script setup>
+const appStore = useAppStore();
+await appStore.fetchServices();
 useHead({
 	title: 'Сервисы | Russian Food House',
 	meta: [

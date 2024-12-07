@@ -1,7 +1,7 @@
 <template>
-	<section class="container" ref="containerRef">
-		<h2 class="container__title text-primary">Новости</h2>
-		<div class="list" ref="listRef">
+	<section class="container">
+		<h2 class="container__title text-primary" ref="titleRef">Новости</h2>
+		<div class="list" id="news-list">
 			<NuxtLink
 				:to="`/news/${news?.title_slug}`"
 				class="list__item"
@@ -33,10 +33,9 @@
 <script setup>
 const appStore = useAppStore();
 const { $gsap } = useNuxtApp();
-const { NEWS_URL } = useURL();
 
-const containerRef = ref();
-const listRef = ref();
+const titleRef = ref();
+
 const currentPage = ref(1);
 const itemsToLoad = 6;
 
@@ -47,19 +46,9 @@ const loadMore = async () => {
 	};
 	await appStore.fetchNextNews(params);
 };
-
-onMounted(() => {
-	// Animations
-	$gsap.from(containerRef.value.firstElementChild, {
-		opacity: 0,
-		y: 15,
-		scrollTrigger: {
-			trigger: containerRef.value,
-			start: 'top 80%'
-		}
-	});
+const animateItems = async () => {
 	setTimeout(() => {
-		$gsap.utils.toArray(listRef.value.children).forEach((item, i) => {
+		$gsap.utils.toArray('#news-list .list__item').forEach((item, i) => {
 			$gsap.from(item, {
 				opacity: 0,
 				y: 15,
@@ -70,6 +59,19 @@ onMounted(() => {
 			});
 		});
 	}, 500);
+};
+
+onMounted(() => {
+	// Animations
+	$gsap.from(titleRef.value, {
+		opacity: 0,
+		y: 15,
+		scrollTrigger: {
+			trigger: titleRef.value,
+			start: 'top 80%'
+		}
+	});
+	animateItems();
 });
 </script>
 

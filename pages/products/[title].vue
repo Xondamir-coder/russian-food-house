@@ -17,11 +17,11 @@ const breadcrumbs = computed(() => [
 	{ name: appStore.selectedProduct?.title, link: '/products' }
 ]);
 
-if (!appStore.selectedProduct || appStore.selectedProduct.title_slug !== route.params.title) {
+if (!appStore.selectedProduct || appStore.selectedProduct?.title_slug !== route.params.title) {
 	await appStore.fetchOneProduct(route.params.title);
 }
 
-if (!appStore.selectedProduct.title_slug) {
+if (!appStore.selectedProduct?.title_slug) {
 	router.push('/not-found');
 }
 

@@ -6,6 +6,9 @@
 </template>
 
 <script setup>
+const appStore = useAppStore();
+await appStore.fetchNews();
+
 useHead({
 	title: 'Новости | Russian Food House',
 	meta: [

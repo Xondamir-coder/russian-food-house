@@ -17,12 +17,12 @@ const { NEWS_URL } = useURL();
 const similarNews = ref([]);
 
 // Take from store otherwise fetch from API
-if (!appStore.selectedNews || appStore.selectedNews.title_slug !== route.params.title) {
+if (!appStore.selectedNews || appStore.selectedNews?.title_slug !== route.params.title) {
 	await appStore.fetchOneNews(route.params.title);
 }
 
 // If no news found then redirect
-if (!appStore.selectedNews.title_slug) {
+if (!appStore.selectedNews?.title_slug) {
 	router.push('/not-found');
 }
 
@@ -73,5 +73,3 @@ useHead({
 	}
 }
 </style>
-
-<script setup></script>

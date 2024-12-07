@@ -61,32 +61,37 @@ const loadMore = async () => {
 	const { data } = await useFetch(PRODUCTS_URL, { query });
 	monthProducts.value = data.value.data;
 };
-// watch(monthProducts, () => {
-// 	setTimeout(() => {
-// 		$ScrollTrigger.refresh();
-// 		$gsap.utils.toArray('.products__item').forEach(item => {
-// 			$gsap.from(item.firstElementChild, {
-// 				y: -20,
-// 				stagger: 0.2,
-// 				opacity: 0,
-// 				scrollTrigger: {
-// 					trigger: item,
-// 					start: 'top 80%'
-// 				}
-// 			});
-// 			$gsap.from(item.lastElementChild.children, {
-// 				delay: 0.2,
-// 				y: -20,
-// 				stagger: 0.2,
-// 				opacity: 0,
-// 				scrollTrigger: {
-// 					trigger: item,
-// 					start: 'top 80%'
-// 				}
-// 			});
-// 		});
-// 	}, 50);
-// });
+const animateProducts = () => {
+	setTimeout(() => {
+		$gsap.utils.toArray('.products__item').forEach(item => {
+			$gsap.from(item.firstElementChild, {
+				y: -20,
+				stagger: 0.2,
+				opacity: 0,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 80%'
+				}
+			});
+			$gsap.from(item.lastElementChild.children, {
+				delay: 0.2,
+				y: -20,
+				stagger: 0.2,
+				opacity: 0,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 80%'
+				}
+			});
+		});
+	}, 500);
+};
+
+fetchMonthProducts();
+
+onMounted(() => {
+	animateProducts();
+});
 </script>
 
 <style lang="scss" scoped>

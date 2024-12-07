@@ -1,11 +1,16 @@
 <template>
 	<section class="cards" id="services-cards">
-		<div class="cards__item" v-for="card in data" :key="card.title">
-			<img width="760" height="406" class="cards__img" :src="card.img" :alt="card.title" />
+		<div class="cards__item" v-for="service in appStore.services" :key="service.uuid">
+			<img
+				width="760"
+				height="406"
+				class="cards__img"
+				:src="`https://rfh.spacelabs.uz/${service.image}`"
+				:alt="service.title" />
 			<div class="cards__content">
 				<div class="cards__details">
-					<h3 class="cards__title">{{ card.title }}</h3>
-					<p class="cards__text">{{ card.text }}</p>
+					<h3 class="cards__title">{{ service.title }}</h3>
+					<p class="cards__text" v-html="`${service.body.split('.')[0]}.`"></p>
 				</div>
 				<ButtonPrimary class="cards__button" label="Узнать больше" />
 			</div>
@@ -14,23 +19,8 @@
 </template>
 
 <script setup>
-import card1 from '/img/card-1.jpg';
-import card2 from '/img/card-2.jpg';
-const data = [
-	{
-		img: card1,
-		title: 'Подача заявки на размещение в павильоне на цифровой платформе «Мой экспорт» (ИС «Одно окно»)',
-		text: 'Российский экспортный центр (РЭЦ) реализует программу по созданию (управлению и содержанию) постоянно действующих демонстрационно-дегустационных павильонов российских продуктов питания в иностранных государствах.'
-	},
-	{
-		img: card2,
-		title: 'Подача заявки на получение сертификата соответствия «Сделано в России»',
-		text: 'Размещение продукции компании в павильоне позволит представить продукцию потенциальным покупателям за рубежом, наладить b2b-контакты и повысить узнаваемость компании среди иностранных покупателей. '
-	}
-];
-
 const { $gsap } = useNuxtApp();
-
+const appStore = useAppStore();
 onMounted(() => {
 	$gsap.utils.toArray('.cards__item').forEach((item, i) => {
 		$gsap.from(item.firstElementChild, {

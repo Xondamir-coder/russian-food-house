@@ -3,8 +3,7 @@
 		<NuxtLink
 			v-for="cat in appStore.categories"
 			:key="cat?.id"
-			to="/products"
-			@click="appStore.selectCategory(cat)"
+			:to="`/products?category=${cat?.name}`"
 			class="grid__item">
 			<img class="grid__item-img" :src="`https://rfh.spacelabs.uz/${cat?.image}`" />
 			<div class="grid__item-content">
@@ -22,16 +21,21 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 const appStore = useAppStore();
+const animateItems = () => {
+	setTimeout(() => {
+		$gsap.from('.grid__item', {
+			stagger: 0.2,
+			opacity: 0,
+			scale: 0,
+			scrollTrigger: {
+				trigger: '.grid',
+				start: 'top 80%'
+			}
+		});
+	}, 500);
+};
 onMounted(() => {
-	$gsap.from('.grid__item', {
-		stagger: 0.2,
-		opacity: 0,
-		scale: 0,
-		scrollTrigger: {
-			trigger: '.grid',
-			start: 'top 80%'
-		}
-	});
+	animateItems();
 });
 </script>
 

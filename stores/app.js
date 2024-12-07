@@ -67,9 +67,20 @@ const servicePlaceholder = {
 export const useAppStore = defineStore('app', () => {
 	// Static data
 	const { CATEGORIES_URL, PRODUCTS_URL, SERVICES_URL, NEWS_URL } = useURL();
+	const FETCH_THRESHOLDS = {
+		categories: 30 * 60 * 1000, // 30 minutes
+		products: 15 * 60 * 1000, // 15 minutes
+		services: 60 * 60 * 1000, // 1 hour
+		news: 10 * 60 * 1000 // 10 minutes
+	};
+	const lastFetched = {
+		categories: null,
+		products: null,
+		services: null,
+		news: null
+	};
 
 	// Selectables
-	const selectedCategory = ref(categoryPlaceholder);
 	const selectedProduct = ref(productPlaceholder);
 	const selectedNews = ref(newsPlaceholder);
 
@@ -80,49 +91,78 @@ export const useAppStore = defineStore('app', () => {
 	const services = ref([servicePlaceholder]);
 
 	// Fetchers
-	const fetchCategories = async () => {
-		categories.value = await fetchData(CATEGORIES_URL);
-	};
-	const fetchProducts = async () => {
-		products.value = await fetchData(PRODUCTS_URL, true);
-	};
-	const fetchServices = async () => {
-		services.value = await fetchData(SERVICES_URL);
-	};
-	const fetchNews = async () => {
-		news.value = await fetchData(NEWS_URL, true);
-	};
-	const fetchOneNews = async routeTitle => {
-		selectedNews.value = await fetchData(`${NEWS_URL}/${routeTitle}`);
-	};
-	const fetchOneProduct = async routeTitle => {
-		selectedProduct.value = await fetchData(`${PRODUCTS_URL}/${routeTitle}`);
-	};
-	const fetchNextNews = async query => {
-		const nextItems = await fetchData(NEWS_URL, true, query);
-		news.value.push(...nextItems);
-	};
-	const fetchNextProducts = async query => {
-		const nextItems = await fetchData(PRODUCTS_URL, true, query);
-		products.value.push(...nextItems);
-	};
+	const fetchCategories = () =>
+		fetchWithDynamicThreshold(CATEGORIES_URL, categories, 'categories');
+	const fetchProducts = () => fetchWithDynamicThreshold(PRODUCTS_URL, products, 'products', true);
+	const fetchServices = () => fetchWithDynamicThreshold(SERVICES_URL, services, 'services', true);
+	const fetchNews = () => fetchWithDynamicThreshold(NEWS_URL, news, 'news', true);
+	const fetchOneNews = async routeTitle =>
+		(selectedNews.value = await fetchData(`${NEWS_URL}/${routeTitle}`));
+	const fetchOneProduct = async routeTitle =>
+		(selectedProduct.value = await fetchData(`${PRODUCTS_URL}/${routeTitle}`));
+	const fetchNextNews = async query => await fetchNextItems(NEWS_URL, news, query);
+	const fetchNextProducts = async query => await fetchNextItems(PRODUCTS_URL, products, query);
 
 	// Selectors
-	const selectCategory = category => {
-		selectedCategory.value = category;
-	};
-	const selectProduct = newProduct => {
-		selectedProduct.value = newProduct;
-	};
-	const selectNews = newNews => {
-		selectedNews.value = newNews;
-	};
+	const selectProduct = newProduct => (selectedProduct.value = newProduct);
+	const selectNews = newNews => (selectedNews.value = newNews);
 
-	// Helpers
+	/**
+	 * Fetches data from a given URL with optional query parameters.
+	 *
+	 * @param {string} url - The URL to fetch data from.
+	 * @param {boolean} [extractData=false] - Flag indicating whether to extract the 'data' field from the response.
+	 * @param {object} [query] - Optional query parameters to include in the request.
+	 * @returns {Promise<object>} - The fetched data, either the entire response or the 'data' field.
+	 */
 	const fetchData = async (url, extractData = false, query) => {
 		const { data } = await useFetch(url, { query });
 		if (extractData) return data.value.data;
 		return data.value;
+	};
+
+	/**
+	 * Fetches data from a given URL and updates the target ref if the dynamic threshold is met.
+	 *
+	 * @param {string} url - The URL to fetch data from.
+	 * @param {object} target - The ref object to update with fetched data.
+	 * @param {string} key - The key used for threshold and last fetched tracking.
+	 * @param {boolean} [extractData=false] - Flag indicating whether to extract the 'data' field from the response.
+	 * @returns {Promise<void>} - Resolves with no value if the fetch is skipped or completes.
+	 */
+
+	const fetchWithDynamicThreshold = async (url, target, key, extractData = false) => {
+		const currentTime = new Date(); // Get the current time
+		const lastFetchedTime = lastFetched[key]; // Retrieve the last fetched time for the given key
+		const threshold = FETCH_THRESHOLDS[key]; // Retrieve the threshold time for the given key
+
+		// If data was fetched recently within the threshold, skip fetching
+		if (lastFetchedTime && currentTime - lastFetchedTime < threshold) {
+			return;
+		}
+
+		// Fetch and update the target data, then record the fetch time
+		target.value = await fetchData(url, extractData);
+		lastFetched[key] = currentTime; // Update the last fetched time
+	};
+
+	/**
+	 * Fetches additional items from a given URL and appends them to the target ref.
+	 *
+	 * @param {string} url - The URL to fetch data from.
+	 * @param {object} target - The ref object to update with fetched data.
+	 * @param {object} query - Optional query parameters to include in the request.
+	 * @returns {Promise<void>} - Resolves with no value if no additional data is fetched.
+	 */
+	const fetchNextItems = async (url, target, query) => {
+		// Fetch data from the given URL with the provided query parameters
+		const { data } = await $fetch(url, { query });
+
+		// If no data is returned, exit the function
+		if (!data?.data?.length) return;
+
+		// Append the fetched data to the target ref
+		target.value.push(...data.value.data);
 	};
 
 	return {
@@ -130,11 +170,9 @@ export const useAppStore = defineStore('app', () => {
 		categories,
 		products,
 		services,
-		selectedCategory,
 		selectedProduct,
 		selectedNews,
 		selectNews,
-		selectCategory,
 		selectProduct,
 		fetchCategories,
 		fetchProducts,

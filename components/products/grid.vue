@@ -39,12 +39,12 @@
 							class="grid__option"
 							v-for="cat in appStore.categories"
 							:key="cat?.id"
-							:class="{ active: cat?.name === appStore.selectedCategory?.name }">
+							:class="{ active: cat?.name === selectedCategoryName }">
 							<input
 								type="checkbox"
 								name="option"
 								:id="`cat-${cat?.id}`"
-								:checked="cat?.name === appStore.selectedCategory?.name" />
+								:checked="cat?.name === selectedCategoryName" />
 							<label :for="`cat-${cat?.id}`">
 								{{ cat?.name }}
 							</label>
@@ -91,7 +91,9 @@
 
 <script setup>
 const appStore = useAppStore();
+const route = useRoute();
 
+const selectedCategoryName = computed(() => route.query.category);
 const types = {
 	Новинки: 'new',
 	Популярные: 'popular',
