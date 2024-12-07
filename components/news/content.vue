@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="content">
-			<NuxtImg
+			<img
 				class="content__img"
 				:src="`https://rfh.spacelabs.uz/${appStore.selectedNews?.image}`" />
 			<div class="content__main" v-html="appStore.selectedNews?.body"></div>

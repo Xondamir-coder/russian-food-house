@@ -12,7 +12,7 @@
 				<div class="list__item-wrapper">
 					<div class="list__item-top">
 						<NewsLabel class="list__item-label" :text="news?.type" />
-						<NuxtImg
+						<img
 							class="list__item-img"
 							:src="`https://rfh.spacelabs.uz/${news?.image}`" />
 					</div>
