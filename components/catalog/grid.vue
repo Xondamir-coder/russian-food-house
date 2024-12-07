@@ -1,10 +1,11 @@
 <template>
 	<section class="grid section-padding">
 		<NuxtLink
-			v-for="cat in appStore.categories"
-			:key="cat?.id"
+			v-for="(cat, i) in appStore.categories"
+			:key="cat?.uuid"
 			:to="`/products?category=${cat?.name}`"
-			class="grid__item">
+			class="grid__item"
+			:class="getGridClass(i)">
 			<img class="grid__item-img" :src="`https://rfh.spacelabs.uz/${cat?.image}`" />
 			<div class="grid__item-content">
 				<h2 class="grid__item-title">{{ cat?.name }}</h2>
@@ -34,6 +35,17 @@ const animateItems = () => {
 		});
 	}, 500);
 };
+const getGridClass = index => {
+	if (index < 2) return ''; // Skip indexes before the pattern starts
+
+	const offset = (index - 2) % 6; // Calculate position within the 6-item pattern
+
+	if (offset === 0 || offset === 2) return 'row-span-2'; // 2nd and 4th positions in the cycle
+	if (offset === 1 || offset === 5) return 'column-span-2'; // 3rd and 6th positions in the cycle
+
+	return ''; // No class for other indexes
+};
+
 onMounted(() => {
 	animateItems();
 });
