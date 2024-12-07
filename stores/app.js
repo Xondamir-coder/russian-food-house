@@ -48,18 +48,7 @@ const newsPlaceholder = {
 	category: '',
 	created_at: '',
 	updated_at: '',
-	tags: [
-		{
-			id: 0,
-			name: '',
-			created_at: '',
-			updated_at: '',
-			pivot: {
-				news_id: 0,
-				tag_id: 0
-			}
-		}
-	]
+	tags: []
 };
 const servicePlaceholder = {
 	id: 0,
@@ -91,17 +80,32 @@ export const useAppStore = defineStore('app', () => {
 	const services = ref([servicePlaceholder]);
 
 	// Fetchers
-	const fetchCategories = async () => await fetchData(categories, CATEGORIES_URL);
-	const fetchProducts = async () => {
-		const { data } = await useFetch(PRODUCTS_URL);
-		products.value = data.value.data;
-		console.log(data);
+	const fetchCategories = async () => {
+		categories.value = await fetchData(CATEGORIES_URL);
 	};
-	const fetchServices = async () => await fetchData(services, SERVICES_URL);
-	const fetchNews = async () => await fetchData(news, NEWS_URL);
-	const fetchOneNews = async routeId => await fetchData(selectedNews, `${NEWS_URL}/${routeId}`);
-	const fetchOneProduct = async routeId =>
-		await fetchData(selectedProduct, `${PRODUCTS_URL}/${routeId}`);
+	const fetchProducts = async () => {
+		products.value = await fetchData(PRODUCTS_URL, true);
+	};
+	const fetchServices = async () => {
+		services.value = await fetchData(SERVICES_URL);
+	};
+	const fetchNews = async () => {
+		news.value = await fetchData(NEWS_URL, true);
+	};
+	const fetchOneNews = async routeTitle => {
+		selectedNews.value = await fetchData(`${NEWS_URL}/${routeTitle}`);
+	};
+	const fetchOneProduct = async routeTitle => {
+		selectedProduct.value = await fetchData(`${PRODUCTS_URL}/${routeTitle}`);
+	};
+	const fetchNextNews = async query => {
+		const nextItems = await fetchData(NEWS_URL, true, query);
+		news.value.push(...nextItems);
+	};
+	const fetchNextProducts = async query => {
+		const nextItems = await fetchData(PRODUCTS_URL, true, query);
+		products.value.push(...nextItems);
+	};
 
 	// Selectors
 	const selectCategory = category => {
@@ -115,9 +119,10 @@ export const useAppStore = defineStore('app', () => {
 	};
 
 	// Helpers
-	const fetchData = async (ref, url) => {
-		const { data } = await useFetch(url);
-		ref.value = data.value;
+	const fetchData = async (url, extractData = false, query) => {
+		const { data } = await useFetch(url, { query });
+		if (extractData) return data.value.data;
+		return data.value;
 	};
 
 	return {
@@ -136,6 +141,8 @@ export const useAppStore = defineStore('app', () => {
 		fetchServices,
 		fetchNews,
 		fetchOneNews,
-		fetchOneProduct
+		fetchOneProduct,
+		fetchNextNews,
+		fetchNextProducts
 	};
 });

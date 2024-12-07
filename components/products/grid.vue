@@ -58,7 +58,7 @@
 			</div>
 			<div class="grid__list">
 				<NuxtLink
-					:to="`/products/${product?.uuid}`"
+					:to="`/products/${product?.title_slug}`"
 					class="grid__item"
 					v-for="product in appStore.products"
 					:key="product?.uuid"
@@ -74,14 +74,18 @@
 						<h3 class="grid__item-title">
 							{{ product?.title }}
 						</h3>
-						<p class="grid__item-desc text-grey">
-							{{ product?.content }}
+						<p class="grid__item-desc text-grey" :title="product?.content">
+							{{
+								product?.content.split(' ').length > 7
+									? `${product?.content.split(' ').slice(0, 7).join(' ')} ...`
+									: product?.content
+							}}
 						</p>
 					</div>
 				</NuxtLink>
 			</div>
 		</div>
-		<ButtonPrimary label="Показать еще" @click="loadMoreProducts" />
+		<ButtonPrimary label="Показать еще" @click="loadMore" />
 	</section>
 </template>
 
@@ -95,9 +99,15 @@ const types = {
 };
 const getClassType = rusType => `grid__item-type--${types[rusType]}`;
 const showSidebar = ref(false);
+const currentPage = ref(1);
+const itemsToLoad = 6;
 
-const loadMoreProducts = () => {
-	alert('implement load more');
+const loadMore = async () => {
+	const params = {
+		page: ++currentPage.value,
+		take: itemsToLoad
+	};
+	await appStore.fetchNextProducts(params);
 };
 const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 </script>

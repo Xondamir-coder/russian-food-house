@@ -3,7 +3,7 @@
 		<h2 class="container__title text-primary">Новости</h2>
 		<div class="list" ref="listRef">
 			<NuxtLink
-				:to="`/news/${news?.uuid}`"
+				:to="`/news/${news?.title_slug}`"
 				class="list__item"
 				v-for="news in appStore.news"
 				:key="news?.uuid"
@@ -12,10 +12,12 @@
 				<div class="list__item-wrapper">
 					<div class="list__item-top">
 						<NewsLabel class="list__item-label" :text="news?.type" />
-						<NuxtImg class="list__item-img" :src="news?.image" />
+						<NuxtImg
+							class="list__item-img"
+							:src="`https://rfh.spacelabs.uz/${news?.image}`" />
 					</div>
 					<h4 class="list__item-title">
-						{{ news?.meta_title }}
+						{{ news?.title }}
 					</h4>
 				</div>
 				<div class="list__item-content">
@@ -31,12 +33,19 @@
 <script setup>
 const appStore = useAppStore();
 const { $gsap } = useNuxtApp();
+const { NEWS_URL } = useURL();
 
 const containerRef = ref();
 const listRef = ref();
+const currentPage = ref(1);
+const itemsToLoad = 6;
 
-const loadMore = () => {
-	alert('implement load more');
+const loadMore = async () => {
+	const params = {
+		page: ++currentPage.value,
+		take: itemsToLoad
+	};
+	await appStore.fetchNextNews(params);
 };
 
 onMounted(() => {
@@ -60,7 +69,7 @@ onMounted(() => {
 				}
 			});
 		});
-	}, 300);
+	}, 500);
 });
 </script>
 

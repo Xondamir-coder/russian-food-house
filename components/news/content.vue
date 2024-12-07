@@ -26,7 +26,9 @@
 			</div>
 		</div>
 		<div class="content">
-			<NuxtImg class="content__img" :src="appStore.selectedNews?.image" />
+			<NuxtImg
+				class="content__img"
+				:src="`https://rfh.spacelabs.uz/${appStore.selectedNews?.image}`" />
 			<div class="content__main" v-html="appStore.selectedNews?.body"></div>
 			<div class="content__bottom" v-if="isEventsCat">
 				<div class="content__bottom-item">
@@ -96,10 +98,95 @@ const isEventsCat = computed(() => appStore.selectedNews?.category === 'events')
 </script>
 
 <style lang="scss" scoped>
+@keyframes slide-from-top {
+	from {
+		opacity: 0;
+		transform: translateY(-15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slide-from-bottom {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slide-from-left {
+	from {
+		opacity: 0;
+		transform: translateX(-15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes slide-from-right-30 {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes slide-from-left-30 {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes slide-from-right {
+	from {
+		opacity: 0;
+		transform: translateX(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
 .content {
 	display: flex;
 	flex-direction: column;
 	gap: clamp(16px, 3vw, 40px);
+	&__main {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(16px, 3vw, 40px);
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 27px;
+		color: #73819a;
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-size: 24px;
+			font-weight: 700;
+			line-height: 32.4px;
+			color: #22282b;
+		}
+		div {
+			display: flex;
+			flex-direction: column;
+			gap: clamp(16px, 2wv, 20px);
+		}
+	}
 	&__bottom {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -137,6 +224,7 @@ const isEventsCat = computed(() => appStore.selectedNews?.category === 'events')
 		aspect-ratio: 776/375;
 		height: 100%;
 		border-radius: 20px;
+		animation: slide-from-bottom 0.5s backwards 0.5s;
 	}
 }
 .wrapper {
@@ -147,7 +235,18 @@ const isEventsCat = computed(() => appStore.selectedNews?.category === 'events')
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: clamp(10px, 2vw, 20px);
-		// max-width: 620px;
+		& button:first-child {
+			animation-name: slide-from-left-30;
+		}
+		& button:last-child {
+			animation-name: slide-from-right-30;
+		}
+		& button:first-child,
+		& button:last-child {
+			animation-duration: 0.5s;
+			animation-fill-mode: backwards;
+			animation-delay: 0.4s;
+		}
 	}
 	&__button {
 		display: flex;
@@ -175,6 +274,7 @@ const isEventsCat = computed(() => appStore.selectedNews?.category === 'events')
 	&__title {
 		font-size: clamp(30px, 4vw, 52px);
 		font-weight: 700;
+		animation: slide-from-right 0.5s backwards 0.2s;
 		&--event {
 			font-size: clamp(30px, 3vw, 32px);
 		}
@@ -192,6 +292,18 @@ const isEventsCat = computed(() => appStore.selectedNews?.category === 'events')
 			display: flex;
 			align-items: center;
 			gap: clamp(14px, 2vw, 20px);
+			animation-duration: 0.3s;
+			animation-fill-mode: backwards;
+			@for $i from 1 through 4 {
+				&:nth-child(#{$i}) {
+					@if ($i % 2 == 0) {
+						animation-name: slide-from-top;
+					} @else {
+						animation-name: slide-from-bottom;
+					}
+					animation-delay: $i * 0.1s;
+				}
+			}
 			&:last-of-type::after {
 				display: none;
 			}

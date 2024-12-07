@@ -10,6 +10,8 @@ const appStore = useAppStore();
 
 await appStore.fetchProducts();
 await appStore.fetchCategories();
+await appStore.fetchServices();
+await appStore.fetchNews();
 
 onMounted(() => {
 	const lenis = new Lenis();

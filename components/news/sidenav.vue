@@ -2,22 +2,23 @@
 	<nav class="nav">
 		<h2 class="nav__title">{{ isEvent ? 'Похожие мероприятия' : 'Еще интереснее' }}</h2>
 		<ul class="nav__content">
-			<li class="nav__content-item" v-for="item in items" :key="item.title">
-				<NuxtLink class="nav__content-link" to="/news/fake-id">
+			<li class="nav__content-item" v-for="news in similars" :key="news.uuid">
+				<NuxtLink
+					class="nav__content-link"
+					:to="`/news/${news.title_slug}`"
+					@click="appStore.selectNews(news)">
 					<h3 class="nav__content-title">
-						{{ item.title }}
+						{{ news.title }}
 					</h3>
-					<NewsDate :icon-exist="false" :date="item.date" />
+					<NewsDate :icon-exist="false" :date="news.updated_at" />
 				</NuxtLink>
 			</li>
 		</ul>
-		<div class="nav__tags">
+		<div class="nav__tags" v-if="tags">
 			<h2 class="nav__title">Теги</h2>
 			<ul class="nav__tags-list">
-				<li v-for="tag in tags" :key="tag" class="nav__tags-item">
-					<NuxtLink to="/news/fake-tag">
-						<NewsLabel :text="tag" />
-					</NuxtLink>
+				<li v-for="tag in tags" :key="tag.id" class="nav__tags-item">
+					<NewsLabel :text="tag.name" />
 				</li>
 			</ul>
 		</div>
@@ -25,40 +26,60 @@
 </template>
 
 <script setup>
+defineProps({
+	similars: Array
+});
 const route = useRoute();
-const items = [
-	{
-		title: 'Ornare est accumsan sagittis morbi auctor tellus feugiat curae massa sollicitudin risus maecenas; elit vel commodo',
-		date: new Date().toISOString()
-	},
-	{
-		title: 'Sem lacus, erat venenatis, vestibulum gravida dolor tellus.',
-		date: new Date().toISOString()
-	},
-	{
-		title: 'Nisi amet maximus venenatis volutpat cras hac suspendisse Vestibulum est blandit vivamus',
-		date: new Date().toISOString()
-	}
-];
-const tags = [
-	'Интересно',
-	'Хит',
-	'Популярные',
-	'Вкусно',
-	'Читать удобно',
-	'Новости',
-	'Факты',
-	'Лайфхаки',
-	'Популярные'
-];
-
-const isEvent = computed(() => route.name.includes('events'));
+const router = useRouter();
+const appStore = useAppStore();
+const tags = computed(() => appStore.selectedNews?.tags);
+const isEvent = computed(() => appStore.selectedNews?.category === 'events');
 </script>
 
 <style lang="scss" scoped>
 @mixin hover-effect() {
 	&:has(> *:hover) > *:not(:hover) {
 		opacity: 0.4;
+	}
+}
+@keyframes slide-from-bottom {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slide-from-top {
+	from {
+		opacity: 0;
+		transform: translateY(-15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes slide-from-left {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes slide-from-right {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
 	}
 }
 .nav {
@@ -80,6 +101,18 @@ const isEvent = computed(() => route.name.includes('events'));
 		}
 		&-item {
 			transition: opacity 0.3s;
+			animation-duration: 0.4s;
+			animation-fill-mode: backwards;
+			@for $i from 1 through 4 {
+				&:nth-child(#{$i}) {
+					animation-delay: #{$i * 0.2}s;
+					@if ($i % 2 == 0) {
+						animation-name: slide-from-left;
+					} @else {
+						animation-name: slide-from-right;
+					}
+				}
+			}
 			&:not(:last-of-type) {
 				padding-bottom: 20px;
 				border-bottom: 1px solid rgba(230, 233, 234, 1);
@@ -101,23 +134,38 @@ const isEvent = computed(() => route.name.includes('events'));
 	&__title {
 		font-size: 24px;
 		font-weight: 700;
+		animation: slide-from-top 0.3s backwards;
 	}
 	&__tags {
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 
+		.nav__title {
+			animation-delay: 0.6s;
+		}
 		&-list {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 10px;
 			row-gap: 15px;
-			@include hover-effect();
 		}
 		&-item {
 			transition: opacity 0.3s;
 			--bg: rgba(212, 212, 216, 0.4);
 			--color: rgba(0, 0, 0, 1);
+			animation-duration: 0.3s;
+			animation-fill-mode: backwards;
+			@for $i from 1 through 4 {
+				&:nth-child(#{$i}) {
+					animation-delay: #{$i * 0.2 + 0.5}s;
+					@if ($i % 2 == 0) {
+						animation-name: slide-from-top;
+					} @else {
+						animation-name: slide-from-bottom;
+					}
+				}
+			}
 		}
 	}
 }

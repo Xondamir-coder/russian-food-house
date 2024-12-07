@@ -3,20 +3,20 @@
 		<NuxtLink
 			:style="useRandomColorStyle()"
 			v-for="(news, i) in last4News"
-			:key="news.uuid"
+			:key="news?.uuid"
 			:class="i === 0 ? 'hero__big' : 'hero__small'"
-			:to="`/news/${news.uuid}`">
+			:to="`/news/${news?.title_slug}`">
 			<NuxtImg
 				class="hero__img"
 				format="webp"
 				fit="cover"
-				:src="`https://rfh.spacelabs.uz/${news.image}`"
+				:src="`https://rfh.spacelabs.uz/${news?.image}`"
 				alt="news hero banner" />
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
-				<h2 class="hero__title">{{ news.meta_title }}</h2>
-				<p class="hero__text">
-					{{ news.meta_description }}
+				<h2 class="hero__title">{{ news?.title }}</h2>
+				<p class="hero__text" v-if="i === 0">
+					{{ news?.meta_description }}
 				</p>
 				<ButtonPrimary v-if="i === 0" class="hero__button" label="Читать дальше" />
 			</div>
@@ -93,11 +93,7 @@ const last4News = computed(() => appStore.news?.slice(-4));
 			font-size: 16px;
 		}
 	}
-	&__title {
-		font-size: clamp(26px, 3vw, 40px);
-		line-height: 1.2;
-		font-weight: 700;
-	}
+
 	&__img {
 		width: 100%;
 		object-fit: cover;
@@ -130,6 +126,11 @@ const last4News = computed(() => appStore.news?.slice(-4));
 		grid-template-columns: 100px 1fr;
 		gap: clamp(14px, 1.5vw, 20px);
 		transition: color 0.3s;
+		.hero__title {
+			font-size: clamp(16px, 3vw, 24px);
+			line-height: 1.2;
+			font-weight: 700;
+		}
 		@for $i from 1 through 4 {
 			&:nth-of-type(#{$i}) {
 				animation-fill-mode: backwards;
@@ -171,6 +172,11 @@ const last4News = computed(() => appStore.news?.slice(-4));
 		gap: clamp(14px, 2vw, 30px);
 		grid-row: span 3;
 		animation: slide-from-bottom 0.5s backwards;
+		.hero__title {
+			font-size: clamp(26px, 3vw, 40px);
+			line-height: 1.2;
+			font-weight: 700;
+		}
 		@include mix.respond('sm') {
 			border: 1px solid rgba(230, 233, 234, 1);
 			border-top-left-radius: 20px;

@@ -8,20 +8,25 @@
 
 <script setup>
 const route = useRoute();
+const router = useRouter();
 const appStore = useAppStore();
 
 const breadcrumbs = computed(() => [
 	{ name: 'Продукты', link: '/products' },
-	{ name: appStore.selectedCategory?.name, link: '/products' },
-	{ name: appStore.selectedProduct?.title, link: '/products' },
-	{ name: 'Все продукты', link: '/products' }
+	{ name: appStore.selectedProduct?.category.name, link: '/products' },
+	{ name: appStore.selectedProduct?.title, link: '/products' }
 ]);
 
-if (!appStore.selectedProduct || appStore.selectedProduct.uuid !== route.params.id)
-	appStore.fetchOneProduct(route.params.id);
+if (!appStore.selectedProduct || appStore.selectedProduct.title_slug !== route.params.title) {
+	await appStore.fetchOneProduct(route.params.title);
+}
+
+if (!appStore.selectedProduct.title_slug) {
+	router.push('/not-found');
+}
 
 useHead({
-	title: computed(() => `${appStore.selectedProduct?.title}  | Russian Food House`),
+	title: computed(() => `${appStore.selectedProduct?.meta_title}  | Russian Food House`),
 	meta: [
 		{
 			content: computed(() => appStore.selectedProduct?.meta_description),

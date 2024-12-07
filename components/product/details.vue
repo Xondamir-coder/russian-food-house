@@ -5,7 +5,7 @@
 				width="485"
 				height="449"
 				class="details__img"
-				:src="JSON.parse(product?.images)[0]"
+				:src="`https://rfh.spacelabs.uz/${JSON.parse(product?.images)[0]}`"
 				:alt="product?.title" />
 		</div>
 		<div class="details__content">

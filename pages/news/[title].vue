@@ -3,7 +3,7 @@
 		<Breadcrumb :crumbs="breadcrumbs" />
 		<main class="container__wrapper">
 			<NewsContent />
-			<NewsSidenav />
+			<NewsSidenav :similars="similarNews" />
 		</main>
 	</div>
 </template>
@@ -11,19 +11,32 @@
 <script setup>
 const appStore = useAppStore();
 const route = useRoute();
+const router = useRouter();
+const { NEWS_URL } = useURL();
 
-if (!appStore.selectedNews || appStore.selectedNews.uuid !== route.params.uuid) {
-	await appStore.fetchOneNews(route.params.id);
+const similarNews = ref([]);
+
+// Take from store otherwise fetch from API
+if (!appStore.selectedNews || appStore.selectedNews.title_slug !== route.params.title) {
+	await appStore.fetchOneNews(route.params.title);
 }
 
+// If no news found then redirect
+if (!appStore.selectedNews.title_slug) {
+	router.push('/not-found');
+}
+
+// Get news similars
+const { data } = await useFetch(`${NEWS_URL}/${appStore.selectedNews.title_slug}/similars`);
+similarNews.value = data.value;
+
 const breadcrumbs = computed(() => {
-	const dataTitle = appStore.selectedNews?.meta_title;
+	const dataTitle = appStore.selectedNews?.title;
 	const dataType = appStore.selectedNews?.type;
-	const title = dataTitle?.length > 30 ? `${dataTitle?.slice(0, 30)} ...` : dataTitle;
 	return [
 		{ name: 'Новости', link: '/news' },
 		{ name: dataType, link: '/news' },
-		{ name: title, link: '/news' }
+		{ name: dataTitle, link: '/news' }
 	];
 });
 
