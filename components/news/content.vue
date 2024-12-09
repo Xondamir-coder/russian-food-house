@@ -2,20 +2,22 @@
 	<main class="wrapper">
 		<div class="wrapper__top">
 			<ul class="wrapper__info">
-				<li class="wrapper__info-item">
-					<NewsLabel :text="appStore.selectedNews?.type" :style="useRandomColorStyle()" />
+				<li class="wrapper__info-item" v-if="data?.type">
+					<NewsLabel :text="data?.type" :style="useRandomColorStyle()" />
 				</li>
 				<li class="wrapper__info-item">
-					<NewsDate :date="appStore.selectedNews?.updated_at" />
+					<NewsDate :date="data?.updated_at" />
 				</li>
 				<li class="wrapper__info-item">
-					<NewsTime :date="appStore.selectedNews?.updated_at" />
+					<NewsTime :date="data?.updated_at" />
 				</li>
 			</ul>
-			<h1 class="wrapper__title" :class="{ 'wrapper__title--event': isEventsCat }">
-				{{ appStore.selectedNews?.title }}
+			<h1
+				class="wrapper__title"
+				:class="{ 'wrapper__title--event': data?.category === 'events' }">
+				{{ data?.title }}
 			</h1>
-			<div class="wrapper__bottom" v-if="isEventsCat">
+			<div class="wrapper__bottom" v-if="data?.category === 'events'">
 				<ButtonPrimary label="Подать заявку" class="wrapper__button--primary" />
 				<button class="wrapper__button">
 					<svg class="icon-calendar">
@@ -26,11 +28,9 @@
 			</div>
 		</div>
 		<div class="content">
-			<img
-				class="content__img"
-				:src="`https://rfh.spacelabs.uz/${appStore.selectedNews?.image}`" />
-			<div class="content__main" v-html="appStore.selectedNews?.body"></div>
-			<div class="content__bottom" v-if="isEventsCat">
+			<img class="content__img" :src="`https://rfh.spacelabs.uz/${data?.image}`" />
+			<div class="content__main" v-html="data?.body"></div>
+			<div class="content__bottom" v-if="data?.category === 'events'">
 				<div class="content__bottom-item">
 					<div class="content__bottom-item_top">
 						<svg>
@@ -93,8 +93,9 @@
 </template>
 
 <script setup>
-const appStore = useAppStore();
-const isEventsCat = computed(() => appStore.selectedNews?.category === 'events');
+defineProps({
+	data: Object
+});
 </script>
 
 <style lang="scss" scoped>

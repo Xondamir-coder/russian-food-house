@@ -14,8 +14,14 @@ const route = useRoute();
 const selectedCategoryId = computed(() => +route.query.category_id);
 const selectedCategoryName = computed(() => route.query.category_name);
 const breadcrumbs = computed(() => [
-	{ name: 'Продукты', link: '/products' },
-	{ name: selectedCategoryName.value, link: '/products' },
+	{
+		name: 'Продукты',
+		link: `/products?category_id=${selectedCategoryId.value}&category_name=${selectedCategoryName.value}`
+	},
+	{
+		name: selectedCategoryName.value,
+		link: `/products?category_id=${selectedCategoryId.value}&category_name=${selectedCategoryName.value}`
+	},
 	{ name: 'Все продукты', link: '/products' }
 ]);
 

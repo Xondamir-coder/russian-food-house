@@ -12,8 +12,14 @@ const router = useRouter();
 const appStore = useAppStore();
 
 const breadcrumbs = computed(() => [
-	{ name: 'Продукты', link: '/products' },
-	{ name: appStore.selectedProduct?.category.name, link: '/products' },
+	{
+		name: 'Продукты',
+		link: `/products?category_id=${appStore.selectedProduct?.category.id}&category_name=${appStore.selectedProduct?.category.name}`
+	},
+	{
+		name: appStore.selectedProduct?.category.name,
+		link: `/products?category_id=${appStore.selectedProduct?.category.id}&category_name=${appStore.selectedProduct?.category.name}`
+	},
 	{ name: appStore.selectedProduct?.title, link: '/products' }
 ]);
 

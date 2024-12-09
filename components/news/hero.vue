@@ -6,7 +6,7 @@
 			:key="news?.uuid"
 			:class="i === 0 ? 'hero__big' : 'hero__small'"
 			:to="`/news/${news?.title_slug}`">
-			<NuxtImg
+			<img
 				class="hero__img"
 				format="webp"
 				fit="cover"
@@ -15,9 +15,7 @@
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
 				<h2 class="hero__title">{{ news?.title }}</h2>
-				<p class="hero__text" v-if="i === 0">
-					{{ news?.meta_description }}
-				</p>
+				<p class="hero__text" v-if="i === 0">{{ news?.body.split('.')[0].slice(3) }}.</p>
 				<ButtonPrimary v-if="i === 0" class="hero__button" label="Читать дальше" />
 			</div>
 		</NuxtLink>
