@@ -1,5 +1,8 @@
 <template>
-	<div>Recipes</div>
+	<main class="recipes">
+		<RecipesHero />
+		<RecipesFindout />
+	</main>
 </template>
 
 <script setup>
@@ -14,4 +17,10 @@ useHead({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.recipes {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+</style>

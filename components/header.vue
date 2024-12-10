@@ -1,7 +1,9 @@
 <template>
 	<header
+		ref="headerRef"
 		class="header section-padding"
-		:class="{ 'header--about': isAbout, 'header--menu': isMenuOpen }">
+		:data-where="route.path"
+		:class="{ 'header--white': isWhite, 'header--menu': isMenuOpen }">
 		<NuxtLink to="/" class="header__logo">
 			<svg class="icon-logo">
 				<use href="@/assets/sprite.svg#logo"></use>
@@ -29,6 +31,7 @@
 </template>
 
 <script setup>
+const { $gsap } = useNuxtApp();
 const links = [
 	{
 		to: '/catalog',
@@ -57,10 +60,35 @@ const links = [
 ];
 const route = useRoute();
 const isMenuOpen = ref(false);
+const headerRef = ref();
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value;
 };
-const isAbout = computed(() => route.path == '/about');
+const isWhite = computed(() => route.path === '/about' || route.path === '/recipes');
+
+onUpdated(() => {
+	if (headerRef.value.classList.contains('header--white')) {
+		$gsap.to(headerRef.value, {
+			backdropFilter: 'blur(10px)',
+			scrollTrigger: {
+				start: '+=300',
+				toggleActions: 'play none none reverse'
+			}
+		});
+	}
+});
+
+onMounted(() => {
+	if (headerRef.value.classList.contains('header--white')) {
+		$gsap.to(headerRef.value, {
+			backdropFilter: 'blur(10px)',
+			scrollTrigger: {
+				start: '+=300',
+				toggleActions: 'play none none reverse'
+			}
+		});
+	}
+});
 </script>
 
 <style lang="scss" scoped>
@@ -118,10 +146,9 @@ const isAbout = computed(() => route.path == '/about');
 			background-color: rgba(255, 255, 255, 0.2) !important;
 		}
 	}
-	&--about {
+	&--white {
 		width: 100%;
 		position: fixed;
-		backdrop-filter: blur(10px);
 		background-color: transparent;
 		.header__item {
 			color: rgba(255, 255, 255, 0.7);
@@ -141,6 +168,14 @@ const isAbout = computed(() => route.path == '/about');
 		.header__logo .icon-logo {
 			--main-color: #fff;
 			--secondary-color: #fff;
+		}
+		.header__nav::after {
+			background: linear-gradient(
+				to right,
+				rgba(180, 200, 220, 0),
+				#fff,
+				rgba(180, 200, 220, 0)
+			);
 		}
 	}
 	&__close {
