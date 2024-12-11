@@ -2,7 +2,7 @@
 	<section class="hero">
 		<div class="hero__content">
 			<h1 class="hero__title">Лучшие российские товары на Вашем столе</h1>
-			<Searchform class="hero__search" />
+			<Searchform class="hero__search" v-model="query" />
 		</div>
 		<svg class="hero__sprinkles">
 			<use href="~/assets/sprite.svg#sprinkles" />
@@ -34,6 +34,7 @@ import carrot from '/img/carrot.webp';
 const items = [apple, aubergine, cherry, lemon, aubergine, carrot, apple, cherry, lemon];
 
 const { $gsap } = useNuxtApp();
+const query = ref('');
 
 onMounted(() => {
 	$gsap.utils.toArray('.hero__item').forEach(el =>

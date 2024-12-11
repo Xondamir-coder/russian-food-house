@@ -127,8 +127,8 @@ const links = [
 		text: 'FAQ'
 	},
 	{
-		to: '/facts',
-		text: 'Факты'
+		to: '/events',
+		text: 'Мероприятие'
 	}
 ];
 </script>

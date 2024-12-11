@@ -1,5 +1,5 @@
 <template>
-	<div>Facts</div>
+	<div>Events</div>
 </template>
 
 <script setup></script>

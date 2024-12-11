@@ -10,15 +10,8 @@
 			<div class="cards__content">
 				<div class="cards__details">
 					<h3 class="cards__title">{{ service.title }}</h3>
-					<p class="cards__text">
-						{{ service.body.split('.')[0].slice(3) }}
-					</p>
+					<div class="cards__text" v-html="service.body"></div>
 				</div>
-				<NuxtLink
-					:to="`/services/${service.title_slug}`"
-					@click="appStore.selectService(service)">
-					<ButtonPrimary class="cards__button" label="Узнать больше" />
-				</NuxtLink>
 			</div>
 		</div>
 	</section>
@@ -58,13 +51,6 @@ onMounted(() => {
 	@include mix.respond('md') {
 		padding: 0;
 	}
-	&__button {
-		width: 100%;
-		font-family: var.$font-base;
-		font-size: 20px;
-		letter-spacing: 0.02em;
-		font-weight: 700;
-	}
 	&__title {
 		font-size: 18px;
 		font-weight: 700;
@@ -76,6 +62,9 @@ onMounted(() => {
 		font-weight: 500;
 		line-height: 22.4px;
 		color: rgba(113, 125, 129, 1);
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
 	}
 	&__details {
 		display: flex;

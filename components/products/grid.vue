@@ -344,7 +344,7 @@ const toggleShowSidebar = () => (showSidebar.value = !showSidebar.value);
 
 		input {
 			background-image: url('~/assets/check.svg');
-			background-size: 80%;
+			background-size: 60%;
 			background-repeat: no-repeat;
 			background-position: center;
 			appearance: none;

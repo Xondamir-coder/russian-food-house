@@ -88,7 +88,6 @@ export const useAppStore = defineStore('app', () => {
 	// Selectables
 	const selectedProduct = ref(productPlaceholder);
 	const selectedNews = ref(newsPlaceholder);
-	const selectedService = ref(servicePlaceholder);
 
 	// Fetched data
 	const news = ref([newsPlaceholder]);
@@ -134,8 +133,6 @@ export const useAppStore = defineStore('app', () => {
 		(selectedNews.value = await fetchData(`${NEWS_URL}/${routeTitle}`));
 	const fetchOneProduct = async routeTitle =>
 		(selectedProduct.value = await fetchData(`${PRODUCTS_URL}/${routeTitle}`));
-	const fetchOneService = async routeTitle =>
-		(selectedService.value = await fetchData(`${SERVICES_URL}/${routeTitle}`));
 
 	// Fetch and append additional data
 	const fetchNextItems = async (url, target, query) => {
@@ -163,7 +160,6 @@ export const useAppStore = defineStore('app', () => {
 		services,
 		selectedProduct,
 		selectedNews,
-		selectedService,
 		selectNews,
 		selectProduct,
 		selectService,
@@ -172,7 +168,6 @@ export const useAppStore = defineStore('app', () => {
 		fetchNews,
 		fetchOneNews,
 		fetchOneProduct,
-		fetchOneService,
 		fetchNextNews,
 		fetchNextProducts,
 		fetchProductsByQuery

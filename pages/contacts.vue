@@ -1,6 +1,6 @@
 <template>
 	<main class="contacts">
-		<ContactsForm class="contacts__form" />
+		<ContactsForm class="contacts__formik" />
 		<ContactsDetails class="contacts__details" />
 		<div class="contacts__img"></div>
 	</main>
@@ -60,7 +60,7 @@ useHead({
 			animation-delay: #{$i * 0.15}s;
 		}
 	}
-	&__form {
+	&__formik {
 		z-index: 2;
 		grid-column: 1/2;
 		grid-row: 1 / 4;

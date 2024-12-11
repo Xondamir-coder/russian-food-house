@@ -7,8 +7,10 @@ export default () => {
 	const FAQS_URL = `${BASE_URL}/faqs`;
 	const NEWS_URL = `${BASE_URL}/news`;
 	const REGIONS_URL = `${BASE_URL}/regions-map`;
+	const FORM_URL = `${BASE_URL}/form/submit`;
 
 	return {
+		FORM_URL,
 		CATEGORIES_URL,
 		PRODUCTS_URL,
 		SERVICES_URL,

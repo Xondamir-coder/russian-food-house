@@ -2,6 +2,16 @@
 @use 'sass:map';
 
 .icon {
+	&-filter {
+		width: 20px;
+		aspect-ratio: 1;
+	}
+	&-search {
+		width: 16px;
+		aspect-ratio: 1;
+		fill: #fff;
+		transition: fill 0.3s;
+	}
 	&-logo {
 		width: 135px;
 		aspect-ratio: 135/40;

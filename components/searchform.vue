@@ -8,28 +8,30 @@
 				class="search__input"
 				placeholder="Найти продукты"
 				required
-				v-model="query" />
+				v-model="model"
+				@input="emitInput" />
 			<button
 				type="button"
 				class="search__close"
 				@click="clearQuery"
-				:class="{ active: query }">
+				:class="{ active: model }">
 				<svg class="fill-primary icon-close">
 					<use href="~/assets/sprite.svg#x" />
 				</svg>
 			</button>
 		</div>
-		<button class="search__button bg-primary" type="submit">Поиск</button>
+		<button class="search__button bg-primary" type="submit">
+			<svg class="icon-search">
+				<use href="~/assets/sprite.svg#search" />
+			</svg>
+			<span>Поиск</span>
+		</button>
 	</form>
 </template>
 
 <script setup>
-const query = ref('');
-
-const clearQuery = () => (query.value = '');
-const submitQuery = () => {
-	console.log(query.value);
-};
+const model = defineModel();
+const clearQuery = () => (model.value = '');
 </script>
 
 <style scoped lang="scss">
@@ -90,24 +92,29 @@ const submitQuery = () => {
 		color: #fff;
 		border-radius: 11px;
 		padding: 18px 46px;
-		font-family: var.$font-secondary;
-		font-size: 16px;
 		transition: background-color 0.3s, color 0.3s;
 		animation: slide-from-right 0.5s backwards 0.25s;
-
+		font-size: clamp(16px, 2vw, 18px);
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		gap: 12.5px;
 		@include mix.respond('md') {
 			padding: 11.5px 20.5px;
 		}
+
 		&:hover {
 			background-color: #fff;
 			color: map.get(var.$colors, 'primary');
+			svg {
+				fill: map.get(var.$colors, 'primary');
+			}
 		}
 	}
 	&__form {
 		display: flex;
 		gap: 20px;
 		@include mix.respond('md') {
-			padding: 0px 16px;
 			gap: 10px;
 		}
 	}

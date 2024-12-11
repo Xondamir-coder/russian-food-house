@@ -15,7 +15,10 @@
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
 				<h2 class="hero__title">{{ news?.title }}</h2>
-				<p class="hero__text" v-if="i === 0">{{ news?.body.split('.')[0].slice(3) }}.</p>
+				<div
+					class="hero__text"
+					v-if="i === 0"
+					v-html="news?.body.split('.')[0].slice(3)"></div>
 				<ButtonPrimary v-if="i === 0" class="hero__button" label="Читать дальше" />
 			</div>
 		</NuxtLink>
