@@ -31,16 +31,7 @@
 				Нажимая эту кнопку, вы соглашаетесь с Условиями и положениями
 			</p>
 		</div>
-		<div class="contacts__form-success" v-if="isSent">
-			<svg class="contacts__form-icon">
-				<use href="~/assets/sprite.svg#success" />
-			</svg>
-			<h3>
-				Ваш запрос был <br />
-				успешно отправлен
-			</h3>
-			<p>Ценовая стратегия деятельно искажает ролевой пул лояльных изданий</p>
-		</div>
+		<Formsuccess v-if="isSent" />
 	</form>
 </template>
 
@@ -106,29 +97,6 @@ const submitForm = async () => {
 	&-button {
 		font-family: var.$font-base;
 		letter-spacing: 0;
-	}
-	&-icon {
-		width: 118px;
-		aspect-ratio: 1;
-	}
-	&-success {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		align-items: center;
-		h3 {
-			font-size: 24px;
-			font-weight: 700;
-			line-height: 28.8px;
-			text-align: center;
-		}
-		p {
-			font-size: 18px;
-			font-weight: 500;
-			line-height: 25.2px;
-			letter-spacing: 0.02em;
-			text-align: center;
-		}
 	}
 	&-bottom {
 		display: flex;

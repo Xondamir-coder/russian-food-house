@@ -75,6 +75,8 @@ useHead({
 	padding-top: clamp(16px, 2vw, 20px);
 	padding-bottom: clamp(25px, 3vw, 30px);
 	position: relative;
+	overflow: hidden;
+
 	&::after {
 		content: '';
 		background-color: rgba(0, 0, 0, 0.5);
