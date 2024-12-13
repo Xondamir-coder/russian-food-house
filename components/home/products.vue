@@ -8,9 +8,9 @@
 				:key="product.uuid"
 				:to="`/products/${product.title_slug}`"
 				@click="appStore.selectProduct(product)">
-				<NuxtImg
+				<img
 					class="products__item-img"
-					:src="`https://rfh.spacelabs.uz/${JSON.parse(product.images)[0]}`"
+					:src="`${DOMAIN_URL}/${JSON.parse(product.images)[0]}`"
 					:alt="product.title" />
 				<div class="products__item-content">
 					<h3 class="products__item-title text-black" :title="product.title">
@@ -36,7 +36,7 @@
 
 <script setup>
 const { $gsap } = useNuxtApp();
-const { PRODUCTS_URL } = useURL();
+const { PRODUCTS_URL, DOMAIN_URL } = useURL();
 
 const appStore = useAppStore();
 

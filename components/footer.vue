@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer section-padding">
+	<footer class="footer section-padding" v-if="noFooter">
 		<div class="footer__left">
 			<NuxtLink to="/">
 				<svg class="footer__logo icon-logo">
@@ -131,6 +131,10 @@ const links = [
 		text: 'Мероприятие'
 	}
 ];
+const route = useRoute();
+const noFooter = computed(
+	() => route.path !== '/recipes/traditional' && !route.path.includes('chefs')
+);
 </script>
 
 <style scoped lang="scss">

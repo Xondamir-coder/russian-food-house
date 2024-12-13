@@ -1,33 +1,23 @@
 <template>
 	<div class="sidebar">
-		<div class="sidebar__row">
-			<h3 class="sidebar__title">Meal Type</h3>
-			<ul class="sidebar__list">
-				<li :title="type" class="sidebar__type" v-for="(type, i) in mealTypes" :key="type">
-					<input class="sidebar__input" type="radio" name="type" :id="`${type}-${i}`" />
-					<label :for="`${type}-${i}`">{{ type }}</label>
-				</li>
-			</ul>
-		</div>
-		<div class="sidebar__row">
-			<h3 class="sidebar__title">Product Type</h3>
+		<div
+			class="sidebar__row"
+			v-for="(subCategory, title) in recipesStore.subCategories"
+			:key="title">
+			<h3 class="sidebar__title">{{ title }}</h3>
 			<ul class="sidebar__list">
 				<li
 					:title="type"
 					class="sidebar__type"
-					v-for="(type, i) in productTypes"
-					:key="type">
-					<input class="sidebar__input" type="radio" name="type" :id="`${type}-${i}`" />
-					<label :for="`${type}-${i}`">{{ type }}</label>
-				</li>
-			</ul>
-		</div>
-		<div class="sidebar__row">
-			<h3 class="sidebar__title">Diet Type</h3>
-			<ul class="sidebar__list">
-				<li :title="type" class="sidebar__type" v-for="(type, i) in dietTypes" :key="type">
-					<input class="sidebar__input" type="radio" name="type" :id="`${type}-${i}`" />
-					<label :for="`${type}-${i}`">{{ type }}</label>
+					v-for="(type, i) in subCategory"
+					:key="type.uuid">
+					<input
+						class="sidebar__input"
+						type="radio"
+						:id="`${type.uuid}-${i}`"
+						:name="title.toLowerCase()"
+						@change="getRecipes(type.uuid, title)" />
+					<label :for="`${type.uuid}-${i}`">{{ type.title }}</label>
 				</li>
 			</ul>
 		</div>
@@ -35,9 +25,18 @@
 </template>
 
 <script setup>
-const mealTypes = ['Breakfast', 'Lunch', 'Breakfast', 'Lunch', 'Appetizer'];
-const productTypes = ['Granola', 'Cereal', 'Oatmeal', 'Breakfast'];
-const dietTypes = ['Vegan', 'Paleo', 'Gluten-free', 'Dairy-free'];
+const recipesStore = useRecipesStore();
+const toPythonCase = str => str.replace(/([A-Z])/g, '_$1').toLowerCase();
+
+const keys = computed(() => Object.keys(recipesStore.subCategories));
+recipesStore.selectSubCategories(
+	Object.fromEntries(keys.value.map(key => [`recipe_${toPythonCase(key)}_uuid`, '']))
+);
+
+const getRecipes = (uuid, title) => {
+	recipesStore.selectedSubCategories[`recipe_${toPythonCase(title)}_uuid`] = uuid;
+	recipesStore.fetchRecipes(recipesStore.selectedSubCategories);
+};
 </script>
 
 <style lang="scss" scoped>

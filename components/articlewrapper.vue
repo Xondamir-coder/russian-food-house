@@ -22,18 +22,26 @@ if (props.type === 'news') {
 	const { data } = await useFetch(`${NEWS_URL}/${props.data.title_slug}/similars`);
 	similarData.value = data.value;
 }
+const translateToRussian = str => {
+	const map = {
+		news: 'Новости',
+		services: 'Сервисы',
+		recipes: 'Рецепты'
+	};
+	return map[str];
+};
 
 const breadcrumbs = computed(() => {
 	const dataTitle = props.data?.title;
 	const dataType = props.data?.type;
 	return dataType
 		? [
-				{ name: props.type === 'news' ? 'Новости' : 'Сервисы', link: `/${props.type}` },
+				{ name: translateToRussian(props.type), link: `/${props.type}` },
 				{ name: dataType, link: `/${props.type}` },
 				{ name: dataTitle, link: `/${props.type}` }
 		  ]
 		: [
-				{ name: props.type === 'news' ? 'Новости' : 'Сервисы', link: `/${props.type}` },
+				{ name: translateToRussian(props.type), link: `/${props.type}` },
 				{ name: dataTitle, link: `/${props.type}` }
 		  ];
 });

@@ -65,35 +65,25 @@ const servicePlaceholder = {
 };
 
 export const useAppStore = defineStore('app', () => {
-	// Static data
-	const { CATEGORIES_URL, PRODUCTS_URL, SERVICES_URL, NEWS_URL } = useURL();
+	// Using composables
+	const { CATEGORIES_URL, PRODUCTS_URL, SERVICES_URL, NEWS_URL, CHEFS_URL } = useURL();
+
 	const FETCH_THRESHOLDS = {
 		categories: 30 * 60 * 1000, // 30 minutes
 		products: 15 * 60 * 1000, // 15 minutes
 		services: 60 * 60 * 1000, // 1 hour
-		news: 10 * 60 * 1000 // 10 minutes
+		news: 10 * 60 * 1000, // 10 minutes
+		recipesCategories: 60 * 60 * 1000, // 1 hour
+		chefs: 60 * 60 * 1000 // 1 hour
 	};
 	const lastFetched = {
 		categories: null,
 		products: null,
 		services: null,
-		news: null
+		news: null,
+		recipesCategories: null,
+		chefs: null
 	};
-
-	// Pages
-	const pages = ref({
-		news: 1
-	});
-
-	// Selectables
-	const selectedProduct = ref(productPlaceholder);
-	const selectedNews = ref(newsPlaceholder);
-
-	// Fetched data
-	const news = ref([newsPlaceholder]);
-	const categories = ref([categoryPlaceholder]);
-	const products = ref([productPlaceholder]);
-	const services = ref([servicePlaceholder]);
 
 	// Core fetcher
 	const fetchData = async (url, { extractData = false, query = {} } = {}) => {
@@ -117,6 +107,21 @@ export const useAppStore = defineStore('app', () => {
 		target.value = await fetchData(url, { extractData, query });
 		lastFetched[key] = currentTime;
 	};
+
+	// Pages
+	const pages = ref({
+		news: 1
+	});
+
+	// Selectables
+	const selectedProduct = ref(productPlaceholder);
+	const selectedNews = ref(newsPlaceholder);
+
+	// Fetched data
+	const news = ref([newsPlaceholder]);
+	const categories = ref([categoryPlaceholder]);
+	const products = ref([productPlaceholder]);
+	const services = ref([servicePlaceholder]);
 
 	const fetchCategories = () =>
 		fetchWithDynamicThreshold(CATEGORIES_URL, categories, 'categories');

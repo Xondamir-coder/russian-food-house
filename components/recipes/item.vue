@@ -1,19 +1,37 @@
 <template>
-	<NuxtLink class="item" :to="`/recipes/recipe-${data.title_slug}`">
+	<NuxtLink class="item" :to="`/recipes/${data.title_slug}`">
 		<span class="item__type">
-			{{ data.type }}
+			{{ getRandomTitle(data) }}
 		</span>
-		<img class="item__img" :src="data.img" :alt="data.desc" />
+		<img class="item__img" :src="`${DOMAIN_URL}/${data.image}`" :alt="data.title" />
 		<div class="item__content">
-			<span class="item__time">{{ data.time }}</span>
-			<p class="item__desc" :title="data.desc">
-				{{ data.desc.length > 62 ? `${data.desc.slice(0, 62)}...` : data.desc }}
+			<span class="item__time">time missing</span>
+			<p class="item__desc" :title="data.title">
+				{{ data.title.length > 62 ? `${data.title.slice(0, 62)}...` : data.title }}
 			</p>
 		</div>
 	</NuxtLink>
 </template>
 
 <script setup>
+const { DOMAIN_URL } = useURL();
+const getRandomTitle = data => {
+	// Keys to extract from
+	const keys = ['recipe_meal_type', 'recipe_product_type', 'recipe_diet_type'];
+
+	// Randomly select a key
+	const randomKey = keys[Math.floor(Math.random() * keys.length)];
+
+	// Get the object corresponding to the random key
+	const values = data[randomKey];
+
+	// Extract the title property
+	const title = values.title;
+
+	// Return the title if it exists
+	return title || null; // Return null if no title is available
+};
+
 defineProps({
 	data: Object
 });
@@ -67,6 +85,7 @@ defineProps({
 	&__img {
 		width: 100%;
 		aspect-ratio: 260/163;
+		object-fit: cover;
 	}
 }
 </style>

@@ -4,24 +4,27 @@
 		<div class="findout__list">
 			<NuxtLink
 				class="findout__item section-padding"
-				v-for="(item, i) in items"
-				:key="i"
-				:to="item.to">
+				v-for="(cat, i) in recipesStore.categories"
+				:key="cat.uuid"
+				:to="`/recipes/${cat.type}`">
 				<div class="findout__item-left">
 					<span class="section-title findout__item-num text-primary">{{
 						(i + 1).toString().padStart(2, '0')
 					}}</span>
 					<div class="findout__item-container">
-						<img class="findout__item-img" :src="item.img" :alt="item.title" />
+						<img
+							class="findout__item-img"
+							:src="`${DOMAIN_URL}/${cat.image}`"
+							:alt="cat.title" />
 					</div>
 				</div>
 				<div class="findout__item-right">
 					<div class="findout__item-content">
 						<h3 class="findout__item-title">
-							{{ item.title }}
+							{{ cat.title }}
 						</h3>
 						<p class="findout__item-text">
-							{{ item.text }}
+							{{ cat.body }}
 						</p>
 					</div>
 					<button class="findout__item-link">
@@ -36,30 +39,9 @@
 </template>
 
 <script setup>
-import chef from '/img/chef.png';
-import traditional from '/img/recipes-traditional.png';
-import modern from '/img/recipes-modern.png';
-const items = [
-	{
-		img: chef,
-		title: 'Featured Chefs',
-		text: 'Баланс спроса и предложения уравновешивает формирование имиджа',
-		to: '/recipes/chefs'
-	},
-	{
-		img: traditional,
-		title: 'Traditional Russian Recipes',
-		text: 'Баланс спроса и предложения уравновешивает формирование имиджа',
-		to: '/recipes/traditional'
-	},
-	{
-		img: modern,
-		title: 'Modern Russian Cuisine',
-		text: 'Баланс спроса и предложения уравновешивает формирование имиджа',
-		to: '/recipes/modern'
-	}
-];
+const recipesStore = useRecipesStore();
 const { $gsap } = useNuxtApp();
+const { DOMAIN_URL } = useURL();
 
 onMounted(() => {
 	const animationY = 50;

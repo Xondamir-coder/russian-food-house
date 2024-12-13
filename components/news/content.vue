@@ -28,8 +28,8 @@
 			</div>
 		</div>
 		<div class="content">
-			<img class="content__img" :src="`https://rfh.spacelabs.uz/${data?.image}`" />
-			<div class="content__main" v-html="data?.body"></div>
+			<img class="content__img" :src="`${DOMAIN_URL}/${data?.image}`" />
+			<div class="content__main" v-html="processedContent"></div>
 			<div class="content__bottom" v-if="data?.category === 'events'">
 				<div class="content__bottom-item">
 					<div class="content__bottom-item_top">
@@ -93,9 +93,43 @@
 </template>
 
 <script setup>
-defineProps({
+const { DOMAIN_URL } = useURL();
+
+const props = defineProps({
 	data: Object
 });
+
+// Preprocess function to group <h2> and <p> into a <div>, preserve order, and exclude <img>
+const preprocessContent = htmlString => {
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(htmlString, 'text/html');
+	const elements = Array.from(doc.body.children);
+
+	const result = [];
+
+	for (let i = 0; i < elements.length; i++) {
+		if (elements[i].tagName === 'H2' && elements[i + 1]?.tagName === 'P') {
+			// Group <h2> and <p> into a <div> with a scoped-content class
+			result.push(
+				`<div class="scoped-content">${elements[i].outerHTML}${
+					elements[i + 1].outerHTML
+				}</div>`
+			);
+			i++; // Skip the next element since it's already included
+		} else if (elements[i].tagName === 'IMG') {
+			// Add scoped-img class to <img>
+			const imgWithClass = elements[i].outerHTML.replace('<img', '<img class="scoped-img"');
+			result.push(imgWithClass);
+		} else {
+			// Preserve other elements as-is
+			result.push(elements[i].outerHTML);
+		}
+	}
+
+	return result.join('');
+};
+
+const processedContent = computed(() => preprocessContent(props.data.body));
 </script>
 
 <style lang="scss" scoped>
@@ -159,6 +193,7 @@ defineProps({
 		transform: translateX(0);
 	}
 }
+
 .content {
 	display: flex;
 	flex-direction: column;
@@ -167,26 +202,6 @@ defineProps({
 		display: flex;
 		flex-direction: column;
 		gap: clamp(16px, 3vw, 40px);
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 27px;
-		color: #73819a;
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			font-size: 24px;
-			font-weight: 700;
-			line-height: 32.4px;
-			color: #22282b;
-		}
-		div {
-			display: flex;
-			flex-direction: column;
-			gap: clamp(16px, 2wv, 20px);
-		}
 	}
 	&__bottom {
 		display: grid;

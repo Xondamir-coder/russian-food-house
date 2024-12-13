@@ -24,6 +24,9 @@
 <script setup>
 const query = ref('');
 const isSidebarOpen = ref(false);
+const recipesStore = useRecipesStore();
+await recipesStore.fetchSubCategories();
+await recipesStore.fetchRecipes();
 
 const breadcrumbs = computed(() => [
 	{

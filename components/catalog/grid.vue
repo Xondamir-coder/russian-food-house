@@ -6,7 +6,7 @@
 			:to="`/products?category_id=${cat?.id}&category_name=${cat?.name}`"
 			class="grid__item"
 			:class="getGridClass(i)">
-			<img class="grid__item-img" :src="`https://rfh.spacelabs.uz/${cat?.image}`" />
+			<img class="grid__item-img" :src="`${DOMAIN_URL}/${cat?.image}`" />
 			<div class="grid__item-content">
 				<h2 class="grid__item-title">{{ cat?.name }}</h2>
 				<button class="grid__item-button bg-primary">
@@ -22,6 +22,7 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 const appStore = useAppStore();
+const { DOMAIN_URL } = useURL();
 
 const animateItems = () => {
 	setTimeout(() => {

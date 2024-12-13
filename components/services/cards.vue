@@ -5,7 +5,7 @@
 				width="760"
 				height="406"
 				class="cards__img"
-				:src="`https://rfh.spacelabs.uz/${service.image}`"
+				:src="`${DOMAIN_URL}/${service.image}`"
 				:alt="service.title" />
 			<div class="cards__content">
 				<div class="cards__details">
@@ -20,6 +20,7 @@
 <script setup>
 const { $gsap } = useNuxtApp();
 const appStore = useAppStore();
+const { DOMAIN_URL } = useURL();
 onMounted(() => {
 	$gsap.utils.toArray('.cards__item').forEach((item, i) => {
 		$gsap.from(item.firstElementChild, {

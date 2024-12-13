@@ -10,7 +10,7 @@
 				class="hero__img"
 				format="webp"
 				fit="cover"
-				:src="`https://rfh.spacelabs.uz/${news?.image}`"
+				:src="`${DOMAIN_URL}/${news?.image}`"
 				alt="news hero banner" />
 			<div class="hero__content">
 				<NewsLabel text="Популярные" />
@@ -28,6 +28,7 @@
 <script setup>
 const appStore = useAppStore();
 const last4News = computed(() => appStore.news?.slice(-4));
+const { DOMAIN_URL } = useURL();
 </script>
 
 <style lang="scss" scoped>

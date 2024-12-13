@@ -12,9 +12,7 @@
 				<div class="list__item-wrapper">
 					<div class="list__item-top">
 						<NewsLabel class="list__item-label" :text="news?.type" />
-						<img
-							class="list__item-img"
-							:src="`https://rfh.spacelabs.uz/${news?.image}`" />
+						<img class="list__item-img" :src="`${DOMAIN_URL}/${news?.image}`" />
 					</div>
 					<h4 class="list__item-title">
 						{{ news?.title }}
@@ -33,6 +31,7 @@
 <script setup>
 const appStore = useAppStore();
 const { $gsap } = useNuxtApp();
+const { DOMAIN_URL } = useURL();
 
 const titleRef = ref();
 

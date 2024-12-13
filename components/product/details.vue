@@ -5,7 +5,7 @@
 				width="485"
 				height="449"
 				class="details__img"
-				:src="`https://rfh.spacelabs.uz/${JSON.parse(product?.images)[0]}`"
+				:src="`${DOMAIN_URL}/${JSON.parse(product?.images)[0]}`"
 				:alt="product?.title" />
 		</div>
 		<div class="details__content">
@@ -52,6 +52,7 @@
 <script setup>
 const appStore = useAppStore();
 const product = computed(() => appStore.selectedProduct);
+const { DOMAIN_URL } = useURL();
 </script>
 
 <style lang="scss" scoped>
