@@ -22,11 +22,17 @@
 </template>
 
 <script setup>
+const route = useRoute();
+const recipesStore = useRecipesStore();
+
 const query = ref('');
 const isSidebarOpen = ref(false);
-const recipesStore = useRecipesStore();
+
 await recipesStore.fetchSubCategories();
-await recipesStore.fetchRecipes();
+await recipesStore.fetchRecipes({
+	take: 18,
+	recipe_categories_uuid: route.query.uuid
+});
 
 const breadcrumbs = computed(() => [
 	{

@@ -111,14 +111,12 @@ export const useRecipesStore = defineStore('recipes', () => {
 	const FETCH_THRESHOLDS = {
 		categories: 60 * 60 * 1000, // 1 hour
 		chefs: 60 * 60 * 1000, // 1 hour
-		subCategories: 60 * 60 * 1000,
-		recipes: 30 * 60 * 1000 // 30 minutes
+		subCategories: 60 * 60 * 1000
 	};
 	const lastFetched = {
 		categories: null,
 		chefs: null,
-		subCategories: null,
-		recipes: null
+		subCategories: null
 	};
 
 	// Selectables

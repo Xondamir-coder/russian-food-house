@@ -134,8 +134,7 @@ export const useAppStore = defineStore('app', () => {
 		});
 
 	// Fetch single items
-	const fetchOneNews = async routeTitle =>
-		(selectedNews.value = await fetchData(`${NEWS_URL}/${routeTitle}`));
+	const fetchOneNews = async routeTitle => await fetchData(`${NEWS_URL}/${routeTitle}`);
 	const fetchOneProduct = async routeTitle =>
 		(selectedProduct.value = await fetchData(`${PRODUCTS_URL}/${routeTitle}`));
 

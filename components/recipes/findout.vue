@@ -6,7 +6,7 @@
 				class="findout__item section-padding"
 				v-for="(cat, i) in recipesStore.categories"
 				:key="cat.uuid"
-				:to="`/recipes/${cat.type}`">
+				:to="`/recipes/${cat.type}?uuid=${cat.uuid}`">
 				<div class="findout__item-left">
 					<span class="section-title findout__item-num text-primary">{{
 						(i + 1).toString().padStart(2, '0')
