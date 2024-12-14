@@ -1,11 +1,7 @@
 <template>
 	<div class="wrapper">
 		<div class="list" id="modern-recipes-list">
-			<RecipesItem
-				v-for="recipe in recipesStore.recipes"
-				:key="recipe.uuid"
-				:data="recipe"
-				@click="recipesStore.selectRecipe(recipe)" />
+			<RecipesItem v-for="recipe in recipesStore.recipes" :key="recipe.uuid" :data="recipe" />
 		</div>
 		<ButtonPrimary class="wrapper__button" label="Показать еще" @click="loadMore" />
 	</div>

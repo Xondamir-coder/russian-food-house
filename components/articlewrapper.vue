@@ -3,8 +3,9 @@
 		<Breadcrumb :crumbs="breadcrumbs" />
 		<main class="container__wrapper">
 			<NewsContent :data="data" />
-			<NewsSidenav :similars="similarData" v-if="type === 'news'" />
+			<slot name="side" />
 		</main>
+		<slot name="bottom" />
 	</div>
 </template>
 
@@ -13,15 +14,7 @@ const props = defineProps({
 	data: Object,
 	type: String
 });
-const { NEWS_URL } = useURL();
 
-const similarData = ref([]);
-
-// Get similar news if its news
-if (props.type === 'news') {
-	const { data } = await useFetch(`${NEWS_URL}/${props.data.title_slug}/similars`);
-	similarData.value = data.value;
-}
 const translateToRussian = str => {
 	const map = {
 		news: 'Новости',

@@ -1,11 +1,14 @@
 <template>
-	<NuxtLink class="item" :to="`/recipes/${data.title_slug}`">
+	<NuxtLink
+		class="item"
+		:to="`/recipes/${data.title_slug}`"
+		@click="recipesStore.selectRecipe(data)">
 		<span class="item__type">
 			{{ getRandomTitle(data) }}
 		</span>
 		<img class="item__img" :src="`${DOMAIN_URL}/${data.image}`" :alt="data.title" />
 		<div class="item__content">
-			<span class="item__time">time missing</span>
+			<span class="item__time">{{ data.cooking_time }} минут</span>
 			<p class="item__desc" :title="data.title">
 				{{ data.title.length > 62 ? `${data.title.slice(0, 62)}...` : data.title }}
 			</p>
@@ -14,6 +17,7 @@
 </template>
 
 <script setup>
+const recipesStore = useRecipesStore();
 const { DOMAIN_URL } = useURL();
 const getRandomTitle = data => {
 	// Keys to extract from

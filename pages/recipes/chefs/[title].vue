@@ -20,6 +20,7 @@
 <script setup>
 const route = useRoute();
 const { $gsap } = useNuxtApp();
+const recipesStore = useRecipesStore();
 const breadcrumbs = computed(() => [
 	{
 		name: 'Рецепты',
@@ -31,16 +32,10 @@ const breadcrumbs = computed(() => [
 	},
 	{ name: route.params.title, link: route.path }
 ]);
-// const recipeData = {
-// 	img: '/img/recipe-placeholder.jpg',
-// 	type: 'Breakfast',
-// 	time: '35 minutes',
-// 	desc: 'Повторный контакт, конечно, оправдывает фактор коммуникации, опираясь на опыт западных коллег',
-// 	title_slug: 'breakfast-35-minutes'
-// };
 
-const recipesStore = useRecipesStore();
-
+if (!recipesStore.selectedChef.name || recipesStore.selectedChef.uuid !== route.query.uuid) {
+	await recipesStore.fetchOneChef(route.query.uuid);
+}
 await recipesStore.fetchChefRecipes(route.query.uuid);
 
 onMounted(() => {

@@ -101,7 +101,13 @@ const recipePlaceholder = {
 
 export const useRecipesStore = defineStore('recipes', () => {
 	// Static data
-	const { RECIPES_CATEGORIES_URL, RECIPES_SUBCATEGORIES_URL, RECIPES_URL, CHEFS_URL } = useURL();
+	const {
+		RECIPES_CATEGORIES_URL,
+		RECIPES_SUBCATEGORIES_URL,
+		RECIPES_URL,
+		CHEFS_URL,
+		CHEFS_INDEX_URL
+	} = useURL();
 	const FETCH_THRESHOLDS = {
 		categories: 60 * 60 * 1000, // 1 hour
 		chefs: 60 * 60 * 1000, // 1 hour
@@ -176,7 +182,8 @@ export const useRecipesStore = defineStore('recipes', () => {
 			query: { take: 6 }
 		});
 	};
-
+	const fetchOneChef = async routeTitle =>
+		(selectedChef.value = await fetchData(`${CHEFS_INDEX_URL}/${routeTitle}`));
 	const fetchOneRecipe = async routeTitle =>
 		(selectedRecipe.value = await fetchData(`${RECIPES_URL}/${routeTitle}`));
 
@@ -198,6 +205,7 @@ export const useRecipesStore = defineStore('recipes', () => {
 		fetchSubCategories,
 		fetchRecipes,
 		fetchChefs,
+		fetchOneChef,
 		fetchOneRecipe,
 		fetchChefRecipes
 	};

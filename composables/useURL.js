@@ -9,6 +9,7 @@ export default () => {
 	const REGIONS_URL = `${BASE_URL}/regions-map`;
 	const FORM_URL = `${BASE_URL}/form/submit`;
 	const CHEFS_URL = `${BASE_URL}/chefs`;
+	const CHEFS_INDEX_URL = `${BASE_URL}/chefsIndex`;
 	const RECIPES_CATEGORIES_URL = `${BASE_URL}/recipes-categories`;
 	const RECIPES_SUBCATEGORIES_URL = `${BASE_URL}/recipes-subCategories`;
 	const RECIPES_URL = `${BASE_URL}/recipes`;
@@ -26,6 +27,7 @@ export default () => {
 		RECIPES_CATEGORIES_URL,
 		RECIPES_SUBCATEGORIES_URL,
 		RECIPES_URL,
-		CHEFS_URL
+		CHEFS_URL,
+		CHEFS_INDEX_URL
 	};
 };
