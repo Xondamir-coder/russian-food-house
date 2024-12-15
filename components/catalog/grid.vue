@@ -59,7 +59,7 @@ onMounted(() => {
 	grid-template-columns: repeat(3, 1fr);
 	gap: 3vw;
 	@include mix.respond('lg') {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	}
 	&__item {
 		background: #fff;

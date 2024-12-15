@@ -12,9 +12,22 @@
 		<nav class="header__nav">
 			<ul class="header__list">
 				<li class="header__item text-dark-blue" v-for="link in links" :key="link.to">
-					<NuxtLink active-class="header__item--active" :to="link.to">{{
-						link.text
-					}}</NuxtLink>
+					<NuxtLink active-class="header__item--active" :to="link.to">
+						{{ link.text }}
+					</NuxtLink>
+					<svg v-if="link.to === '/recipes' && route.query.uuid" class="header__icon">
+						<use href="@/assets/sprite.svg#down-arrow"></use>
+					</svg>
+					<div class="header__dropdown" v-if="link.to === '/recipes' && route.query.uuid">
+						<NuxtLink
+							class="header__dropdown-link"
+							v-for="recipeLink in recipeLinks"
+							:key="recipeLink.uuid"
+							:to="`/recipes/${recipeLink.type}?uuid=${recipeLink.uuid}`"
+							:class="{ active: recipeLink.uuid === route.query.uuid }">
+							{{ recipeLink.title }}
+						</NuxtLink>
+					</div>
 				</li>
 			</ul>
 		</nav>
@@ -32,6 +45,10 @@
 
 <script setup>
 const { $gsap } = useNuxtApp();
+const route = useRoute();
+const recipesStore = useRecipesStore();
+
+await recipesStore.fetchCategories();
 const links = [
 	{
 		to: '/catalog',
@@ -58,13 +75,18 @@ const links = [
 		text: 'Рецепты'
 	}
 ];
-const route = useRoute();
+
 const isMenuOpen = ref(false);
 const headerRef = ref();
+
+const isWhite = computed(() => route.path === '/about' || route.path === '/recipes');
+const recipeLinks = computed(() =>
+	recipesStore.categories.map(el => ({ type: el.type, title: el.title, uuid: el.uuid }))
+);
+
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value;
 };
-const isWhite = computed(() => route.path === '/about' || route.path === '/recipes');
 
 onUpdated(() => {
 	if (headerRef.value.classList.contains('header--white')) {
@@ -77,7 +99,6 @@ onUpdated(() => {
 		});
 	}
 });
-
 onMounted(() => {
 	if (headerRef.value.classList.contains('header--white')) {
 		$gsap.to(headerRef.value, {
@@ -150,6 +171,9 @@ onMounted(() => {
 		width: 100%;
 		position: fixed;
 		background-color: transparent;
+		.header__icon {
+			fill: #fff;
+		}
 		.header__item {
 			color: rgba(255, 255, 255, 0.7);
 			&::after {
@@ -177,6 +201,12 @@ onMounted(() => {
 				rgba(180, 200, 220, 0)
 			);
 		}
+	}
+	&__icon {
+		width: 12px;
+		height: 7px;
+		fill: rgba(96, 128, 159, 1);
+		transition: fill 0.3s, transform 0.3s;
 	}
 	&__close {
 		width: 28px;
@@ -243,6 +273,43 @@ onMounted(() => {
 		gap: 2.7vw;
 		font-family: var.$font-secondary;
 	}
+	&__dropdown {
+		position: absolute;
+		right: 0;
+		top: calc(100% + 25px);
+		box-shadow: 0px 52px 100px 0px rgba(142, 161, 179, 0.6);
+		background-color: #fff;
+		display: flex;
+		flex-direction: column;
+		width: min-content;
+		border-radius: 10px;
+		z-index: 10;
+		width: 240px;
+
+		opacity: 0;
+		transform: translateY(-15px);
+		pointer-events: none;
+		transition: transform 0.3s, opacity 0.3s;
+
+		&-link {
+			font-size: 16px;
+			font-weight: 600;
+			line-height: 1.4;
+			color: rgba(110, 129, 156, 1);
+
+			padding: 8px 16px;
+			transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+			border-left: 4px solid transparent;
+			&:hover {
+				background-color: rgba(223, 235, 245, 1);
+			}
+			&.active {
+				border-color: rgba(3, 77, 145, 1);
+				color: rgba(3, 77, 145, 1);
+				background-color: rgba(223, 235, 245, 1);
+			}
+		}
+	}
 	&__item {
 		font-weight: 600;
 		letter-spacing: 0.02em;
@@ -264,6 +331,22 @@ onMounted(() => {
 		&:has(a.header__item--active) {
 			color: map.get(var.$colors, 'primary');
 		}
+		&:has(.header__icon) {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			position: relative;
+			&:hover {
+				.header__dropdown {
+					opacity: 1;
+					transform: translateY(0);
+					pointer-events: all;
+				}
+				.header__icon {
+					transform: rotate(180deg);
+				}
+			}
+		}
 		&::after {
 			content: '';
 			left: 0;
@@ -277,7 +360,7 @@ onMounted(() => {
 			transition: transform 0.3s;
 			z-index: 2;
 		}
-		&:hover::after {
+		&:has(> *:first-child:hover)::after {
 			transform: scaleX(1.5);
 		}
 	}

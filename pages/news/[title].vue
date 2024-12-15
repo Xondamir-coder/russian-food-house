@@ -1,5 +1,5 @@
 <template>
-	<Articlewrapper :data="newsData" type="news">
+	<Articlewrapper :data="appStore.selectedNews" type="news">
 		<template #side>
 			<NewsSidenav :similars="similarData" />
 		</template>
@@ -10,13 +10,11 @@
 const appStore = useAppStore();
 const route = useRoute();
 const { NEWS_URL } = useURL();
-const newsData = ref();
-
-//!TODO: Checking if it works on server
 
 // Take from store otherwise fetch from API
-newsData.value = await appStore.fetchOneNews(route.params.title);
-
+if (!appStore.selectedNews || appStore.selectedNews?.title_slug !== route.params.title) {
+	await appStore.fetchOneNews(route.params.title);
+}
 const similarData = ref([]);
 
 // Get similar news if its news

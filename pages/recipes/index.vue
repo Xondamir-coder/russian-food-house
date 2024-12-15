@@ -8,7 +8,6 @@
 <script setup>
 const recipesStore = useRecipesStore();
 await recipesStore.fetchCategories();
-
 useHead({
 	title: 'Рецепты | Russian Food House',
 	meta: [

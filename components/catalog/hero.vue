@@ -2,7 +2,7 @@
 	<section class="hero">
 		<div class="hero__content">
 			<h1 class="hero__title">Лучшие российские товары на Вашем столе</h1>
-			<Searchform class="hero__search" v-model="query" />
+			<SearchContainer class="pd-5vw" />
 		</div>
 		<svg class="hero__sprinkles">
 			<use href="~/assets/sprite.svg#sprinkles" />
@@ -64,6 +64,12 @@ onMounted(() => {
 		transform: translateY(0);
 	}
 }
+.pd-5vw {
+	padding: 0 5vw;
+	@include mix.respond('md') {
+		padding: 0 3vw;
+	}
+}
 .hero {
 	display: flex;
 	flex-direction: column;
@@ -72,9 +78,6 @@ onMounted(() => {
 	overflow-x: clip;
 	@include mix.respond('md') {
 		align-items: stretch;
-	}
-	&__search {
-		padding: 0 6vw;
 	}
 	&__title {
 		font-size: clamp(30px, 5vw, 72px);

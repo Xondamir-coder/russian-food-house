@@ -9,14 +9,14 @@
 				placeholder="Найти продукты"
 				required
 				v-model="model"
-				@input="emitInput" />
+				@input="debounceCallback" />
 			<button
 				type="button"
 				class="search__close"
 				@click="clearQuery"
 				:class="{ active: model }">
-				<svg class="fill-primary icon-close">
-					<use href="~/assets/sprite.svg#x" />
+				<svg class="fill-primary icon-search-close">
+					<use href="~/assets/sprite.svg#search-close" />
 				</svg>
 			</button>
 		</div>
@@ -31,7 +31,23 @@
 
 <script setup>
 const model = defineModel();
+const props = defineProps({
+	fetchResults: Function
+});
+let timeout;
+
 const clearQuery = () => (model.value = '');
+const handleDebounce = () => {
+	props.fetchResults();
+};
+const debounceCallback = () => {
+	if (timeout) {
+		clearTimeout(timeout);
+	}
+	timeout = setTimeout(() => {
+		handleDebounce();
+	}, 2000);
+};
 </script>
 
 <style scoped lang="scss">
@@ -64,8 +80,12 @@ const clearQuery = () => (model.value = '');
 		font-weight: 500;
 		border-radius: 11px;
 		background: #fff;
-		border: none;
+		border: 2px solid transparent;
+		transition: border-color 0.3s;
 		outline: none;
+		&:focus {
+			border-color: map.get(var.$colors, 'primary');
+		}
 
 		@include mix.respond('md') {
 			padding: 10px 16px;
@@ -90,8 +110,7 @@ const clearQuery = () => (model.value = '');
 	}
 	&__button {
 		color: #fff;
-		border-radius: 11px;
-		padding: 18px 46px;
+		border-radius: 13px;
 		transition: background-color 0.3s, color 0.3s;
 		animation: slide-from-right 0.5s backwards 0.25s;
 		font-size: clamp(16px, 2vw, 18px);
@@ -99,9 +118,7 @@ const clearQuery = () => (model.value = '');
 		display: flex;
 		align-items: center;
 		gap: 12.5px;
-		@include mix.respond('md') {
-			padding: 11.5px 20.5px;
-		}
+		padding: 11.5px 20.5px;
 
 		&:hover {
 			background-color: #fff;
