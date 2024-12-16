@@ -35,6 +35,7 @@ const props = defineProps({
 	fetchResults: Function
 });
 let timeout;
+const DEBOUNCE_TIME = 2000;
 
 const clearQuery = () => (model.value = '');
 const handleDebounce = () => {
@@ -46,7 +47,7 @@ const debounceCallback = () => {
 	}
 	timeout = setTimeout(() => {
 		handleDebounce();
-	}, 2000);
+	}, DEBOUNCE_TIME);
 };
 </script>
 

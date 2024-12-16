@@ -13,6 +13,7 @@ export default () => {
 	const RECIPES_CATEGORIES_URL = `${BASE_URL}/recipes-categories`;
 	const RECIPES_SUBCATEGORIES_URL = `${BASE_URL}/recipes-subCategories`;
 	const RECIPES_URL = `${BASE_URL}/recipes`;
+	const SEARCH_URL = `${BASE_URL}/search`;
 
 	return {
 		DOMAIN_URL,
@@ -28,6 +29,7 @@ export default () => {
 		RECIPES_SUBCATEGORIES_URL,
 		RECIPES_URL,
 		CHEFS_URL,
-		CHEFS_INDEX_URL
+		CHEFS_INDEX_URL,
+		SEARCH_URL
 	};
 };

@@ -39,56 +39,46 @@
 			</button>
 		</div>
 		<div class="results__content">
-			<NuxtLink to="/" class="results__item">
+			<h4 class="results__title" v-if="!results.length">
+				Результаты вашего поиска будут здесь.
+			</h4>
+			<NuxtLink
+				class="results__item"
+				v-for="result in results"
+				:key="result.uuid"
+				:to="getLink(result)">
 				<div class="results__item-icon">
-					<svg class="results__icon">
+					<svg class="results__icon" v-if="result.sortingType === 'recipes'">
 						<use href="~/assets/sprite.svg#recipes" />
 					</svg>
-				</div>
-				<div class="results__item-content">
-					<h4 class="results__item-type">Рецепты</h4>
-					<p class="results__item-text">
-						Ассортиментная политика предприятия, пренебрегая деталями, определяет
-						рекламный
-					</p>
-				</div>
-			</NuxtLink>
-			<NuxtLink to="/" class="results__item">
-				<div class="results__item-icon">
-					<svg class="results__icon">
+					<svg class="results__icon" v-if="result.sortingType === 'products'">
+						<use href="~/assets/sprite.svg#products" />
+					</svg>
+					<svg class="results__icon" v-if="result.sortingType === 'chefs'">
 						<use href="~/assets/sprite.svg#chefs" />
 					</svg>
 				</div>
 				<div class="results__item-content">
-					<h4 class="results__item-type">Повара</h4>
+					<h4 class="results__item-type">
+						{{ translateSortingTypeToRus(result.sortingType) }}
+					</h4>
 					<p class="results__item-text">
-						Можно предположить, что медийная связь транслирует креативный выставочный
-						стенд.
-					</p>
-				</div>
-			</NuxtLink>
-			<NuxtLink to="/" class="results__item">
-				<div class="results__item-icon">
-					<svg class="results__icon">
-						<use href="~/assets/sprite.svg#products" />
-					</svg>
-				</div>
-				<div class="results__item-content">
-					<h4 class="results__item-type">Товары</h4>
-					<p class="results__item-text">
-						Искусство медиапланирования, суммируя приведенные примеры, существенно
-						специфицирует инвестиционный продукт
+						{{
+							result.meta_description.length > 60
+								? result.meta_description.slice(0, 60) + '...'
+								: result.meta_description
+						}}
 					</p>
 				</div>
 			</NuxtLink>
 		</div>
 		<div class="results__bottom">
-			<button class="results__button">
+			<button class="results__button" @click="fetchResults('prev')">
 				<svg class="results__button-icon">
 					<use href="~/assets/sprite.svg#search-arrow" />
 				</svg>
 			</button>
-			<button class="results__button">
+			<button class="results__button" @click="fetchResults('next')">
 				<svg class="results__button-icon">
 					<use href="~/assets/sprite.svg#search-arrow" />
 				</svg>
@@ -105,6 +95,27 @@ const props = defineProps({
 	fetchResults: Function
 });
 const model = defineModel();
+
+const translateSortingTypeToRus = sortingType => {
+	switch (sortingType) {
+		case 'recipes':
+			return 'Рецепты';
+		case 'products':
+			return 'Товары';
+		case 'chefs':
+			return 'Повара';
+	}
+};
+const getLink = item => {
+	switch (item.sortingType) {
+		case 'products':
+			return `/products/${item.title_slug}`;
+		case 'recipes':
+			return `/recipes/${item.title_slug}`;
+		case 'chefs':
+			return `/recipes/chefs/${item.name}?uuid=${item.uuid}`;
+	}
+};
 const selectType = newType => {
 	model.value = newType;
 	props.fetchResults();
@@ -120,6 +131,12 @@ const selectType = newType => {
 	top: calc(100% + 10px);
 	z-index: 10;
 	box-shadow: 0px 52px 100px 0px rgba(142, 161, 179, 0.6);
+	transition: opacity 0.3s, transform 0.3s;
+	&.hidden {
+		opacity: 0;
+		transform: translateY(-20px);
+		pointer-events: none;
+	}
 	@include mix.respond('md') {
 		width: calc(100% - 3vw * 2);
 	}
@@ -217,6 +234,9 @@ const selectType = newType => {
 		p {
 			margin-left: 3px;
 		}
+	}
+	&__title {
+		color: rgb(102, 109, 128);
 	}
 	&__content {
 		display: flex;
