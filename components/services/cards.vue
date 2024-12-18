@@ -56,7 +56,11 @@ onMounted(() => {
 		font-size: 18px;
 		font-weight: 700;
 		letter-spacing: 0.03em;
-		line-height: 1.4;
+		line-height: 1.2;
+		@include mix.respond('md', min) {
+			font-size: 24px;
+			font-weight: 800;
+		}
 	}
 	&__text {
 		font-size: 16px;
@@ -85,11 +89,16 @@ onMounted(() => {
 		width: 100%;
 		border-radius: 20px;
 		object-fit: cover;
+		height: 100%;
+		aspect-ratio: 760/400;
 		@include mix.respond('lg', min) {
 			grid-column: span 2;
 		}
 		@include mix.respond('xl') {
 			grid-column: auto;
+		}
+		@include mix.respond('md') {
+			aspect-ratio: 343/312;
 		}
 	}
 	&__item {

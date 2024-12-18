@@ -4,7 +4,11 @@
 			<div class="items__wrapper">
 				<h2 class="sectiont-title text-primary">More posts</h2>
 				<div class="items">
-					<RecipesItem v-for="data in similarData" :key="data.uuid" :data="data" />
+					<RecipesItem
+						v-for="data in similarData"
+						:key="data.uuid"
+						:data="data"
+						class="recipe-hover" />
 				</div>
 			</div>
 		</template>

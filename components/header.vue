@@ -15,10 +15,10 @@
 					<NuxtLink active-class="header__item--active" :to="link.to">
 						{{ link.text }}
 					</NuxtLink>
-					<svg v-if="link.to === '/recipes' && route.query.uuid" class="header__icon">
+					<!-- <svg v-if="link.to === '/recipes' && route.query.uuid" class="header__icon">
 						<use href="@/assets/sprite.svg#down-arrow"></use>
-					</svg>
-					<div class="header__dropdown" v-if="link.to === '/recipes' && route.query.uuid">
+					</svg> -->
+					<!-- <div class="header__dropdown" v-if="link.to === '/recipes' && route.query.uuid">
 						<NuxtLink
 							class="header__dropdown-link"
 							v-for="recipeLink in recipeLinks"
@@ -27,7 +27,7 @@
 							:class="{ active: recipeLink.uuid === route.query.uuid }">
 							{{ recipeLink.title }}
 						</NuxtLink>
-					</div>
+					</div> -->
 				</li>
 			</ul>
 		</nav>
@@ -64,7 +64,7 @@ const links = [
 	},
 	{
 		to: '/services',
-		text: 'Сервисы'
+		text: 'Услуги'
 	},
 	{
 		to: '/contacts',

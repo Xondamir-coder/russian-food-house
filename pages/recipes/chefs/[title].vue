@@ -39,26 +39,56 @@ if (!recipesStore.selectedChef.name || recipesStore.selectedChef.uuid !== route.
 await recipesStore.fetchChefRecipes(route.query.uuid);
 
 onMounted(() => {
-	const itemsLength = $gsap.utils.toArray('#chef-container .chef__item').length;
-	$gsap.from('#chef-container .chef__card', {
-		y: -40,
-		opacity: 0,
-		duration: 1
+	$gsap.fromTo(
+		'#chef-container .chef__card',
+		{ clipPath: 'circle(0%)', opacity: 0, scale: 0.8, duration: 1.5 },
+		{ clipPath: 'circle(100%)', opacity: 1, scale: 1, duration: 1.5 }
+	);
+
+	$gsap.fromTo(
+		'#chef-container .chef__item',
+		{ clipPath: 'circle(0%)', opacity: 0, scale: 0.8, duration: 1.5, delay: 0.5, stagger: 0.2 },
+		{ clipPath: 'circle(100%)', opacity: 1, scale: 1, duration: 1.5, delay: 0.5, stagger: 0.2 }
+	);
+	const items = document.querySelectorAll('#chef-container .chef__item');
+
+	items.forEach((item, i) => {
+		$gsap.to(item, {
+			yPercent: window.innerWidth > 768 ? items.length * -100 : items.length * -160,
+			scrollTrigger: {
+				trigger: '#chef',
+				start: 'top top',
+				end: 'bottom top',
+				scrub: 1,
+				pin: i === 0 ? true : false
+			}
+		});
+		$gsap.from(item.querySelector('.item__img'), {
+			scale: 1.4,
+			yPercent: -50,
+			scrollTrigger: {
+				trigger: '#chef',
+				start: 'top top',
+				end: 'bottom top',
+				scrub: 1
+			}
+		});
 	});
-	$gsap.from('#chef-container .chef__item', {
-		scale: 0,
-		stagger: 0.2
-	});
-	$gsap.to('#chef-container .chef__item', {
-		yPercent: window.innerWidth > 768 ? itemsLength * -100 : itemsLength * -160,
-		scrollTrigger: {
-			trigger: '#chef',
-			start: 'top top',
-			end: 'bottom top',
-			scrub: 1,
-			pin: true
-		}
-	});
+
+	// items.forEach((item, index) => {
+	// 	const speedMultiplier = 1; // Customize the speed for each item
+	// 	$gsap.to(item, {
+	// 		yPercent: window.innerWidth > 768 ? speedMultiplier * -100 : speedMultiplier * -160,
+	// 		scrollTrigger: {
+	// 			trigger: '#chef',
+	// 			start: 'top top',
+	// 			end: 'bottom top',
+	// 			scrub: 1,
+	// 			pin: index == 0 ? true : false
+	// 		}
+	// 	});
+	// });
+
 	$gsap.to('#chef .chef__inner', {
 		width: '100%',
 		scrollTrigger: {
@@ -68,6 +98,7 @@ onMounted(() => {
 			scrub: 1
 		}
 	});
+
 	$gsap.to('#chef-container .chef__card', {
 		yPercent: -50,
 		scrollTrigger: {
@@ -125,6 +156,7 @@ onMounted(() => {
 	a.chef__item {
 		width: 260px;
 		position: absolute;
+		opacity: 0;
 		&:nth-of-type(odd) {
 			right: -40%;
 			@include mix.respond('md') {
@@ -152,11 +184,10 @@ onMounted(() => {
 		position: relative;
 	}
 	&__card {
-		width: clamp(280px, 27h, 500px);
+		width: clamp(280px, 100%, 500px);
 		background: #fff;
-		&:hover {
-			box-shadow: none;
-		}
+		box-shadow: 0px 52px 100px 0px rgba(142, 161, 179, 0.6);
+		opacity: 0;
 	}
 	&__center {
 		padding-top: 10%;

@@ -112,7 +112,7 @@ const links = [
 	},
 	{
 		to: '/services',
-		text: 'Сервисы'
+		text: 'Услуги'
 	},
 	{
 		to: '/contacts',

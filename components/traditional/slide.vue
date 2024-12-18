@@ -7,7 +7,9 @@
 		<div class="item__text text-primary" v-if="words[1]">
 			{{ words[1] }}
 		</div>
-		<img class="item__img" :src="`${DOMAIN_URL}/${data.image}`" :alt="data.meta_title" />
+		<div class="item__img-container">
+			<img class="item__img" :src="`${DOMAIN_URL}/${data.image}`" :alt="data.meta_title" />
+		</div>
 		<div class="item__action">
 			<button class="item__button" @click="changeSlide('prev')">
 				<svg
@@ -102,6 +104,19 @@ const words = computed(() => props.data.title.split('-'));
 		transform: rotate(360deg);
 	}
 }
+@mixin inactive {
+	.item__plate {
+		visibility: hidden;
+	}
+	.item__img {
+		opacity: 0;
+		scale: 0.5;
+	}
+	.item__text {
+		opacity: 0;
+		translate: 0 -25%;
+	}
+}
 
 .item {
 	padding-top: 50px;
@@ -109,30 +124,17 @@ const words = computed(() => props.data.title.split('-'));
 	position: relative;
 	display: grid;
 	align-items: flex-start;
-	&.active {
-		z-index: 10;
-	}
-	&:not(.active) {
-		.item__plate {
-			visibility: hidden;
-		}
-		.item__img {
-			opacity: 0;
-			scale: 0.5;
-		}
-		.item__text {
-			opacity: 0;
-			translate: 0 -25%;
-		}
-	}
+
 	@include mix.respond('xl') {
 		height: calc(100vh - 68.83px);
 	}
 	@include mix.respond('md') {
 		padding-inline: 20px;
 	}
+	&:not(.active) {
+		display: none;
+	}
 	&__link {
-		animation: appear 1s backwards 1s;
 		button {
 			font-family: var.$font-base;
 			letter-spacing: 0.02em;
@@ -153,16 +155,19 @@ const words = computed(() => props.data.title.split('-'));
 		// position: absolute;
 	}
 	&__img {
-		pointer-events: none;
-		z-index: 4;
-		align-self: flex-end;
-		justify-self: center;
-		width: 60%;
-		transform: translate(0, 4%);
-		filter: drop-shadow(41px 53px 100px rgba(0, 0, 0, 0.6));
-		// animation: slide-from-top 1s backwards 0.3s;
-		animation: rotate 50s infinite linear;
-		transition: opacity 0.5s, scale 0.5s;
+		animation: slide-from-top 1s backwards 0.5s;
+		&-container {
+			display: grid;
+			place-items: center;
+			width: 60%;
+			transform: translate(0, 4%);
+			filter: drop-shadow(41px 53px 100px rgba(0, 0, 0, 0.6));
+			animation: rotate 50s infinite linear;
+			pointer-events: none;
+			z-index: 4;
+			align-self: flex-end;
+			justify-self: center;
+		}
 		@include mix.respond('xl') {
 			position: absolute;
 			width: 80vh;
@@ -207,7 +212,6 @@ const words = computed(() => props.data.title.split('-'));
 		aspect-ratio: 1;
 		border-radius: 50%;
 		transform: translateY(150px);
-		animation: appear 1s backwards 1s;
 		transition: background 0.2s;
 		&:hover {
 			background: map.get(var.$colors, 'secondary');

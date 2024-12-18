@@ -1,5 +1,5 @@
 <template>
-	<main class="wrapper">
+	<main class="wrapper" id="traditional">
 		<TraditionalSlide
 			v-for="(recipe, i) in recipesStore.recipes"
 			:key="recipe.uuid"

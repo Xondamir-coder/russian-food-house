@@ -32,7 +32,7 @@ const chunkedChefs = computed(() => chunk(recipesStore.chefs, 5));
 <style lang="scss" scoped>
 @keyframes animate-left {
 	from {
-		transform: translateX(50%);
+		transform: translateX(5%);
 	}
 	to {
 		transform: translateX(-75%);
@@ -40,10 +40,20 @@ const chunkedChefs = computed(() => chunk(recipesStore.chefs, 5));
 }
 @keyframes animate-right {
 	from {
-		transform: translateX(-50%);
+		transform: translateX(-5%);
 	}
 	to {
 		transform: translateX(75%);
+	}
+}
+@keyframes circle-appear {
+	from {
+		opacity: 0;
+		clip-path: circle(0%);
+	}
+	to {
+		opacity: 1;
+		clip-path: circle(100%);
 	}
 }
 .chefs {
@@ -65,6 +75,12 @@ const chunkedChefs = computed(() => chunk(recipesStore.chefs, 5));
 	}
 	&__link {
 		display: flex;
+		animation: circle-appear 2s ease-in-out backwards;
+		@for $i from 1 through 15 {
+			&:nth-of-type(#{$i}) {
+				animation-delay: $i * 0.1s;
+			}
+		}
 	}
 	&__row {
 		display: grid;

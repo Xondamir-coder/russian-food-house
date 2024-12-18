@@ -15,6 +15,16 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+@keyframes circle-appear {
+	from {
+		opacity: 0;
+		clip-path: circle(0%);
+	}
+	to {
+		opacity: 1;
+		clip-path: circle(100%);
+	}
+}
 .chefy {
 	border: 0.75px solid rgba(144, 157, 162, 1);
 	border-radius: 45px;

@@ -4,7 +4,7 @@
 			class="sidebar__row"
 			v-for="(subCategory, title) in recipesStore.subCategories"
 			:key="title">
-			<h3 class="sidebar__title">{{ title }}</h3>
+			<h3 class="sidebar__title">{{ translateTitleToRus(title) }}</h3>
 			<ul class="sidebar__list">
 				<li
 					:title="type"
@@ -28,6 +28,7 @@
 const recipesStore = useRecipesStore();
 const toPythonCase = str => str.replace(/([A-Z])/g, '_$1').toLowerCase();
 
+// To prepare keys of subCategories for future use
 const keys = computed(() => Object.keys(recipesStore.subCategories));
 recipesStore.selectSubCategories(
 	Object.fromEntries(keys.value.map(key => [`recipe_${toPythonCase(key)}_uuid`, '']))
@@ -36,6 +37,16 @@ recipesStore.selectSubCategories(
 const getRecipes = (uuid, title) => {
 	recipesStore.selectedSubCategories[`recipe_${toPythonCase(title)}_uuid`] = uuid;
 	recipesStore.fetchRecipes(recipesStore.selectedSubCategories);
+};
+const translateTitleToRus = word => {
+	switch (word) {
+		case 'productType':
+			return 'Тип продукта';
+		case 'mealType':
+			return 'Тип блюда';
+		case 'dietType':
+			return 'Тип диеты';
+	}
 };
 </script>
 

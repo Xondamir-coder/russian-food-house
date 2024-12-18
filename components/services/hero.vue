@@ -1,8 +1,8 @@
 <template>
 	<section class="hero">
 		<div class="hero__box">
-			<span class="hero__title text-secondary">НОВЫЙ ФОРМАТ</span>
-			<span class="hero__title text-primary">ДЛЯ ЭКСПОРТА</span>
+			<span class="hero__title red">НОВЫЙ ФОРМАТ</span>
+			<span class="hero__title blue">ДЛЯ ЭКСПОРТА</span>
 		</div>
 		<p class="hero__text">
 			Рекламный бриф, следовательно, спонтанно транслирует тактический медиаплан. Рекламная
@@ -18,14 +18,9 @@
 </template>
 
 <script setup>
-import Lenis from 'lenis';
-
-let lenis;
-if (import.meta.client) {
-	lenis = new Lenis();
-}
+const { $lenis } = useNuxtApp();
 const scrollDown = () => {
-	lenis.scrollTo('#services-cards');
+	$lenis.scrollTo('#services-cards');
 };
 </script>
 
@@ -117,6 +112,12 @@ const scrollDown = () => {
 		font-size: clamp(40px, 7vw, 100px);
 		font-weight: 700;
 		animation-duration: 0.7s;
+		&.red {
+			color: rgba(180, 16, 51, 1);
+		}
+		&.blue {
+			color: rgba(4, 95, 178, 1);
+		}
 		&:last-of-type {
 			animation-name: slide-in-from-right;
 		}

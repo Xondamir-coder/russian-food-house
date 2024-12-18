@@ -6,7 +6,14 @@
 		<span class="item__type">
 			{{ getRandomTitle(data) }}
 		</span>
-		<img class="item__img" :src="`${DOMAIN_URL}/${data.image}`" :alt="data.title" />
+		<div class="item__img-container">
+			<img
+				width="260"
+				height="163"
+				class="item__img"
+				:src="`${DOMAIN_URL}/${data.image}`"
+				:alt="data.title" />
+		</div>
 		<div class="item__content">
 			<span class="item__time">{{ data.cooking_time }} минут</span>
 			<p class="item__desc" :title="data.title">
@@ -42,6 +49,7 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
 .item {
 	border-radius: 16px;
 	background-color: #fff;
@@ -51,7 +59,14 @@ defineProps({
 	flex-direction: column;
 	gap: 18px;
 	overflow: hidden;
-	transition: box-shadow 0.3s;
+	transition: box-shadow 0.3s, color 0.3s;
+	&.recipe-hover {
+		box-shadow: none;
+		&:hover {
+			color: map.get(var.$colors, 'primary');
+			box-shadow: none;
+		}
+	}
 	&:hover {
 		box-shadow: 0px 20px 45px 0px rgba(7, 14, 39, 0.3);
 	}
@@ -85,11 +100,18 @@ defineProps({
 		border: 2px solid rgba(212, 212, 216, 1);
 		border-radius: 10px;
 		color: rgba(0, 111, 238, 1);
+		z-index: 2;
 	}
 	&__img {
 		width: 100%;
 		aspect-ratio: 260/163;
 		object-fit: cover;
+		height: 100%;
+		&-container {
+			width: 100%;
+			overflow: hidden;
+			display: flex;
+		}
 	}
 }
 </style>
